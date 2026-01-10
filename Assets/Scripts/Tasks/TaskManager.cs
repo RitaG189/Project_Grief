@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class TaskManager : MonoBehaviour
+{
+    public static TaskManager Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    public void TryExecuteSimpleTask(TasksSO task)
+    {
+        if (!NeedsManager.Instance.CanPerformTask(task))
+            return;
+
+        NeedsManager.Instance.ApplyTaskCost(task);
+        TimeSystem.Instance.AdvanceMinutes(task.minutesCost);
+
+        //OnTaskCompleted?.Invoke(task);
+    }
+}
