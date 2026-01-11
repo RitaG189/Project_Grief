@@ -18,7 +18,7 @@ public class NeedsSystem
     {
         this.config = config;
 
-        Energy = 2;
+        Energy = config.maxEnergy;
         Hunger = config.maxHunger;
         Social = config.maxSocial;
         Hygiene = config.maxHygiene;
@@ -27,6 +27,16 @@ public class NeedsSystem
     public void RestoreEnergyToMax()
     {
         Energy = MaxEnergy;
+    }
+    
+    public void RestoreHungerToMax()
+    {
+        Hunger = MaxHunger;
+    }
+
+    public void RestoreHygieneToMax()
+    {
+        Hygiene = MaxHygiene;
     }
 
     public void AddEnergy(float amount)

@@ -58,6 +58,28 @@ public class NeedsManager : MonoBehaviour
         NotifyAll();
     }
 
+    public void Eat()
+    {
+        TimeSystem.Instance.SkipHours(2);
+
+        Needs.AddEnergy(-2);
+        Needs.RestoreHungerToMax();
+        Needs.AddHygiene(-2);
+        Needs.AddSocial(-2);
+        NotifyAll(); 
+    }
+
+    public void TakeBath()
+    {
+        TimeSystem.Instance.SkipHours(1);
+
+        Needs.AddEnergy(-1);
+        Needs.AddHunger(-1);
+        Needs.RestoreHygieneToMax();
+        Needs.AddSocial(-1);
+        NotifyAll(); 
+    }
+
     public bool CanPerformTask(TasksSO task)
     {
         return Needs.Energy >= task.energyCost;
