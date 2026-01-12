@@ -3,7 +3,7 @@ using System;
 
 public class TimeSystem : MonoBehaviour
 {
-    public int Hour { get; private set; } = 8;   // começa às 8:00
+    public int Hour { get; private set; } = 4;   // começa às 8:00
     public int Minute { get; private set; } = 0;
     public int Day { get; private set; } = 1;
 
@@ -78,4 +78,15 @@ public class TimeSystem : MonoBehaviour
 
         OnTimeChanged?.Invoke(Hour, Minute);
     }
+
+    public float GetContinuousTime01()
+    {
+        float currentMinutes =
+            (Hour * 60f) +
+            Minute +
+            (timer / realSecondsPerTick) * minutesPerTick;
+
+        return currentMinutes / (24f * 60f);
+    }
+
 }
