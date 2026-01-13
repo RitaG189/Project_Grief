@@ -3,7 +3,7 @@ using System;
 
 public class TimeSystem : MonoBehaviour
 {
-    public int Hour { get; private set; } = 4;   // começa às 8:00
+    public int Hour { get; private set; } = 8;   // começa às 8:00
     public int Minute { get; private set; } = 0;
     public int Day { get; private set; } = 1;
 
