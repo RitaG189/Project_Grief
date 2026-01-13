@@ -21,7 +21,7 @@ public class TaskManager : MonoBehaviour
         if (!NeedsManager.Instance.CanPerformTask(task))
             return;
 
-        BlackoutManager.Instance.FadeInWaitFadeOut();
+        //BlackoutManager.Instance.FadeInWaitFadeOut();
         NeedsManager.Instance.ApplyTaskCost(task);
         TimeSystem.Instance.AdvanceMinutes(task.minutesCost);
 
