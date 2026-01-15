@@ -4,13 +4,15 @@ using System;
 public class NeedsManager : MonoBehaviour
 {
     [SerializeField] private NeedsConfig needsConfig;
+    [SerializeField] private float decayPerTick = 0.1f;
+    [SerializeField] private int minutesPerTick = 10;
     public static NeedsManager Instance { get; private set; }
     public NeedsSystem Needs { get; private set; }
-
     public event Action<float, float> OnEnergyChanged;
     public event Action<float, float> OnHungerChanged;
     public event Action<float, float> OnSocialChanged;
     public event Action<float, float> OnHygieneChanged;
+    private int lastMinuteTick = -1;
 
     private void Awake()
     {
@@ -30,6 +32,32 @@ public class NeedsManager : MonoBehaviour
     void Start()
     {
         NotifyAll();  
+        TimeSystem.Instance.OnTimeChanged += OnTimeChanged;
+    }
+
+    void OnDestroy()
+    {
+        TimeSystem.Instance.OnTimeChanged -= OnTimeChanged;
+    }
+
+    private void OnTimeChanged(int hour, int minute)
+    {
+        // Só executa de 10 em 10 minutos
+        if (minute % minutesPerTick != 0)
+            return;
+
+        // Evita executar duas vezes no mesmo minuto
+        if (minute == lastMinuteTick)
+            return;
+
+        lastMinuteTick = minute;
+        
+        Needs.DecreaseEnergy(decayPerTick);
+        Needs.DecreaseHunger(decayPerTick);
+        Needs.DecreaseSocial(decayPerTick);
+        Needs.DecreaseHygiene(decayPerTick);
+
+        NotifyAll();
     }
 
     void NotifyAll()

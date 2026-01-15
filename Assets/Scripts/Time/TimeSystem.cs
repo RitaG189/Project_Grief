@@ -1,8 +1,10 @@
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class TimeSystem : MonoBehaviour
 {
+    [SerializeField] int hourStartDay = 8;
     public int Hour { get; private set; } = 8;   // começa às 8:00
     public int Minute { get; private set; } = 0;
     public int Day { get; private set; } = 1;
@@ -30,6 +32,7 @@ public class TimeSystem : MonoBehaviour
 
     void Start()
     {
+        Hour = hourStartDay;
         OnTimeChanged?.Invoke(Hour, Minute);
         OnDayChanged?.Invoke(Day);
     }

@@ -58,4 +58,24 @@ public class NeedsSystem
     {
         Hygiene = Mathf.Min(Hygiene + amount, MaxHygiene);
     }
+
+    public void DecreaseEnergy(float amount)
+    {
+        Energy = Mathf.Max(Energy - amount, 0f);
+    }
+
+    public void DecreaseHunger(float amount)
+    {
+        Hunger = Mathf.Max(Hunger - amount, 0f);
+    }
+
+    public void DecreaseSocial(float amount)
+    {
+        Social = Mathf.Max(Social - amount, 0f);
+    }
+
+    public void DecreaseHygiene(float amount)
+    {
+        Hygiene = Mathf.Max(Hygiene - amount, 0f);
+    }
 }
