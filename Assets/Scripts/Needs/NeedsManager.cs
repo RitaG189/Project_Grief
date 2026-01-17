@@ -113,13 +113,18 @@ public class NeedsManager : MonoBehaviour
         return Needs.Energy >= task.energyCost;
     }
 
-    public void ApplyTaskCost(TasksSO task)
+    public void ApplyTaskCostAndRewards(TasksSO task)
     {
-        Needs.AddEnergy(-task.energyCost);
-        Needs.AddHunger(-task.hungerCost);
-        Needs.AddHygiene(-task.hygieneCost);
-        Needs.AddSocial(-task.socialCost);
+        Needs.AddEnergy(task.energyReward);
+        Needs.AddHunger(task.hungerReward);
+        Needs.AddHygiene(task.hygieneReward);
+        Needs.AddSocial(task.socialReward);
+
+        Needs.DecreaseEnergy(task.energyCost);
+        Needs.DecreaseHunger(task.hungerCost);
+        Needs.DecreaseHygiene(task.hygieneCost);
+        Needs.DecreaseSocial(task.socialCost);
+
         NotifyAll();
     }
-
 }

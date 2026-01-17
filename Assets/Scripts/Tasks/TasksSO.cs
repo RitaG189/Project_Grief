@@ -8,6 +8,12 @@ public class TasksSO : ScriptableObject
     public string taskName;
     public int minutesCost;
     public bool repeatable;
+
+    [Header("Rewards")]
+    public float energyReward;
+    public float hungerReward;
+    public float hygieneReward;
+    public float socialReward;
     
     [Header("Costs")]
     public float energyCost;

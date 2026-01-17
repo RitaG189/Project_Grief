@@ -22,7 +22,7 @@ public class TaskManager : MonoBehaviour
             return;
 
         //BlackoutManager.Instance.FadeInWaitFadeOut();
-        NeedsManager.Instance.ApplyTaskCost(task);
+        NeedsManager.Instance.ApplyTaskCostAndRewards(task);
         TimeSystem.Instance.AdvanceMinutes(task.minutesCost);
 
         //OnTaskCompleted?.Invoke(task);

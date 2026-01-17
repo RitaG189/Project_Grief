@@ -10,7 +10,6 @@ public class Bed : MonoBehaviour, IInteractable
     [SerializeField] String taskName;
     public void Interact()
     {
-        Debug.Log("Dormir");
         NeedsManager.Instance.Sleep();
     }
 

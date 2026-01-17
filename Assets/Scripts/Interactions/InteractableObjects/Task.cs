@@ -15,6 +15,6 @@ public class Task : MonoBehaviour, IInteractable
     public void ToggleVisibility(bool value)
     {
         canvas.SetActive(value);
-        text.text = taskSO.name;
+        text.text = taskSO.taskName;
     }
 }
