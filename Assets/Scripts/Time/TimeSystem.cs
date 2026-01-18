@@ -12,7 +12,7 @@ public class TimeSystem : MonoBehaviour
     public static TimeSystem Instance { get; private set; }
     public event Action<int, int> OnTimeChanged;
     public event Action<int> OnDayChanged;
-
+    public event Action OnSkippedTime;
     [SerializeField] private float realSecondsPerTick = 1f;
     [SerializeField] private int minutesPerTick = 10;
 
@@ -34,6 +34,7 @@ public class TimeSystem : MonoBehaviour
     {
         Hour = hourStartDay;
         OnTimeChanged?.Invoke(Hour, Minute);
+        OnSkippedTime?.Invoke();
         OnDayChanged?.Invoke(Day);
     }
 
@@ -66,6 +67,7 @@ public class TimeSystem : MonoBehaviour
         }
 
         OnTimeChanged?.Invoke(Hour, Minute);
+        OnSkippedTime?.Invoke();
     }
 
     public void SkipHours(int hours)
@@ -80,6 +82,7 @@ public class TimeSystem : MonoBehaviour
         }
 
         OnTimeChanged?.Invoke(Hour, Minute);
+        OnSkippedTime?.Invoke();
     }
 
     public float GetContinuousTime01()

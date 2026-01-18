@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.8
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: fd4622cb50dfe8542a18cf6008b0e424, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2219,7 +2219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620b4e8715ce0884a810d4ef117e8cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeSystem
-  hourStartDay: 8
+  hourStartDay: 17
   realSecondsPerTick: 5
   minutesPerTick: 10
 --- !u!114 &386931699
@@ -2248,10 +2248,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SunTimeBinder
   timeSystem: {fileID: 386931698}
   sunLight: {fileID: 410087040}
+  skyboxSourceMaterial: {fileID: 2100000, guid: fd4622cb50dfe8542a18cf6008b0e424, type: 2}
   sunriseAngle: -90
   sunsetAngle: 270
-  sunriseTime: 5.9
-  sunsetTime: 18.7
+  sunriseStart: 5.5
+  sunriseEnd: 7.5
+  dayStart: 6
+  dayEnd: 17
+  sunsetEnd: 18.5
+  nightStart: 20
+  sunriseZenith: {r: 0.75, g: 0.8, b: 0.85, a: 1}
+  sunriseHorizon: {r: 1, g: 0.85, b: 0.7, a: 1}
+  dayZenith: {r: 0.42745098, g: 0.7411765, b: 1, a: 1}
+  dayHorizon: {r: 0.7137255, g: 0.8784314, b: 1, a: 1}
+  sunsetZenith: {r: 0.25882354, g: 0.52156866, b: 0.7372549, a: 1}
+  sunsetHorizon: {r: 0.9811321, g: 0.73407954, b: 0.42114633, a: 1}
+  nightZenith: {r: 0.11372549, g: 0.1882353, b: 0.3882353, a: 1}
+  nightHorizon: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &386931701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2267,20 +2280,20 @@ MonoBehaviour:
   timeSystem: {fileID: 386931698}
   ambientColorOverDay:
     serializedVersion: 2
-    key0: {r: 0.37019405, g: 0.46018493, b: 0.5566038, a: 1}
+    key0: {r: 0.33333334, g: 0.46666667, b: 0.6627451, a: 1}
     key1: {r: 0.8666667, g: 0.84705883, b: 0.7490196, a: 1}
     key2: {r: 0.8679245, g: 0.8480941, b: 0.749199, a: 0}
-    key3: {r: 0.8867924, g: 0.6248569, b: 0.43921322, a: 0}
-    key4: {r: 0.56537026, g: 0.6407529, b: 0.7264151, a: 0}
-    key5: {r: 0.37254903, g: 0.4627451, b: 0.5568628, a: 0}
+    key3: {r: 0.9339623, g: 0.8168165, b: 0.73571557, a: 0}
+    key4: {r: 0.5931827, g: 0.6766147, b: 0.8113208, a: 0}
+    key5: {r: 0.3333037, g: 0.4641331, b: 0.6603774, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 12529
     ctime1: 21395
-    ctime2: 45875
-    ctime3: 48766
-    ctime4: 51657
-    ctime5: 54934
+    ctime2: 49344
+    ctime3: 51657
+    ctime4: 53970
+    ctime5: 58982
     ctime6: 0
     ctime7: 0
     atime0: 0
@@ -2622,13 +2635,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.010943, y: -0.87640965, z: 0.48016477, w: -0.03504358}
+  m_LocalRotation: {x: -0.76720023, y: -0.036475074, z: -0.0582649, w: -0.6377136}
   m_LocalPosition: {x: 5, y: 7.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -957.395, y: -5.421997, z: -181.539}
+  m_LocalEulerAnglesHint: {x: -976.971, y: -37.080017, z: -35.30298}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6895,7 +6908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1090677923
 Transform:
   m_ObjectHideFlags: 0
