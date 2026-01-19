@@ -12,8 +12,6 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] PlayerCameraController cameraController; // Adiciona esta referência
 
-
-
     void Awake()
     {
         Instance = this;
@@ -25,7 +23,9 @@ public class PlayerInteractionController : MonoBehaviour
         StartCoroutine(SitRoutine(sitPoint, lookAtPoint));
     }
 
-    IEnumerator SitRoutine(Transform sitPoint, Transform lookAtPoint)
+    //public void 
+
+    IEnumerator GoTo(Transform sitPoint)
     {
         movement.DisableMovement();
         look.DisableLook();
@@ -44,6 +44,12 @@ public class PlayerInteractionController : MonoBehaviour
 
         agent.isStopped = true;
         agent.enabled = false;
+    }
+
+    IEnumerator SitRoutine(Transform sitPoint, Transform lookAtPoint)
+    {
+        //StartCoroutine(GoTo(sitPoint));
+        yield return GoTo(sitPoint);
 
         yield return RotateTowards(lookAtPoint.position);
         
@@ -55,42 +61,41 @@ public class PlayerInteractionController : MonoBehaviour
 
     IEnumerator RotateTowards(Vector3 target)
     {
-        look.EnableExternalRotation();
-        
+        look.ClearInput();              
+        look.DisableLook();             
+        look.EnableExternalRotation();  
+
         Vector3 dir = (target - transform.position).normalized;
         dir.y = 0f;
 
         Quaternion targetRot = Quaternion.LookRotation(dir);
-        Quaternion targetCameraPitch = Quaternion.identity; // Pitch 0
-        
+        Quaternion targetCameraPitch = Quaternion.identity;
+
         float timer = 0f;
-        float maxTime = .5f;
+        float maxTime = 0.4f;
 
         while (Quaternion.Angle(transform.rotation, targetRot) > 1f && timer < maxTime)
         {
-            // Roda o personagem
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,
                 targetRot,
-                5f * Time.deltaTime
+                8f * Time.deltaTime
             );
-            
-            // Roda a câmara para pitch 0
+
             look.transform.localRotation = Quaternion.Slerp(
                 look.transform.localRotation,
                 targetCameraPitch,
-                5f * Time.deltaTime
+                8f * Time.deltaTime
             );
-            
+
             timer += Time.deltaTime;
             yield return null;
         }
-        
-        // Força a rotação final
+
         transform.rotation = targetRot;
         look.transform.localRotation = targetCameraPitch;
-        
-        // Atualiza os valores locked
-        look.ResetCameraPitch();
+
+        look.LockCurrentRotation(); // 🔒 trava no fim
     }
+
 }

@@ -46,6 +46,9 @@ public class FirstPersonLook : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!CanLook)
+            return;
+
         if (lockRotation)
         {
             character.localRotation = Quaternion.Euler(0, lockedYaw, 0);
@@ -98,4 +101,11 @@ public class FirstPersonLook : MonoBehaviour
         lockedPitch = 0f;
         velocity.y = 0f;
     }
+
+    public void ClearInput()
+    {
+        velocity = Vector2.zero;
+        frameVelocity = Vector2.zero;
+    }
+
 }

@@ -11,6 +11,11 @@ public class Couch : MonoBehaviour, IInteractable
     [SerializeField] Transform sitPoint;
     [SerializeField] Transform lookAtPoint;
 
+    void Awake()
+    {
+        text.text = name;
+    }
+
     void Update()
     {
         if(movement.IsSitted == false)
@@ -24,9 +29,6 @@ public class Couch : MonoBehaviour, IInteractable
         print(movement.IsSitted);
         if(movement.IsSitted == false)
         {
-            // ir até ao sitio do sofá
-            // qd estiver no sítio certo
-            // rodar em direçao à tv
             PlayerInteractionController.Instance.SitOnCouch(
                 sitPoint,
                 lookAtPoint
@@ -38,6 +40,5 @@ public class Couch : MonoBehaviour, IInteractable
     public void ToggleVisibility(bool value)
     {
         canvas.SetActive(value);
-        text.text = name;
     }
 }
