@@ -1,20 +1,30 @@
 using TMPro;
 using UnityEngine;
 
-public class Task : MonoBehaviour, IInteractable
+public abstract class Task : MonoBehaviour, IInteractable
 {
     [SerializeField] private TasksSO taskSO;
     [SerializeField] GameObject canvas;
     [SerializeField] TMP_Text text;
 
+    void Awake()
+    {
+        text.text = taskSO.taskName; 
+    }
+
     public void Interact()
     {
-        TaskManager.Instance.TryExecuteSimpleTask(taskSO);
+        if (!TaskManager.Instance.TryExecuteSimpleTask(taskSO))
+            return;
+
+        // Lógica específica
+        ExecuteTask();
     }
 
     public void ToggleVisibility(bool value)
     {
         canvas.SetActive(value);
-        text.text = taskSO.taskName;
     }
+
+    protected abstract void ExecuteTask();
 }

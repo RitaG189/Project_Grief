@@ -71,13 +71,23 @@ public class FirstPersonMovement : MonoBehaviour
             Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.1f;
     }
 
-    public void EnableMovement() => canMove = true;
+    public void EnableMovement()
+    {
+        canMove = true;
+
+        rigidbody.constraints =
+            RigidbodyConstraints.FreezeRotationX |
+            RigidbodyConstraints.FreezeRotationZ;
+    }
 
     public void DisableMovement()
     {
         canMove = false;
         rigidbody.linearVelocity = Vector3.zero;
+
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
+
 
     public void ToggleSitting(bool value)
     {

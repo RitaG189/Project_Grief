@@ -34,4 +34,9 @@ public class PlayerAnimationController : MonoBehaviour
         movement.EnableMovement();
         cameraController.SetFollowMode(PlayerCameraController.CameraFollowMode.Static);
     }
+
+    public void EnterShower()
+    {
+        
+    }
 }

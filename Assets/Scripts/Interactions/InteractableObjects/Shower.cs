@@ -1,21 +1,24 @@
-using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Bed : MonoBehaviour, IInteractable
-{
+public class Shower : MonoBehaviour, IInteractable
+{   [SerializeField] TasksSO task;
     [SerializeField] GameObject canvas;
     [SerializeField] TMP_Text text;
-    [SerializeField] String taskName;
+
+    void Awake()
+    {
+        text.text = task.taskName;
+    }
+
     public void Interact()
     {
-        TaskManager.Instance.Sleep();
+        TaskManager.Instance.TryExecuteSimpleTask(task);
     }
 
     public void ToggleVisibility(bool value)
     {
         canvas.SetActive(value);
-        text.text = taskName;
     }
 }

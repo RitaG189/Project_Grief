@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PlayerInteractionController : MonoBehaviour
 {
@@ -8,94 +7,52 @@ public class PlayerInteractionController : MonoBehaviour
 
     [SerializeField] FirstPersonMovement movement;
     [SerializeField] FirstPersonLook look;
-    [SerializeField] PlayerAnimationController animations;
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] PlayerCameraController cameraController; // Adiciona esta referência
+    [SerializeField] PlayerCameraController cameraController;
 
     void Awake()
     {
         Instance = this;
     }
 
-    public void SitOnCouch(Transform sitPoint, Transform lookAtPoint)
+    public void SitOnCouch(Transform lookAtPoint)
     {
         if (movement.IsSitted) return;
-        StartCoroutine(SitRoutine(sitPoint, lookAtPoint));
+        StartCoroutine(SitRoutine(lookAtPoint));
     }
 
-    //public void 
-
-    IEnumerator GoTo(Transform sitPoint)
+    IEnumerator SitRoutine(Transform lookAtPoint)
     {
         movement.DisableMovement();
-        look.DisableLook();
-
-        agent.enabled = true;
-        agent.isStopped = false;
-        agent.updateRotation = false;
-
-        agent.SetDestination(sitPoint.position);
-
-        yield return new WaitUntil(() =>
-            !agent.pathPending &&
-            agent.remainingDistance <= agent.stoppingDistance &&
-            agent.velocity.sqrMagnitude < 0.01f
-        );
-
-        agent.isStopped = true;
-        agent.enabled = false;
-    }
-
-    IEnumerator SitRoutine(Transform sitPoint, Transform lookAtPoint)
-    {
-        //StartCoroutine(GoTo(sitPoint));
-        yield return GoTo(sitPoint);
 
         yield return RotateTowards(lookAtPoint.position);
-        
-        look.DisableLook();
 
-        cameraController.SetFollowMode(PlayerCameraController.CameraFollowMode.FollowHead); 
+        look.transform.localRotation = Quaternion.identity;
+
+        cameraController.SetFollowMode(
+            PlayerCameraController.CameraFollowMode.FollowHead
+        );
+
         movement.Sit();
     }
 
     IEnumerator RotateTowards(Vector3 target)
     {
-        look.ClearInput();              
-        look.DisableLook();             
-        look.EnableExternalRotation();  
-
-        Vector3 dir = (target - transform.position).normalized;
+        Vector3 dir = target - transform.position;
         dir.y = 0f;
 
         Quaternion targetRot = Quaternion.LookRotation(dir);
-        Quaternion targetCameraPitch = Quaternion.identity;
 
-        float timer = 0f;
-        float maxTime = 0.4f;
+        float duration = 0.35f;
+        float t = 0f;
+        Quaternion startRot = transform.rotation;
 
-        while (Quaternion.Angle(transform.rotation, targetRot) > 1f && timer < maxTime)
+        while (t < 1f)
         {
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRot,
-                8f * Time.deltaTime
-            );
-
-            look.transform.localRotation = Quaternion.Slerp(
-                look.transform.localRotation,
-                targetCameraPitch,
-                8f * Time.deltaTime
-            );
-
-            timer += Time.deltaTime;
+            t += Time.deltaTime / duration;
+            transform.rotation = Quaternion.Slerp(startRot, targetRot, t);
             yield return null;
         }
 
         transform.rotation = targetRot;
-        look.transform.localRotation = targetCameraPitch;
-
-        look.LockCurrentRotation(); // 🔒 trava no fim
     }
-
 }

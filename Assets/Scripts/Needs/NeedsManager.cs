@@ -75,37 +75,18 @@ public class NeedsManager : MonoBehaviour
 
     public void Sleep()
     {
-        int hoursToSleep = GetHoursToFullEnergy();
-
-        TimeSystem.Instance.SkipHours(hoursToSleep);
-
+        int hours = hoursToSleep();
         Needs.RestoreEnergyToMax();
-        Needs.AddHunger(-hoursToSleep);
-        Needs.AddHygiene(-hoursToSleep);
-        Needs.AddSocial(-2);
+        Needs.DecreaseHunger(hours);
+        Needs.DecreaseHygiene(hours);
+        Needs.DecreaseSocial(2);
         NotifyAll();
     }
 
-    public void Eat()
+    public int hoursToSleep()
     {
-        TimeSystem.Instance.SkipHours(2);
-
-        Needs.AddEnergy(-2);
-        Needs.RestoreHungerToMax();
-        Needs.AddHygiene(-2);
-        Needs.AddSocial(-2);
-        NotifyAll(); 
-    }
-
-    public void TakeBath()
-    {
-        TimeSystem.Instance.SkipHours(1);
-
-        Needs.AddEnergy(-1);
-        Needs.AddHunger(-1);
-        Needs.RestoreHygieneToMax();
-        Needs.AddSocial(-1);
-        NotifyAll(); 
+        int hoursToSleep = GetHoursToFullEnergy();
+        return hoursToSleep;
     }
 
     public bool CanPerformTask(TasksSO task)

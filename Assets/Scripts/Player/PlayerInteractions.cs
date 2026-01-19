@@ -1,15 +1,19 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private float interactDistance = 1.2f;
+    [Header("Interaction")]
+    [SerializeField] private float lookDistance = 1.2f;
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private Camera playerCamera;
+
+    private readonly HashSet<IInteractable> interactablesInRange = new();
     private IInteractable currentInteractable;
 
     void Update()
     {
-        DetectInteractable();
+        DetectLookInteractable();
 
         if (Input.GetMouseButtonDown(0) && currentInteractable != null)
         {
@@ -17,29 +21,63 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    void DetectInteractable()
+    void DetectLookInteractable()
     {
+        IInteractable lookedInteractable = null;
+
         Ray ray = new Ray(
             playerCamera.transform.position,
             playerCamera.transform.forward
         );
 
-        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactableLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, lookDistance, interactableLayer))
         {
-            if (hit.collider.TryGetComponent(out IInteractable interactable))
+            if (hit.collider.TryGetComponent(out IInteractable interactable) &&
+                interactablesInRange.Contains(interactable))
             {
-                currentInteractable = interactable;
-                currentInteractable.ToggleVisibility(true);
-                return;
+                lookedInteractable = interactable;
             }
         }
 
-        if(currentInteractable  != null)
-            currentInteractable.ToggleVisibility(false);
+        // Se mudou o foco
+        if (currentInteractable != lookedInteractable)
+        {
+            if (currentInteractable != null)
+                currentInteractable.ToggleVisibility(false);
 
-        currentInteractable = null;
+            currentInteractable = lookedInteractable;
+
+            if (currentInteractable != null)
+                currentInteractable.ToggleVisibility(true);
+        }
     }
 
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out IInteractable interactable))
+        {
+            interactablesInRange.Add(interactable);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out IInteractable interactable))
+        {
+            interactablesInRange.Remove(interactable);
+
+            if (currentInteractable == interactable)
+            {
+                currentInteractable.ToggleVisibility(false);
+                currentInteractable = null;
+            }
+        }
+    }
+
+    // ─────────────────────────────────────
+    // Gizmos
+    // ─────────────────────────────────────
     void OnDrawGizmos()
     {
         if (!playerCamera) return;
@@ -47,7 +85,7 @@ public class PlayerInteraction : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawRay(
             playerCamera.transform.position,
-            playerCamera.transform.forward * interactDistance
+            playerCamera.transform.forward * lookDistance
         );
     }
 }

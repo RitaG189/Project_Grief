@@ -30,7 +30,6 @@ public class Couch : MonoBehaviour, IInteractable
         if(movement.IsSitted == false)
         {
             PlayerInteractionController.Instance.SitOnCouch(
-                sitPoint,
                 lookAtPoint
             );
             canvas.SetActive(false);  

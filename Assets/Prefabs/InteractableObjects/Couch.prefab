@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6691531453765399725, guid: 9c58e81954fa89c4dbc6c8ffdfca84f1, type: 3}
       propertyPath: m_Name
-      value: TSP_Couch_01C Variant
+      value: Couch
       objectReference: {fileID: 0}
     - target: {fileID: 6691531453765399725, guid: 9c58e81954fa89c4dbc6c8ffdfca84f1, type: 3}
       propertyPath: m_Layer
@@ -150,8 +150,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.6161635, y: 1.0853063, z: 1.0487111}
-  m_Center: {x: 0.0000004768373, y: 0.54265314, z: -0.012752655}
+  m_Size: {x: 1.9290562, y: 1.0853063, z: 0.8492608}
+  m_Center: {x: 0.054530382, y: 0.54265314, z: 0.4306263}
 --- !u!4 &6176756477307904918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6691531453765625997, guid: 9c58e81954fa89c4dbc6c8ffdfca84f1, type: 3}

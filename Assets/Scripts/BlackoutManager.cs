@@ -7,10 +7,10 @@ public class BlackoutManager : MonoBehaviour
     public static BlackoutManager Instance { get; private set; }
 
     [SerializeField] float fadeDuration = 1f;
-    [SerializeField] float waitTime = 1f;
+    [SerializeField] FirstPersonMovement movementScript;
+    [SerializeField] FirstPersonLook lookScript;
 
     private Image blackout;
-    private Coroutine routine;
 
     void Awake()
     {
@@ -26,24 +26,20 @@ public class BlackoutManager : MonoBehaviour
         blackout = GetComponent<Image>();
     }
 
-    public void FadeInWaitFadeOut()
+    public IEnumerator FadeIn()
     {
-        if (routine != null)
-            StopCoroutine(routine);
+        movementScript.DisableMovement();
+        lookScript.DisableLook();
 
-        routine = StartCoroutine(FadeSequence());
+        yield return Fade(0f, 1f);
     }
 
-    private IEnumerator FadeSequence()
+    public IEnumerator FadeOut()
     {
-        // Fade In (0 -> 1)
-        yield return Fade(0f, 1f);
-
-        // Espera
-        yield return new WaitForSeconds(waitTime);
-
-        // Fade Out (1 -> 0)
         yield return Fade(1f, 0f);
+
+        movementScript.EnableMovement();
+        lookScript.EnableLook();
     }
 
     private IEnumerator Fade(float startAlpha, float endAlpha)
