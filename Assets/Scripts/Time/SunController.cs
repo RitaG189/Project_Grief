@@ -9,23 +9,20 @@ public class SunAndSkyController : MonoBehaviour
 
     private Material skyboxInstance;
 
+    // --------------------------------------------------
+
     [Header("Sun Rotation")]
     [SerializeField] private float sunriseAngle = -90f;
     [SerializeField] private float sunsetAngle = 270f;
 
-    [Header("Time Phases (hours)")]
-    [SerializeField] private float sunriseStart = 5.5f;
-    [SerializeField] private float sunriseEnd = 7.5f;
+    // --------------------------------------------------
 
-    [SerializeField] private float dayStart = 6.0f;
-    [SerializeField] private float dayEnd = 16.0f;
-    [SerializeField] private float sunsetEnd = 19.0f;
-    [SerializeField] private float nightStart = 21.0f;
+    [Header("Sun Light")]
+    [SerializeField] private float maxSunIntensity = 6f;
+
+    // --------------------------------------------------
 
     [Header("Sky Colors")]
-    [SerializeField] private Color sunriseZenith = new Color(0.75f, 0.8f, 0.85f);
-    [SerializeField] private Color sunriseHorizon = new Color(1.0f, 0.85f, 0.7f);
-
     [SerializeField] private Color dayZenith = new Color(0.35f, 0.65f, 1.0f);
     [SerializeField] private Color dayHorizon = new Color(0.8f, 0.9f, 1.0f);
 
@@ -35,9 +32,23 @@ public class SunAndSkyController : MonoBehaviour
     [SerializeField] private Color nightZenith = new Color(0.04f, 0.06f, 0.15f);
     [SerializeField] private Color nightHorizon = new Color(0.08f, 0.1f, 0.18f);
 
+    // --------------------------------------------------
+
+    [Header("Sky Transition Tuning")]
+    [Tooltip("Quando o céu começa a clarear (mais perto de 0 = mais tarde)")]
+    [SerializeField] private float skySunriseStart = -0.02f;
+
+    [Tooltip("Quando o céu atinge dia completo")]
+    [SerializeField] private float skyFullDay = 0.4f;
+
+    [Tooltip("Largura da zona laranja no horizonte")]
+    [SerializeField] private float sunsetWidth = 0.35f;
+
+    // --------------------------------------------------
+
     void Awake()
     {
-        // 🔴 CRÍTICO: instanciar o material
+        // 🔴 MUITO IMPORTANTE: instanciar o material
         skyboxInstance = new Material(skyboxSourceMaterial);
         RenderSettings.skybox = skyboxInstance;
     }
@@ -60,17 +71,21 @@ public class SunAndSkyController : MonoBehaviour
     public void ForceUpdateSky()
     {
         UpdateAll();
-        DynamicGI.UpdateEnvironment(); // força refresh após skip
+        DynamicGI.UpdateEnvironment();
     }
+
+    // --------------------------------------------------
 
     void UpdateAll()
     {
         UpdateSunRotation();
         UpdateSunLight();
-        UpdateSkyColors();
+        UpdateSkybox();
         UpdateStars();
     }
 
+    // --------------------------------------------------
+    // ☀️ ROTAÇÃO DO SOL
     // --------------------------------------------------
 
     void UpdateSunRotation()
@@ -81,115 +96,67 @@ public class SunAndSkyController : MonoBehaviour
     }
 
     // --------------------------------------------------
+    // ☀️ LUZ DO SOL
+    // --------------------------------------------------
 
     void UpdateSunLight()
     {
-        float hour = timeSystem.Hour + timeSystem.Minute / 60f;
+        // baseado na altura real do sol
+        float sunDot = Vector3.Dot(sunLight.transform.forward, Vector3.down);
+        float intensity01 = Mathf.Clamp01(sunDot);
 
-        // INTENSITY
-        if (hour < sunriseStart || hour > sunsetEnd)
-            sunLight.intensity = 0f;
-        else
-        {
-            float t = Mathf.InverseLerp(sunriseStart, sunsetEnd, hour);
-            sunLight.intensity = Mathf.Sin(t * Mathf.PI);
-        }
+        sunLight.intensity = intensity01 * maxSunIntensity;
 
-        // COLOR
-        if (hour >= sunriseStart && hour <= sunriseEnd)
-        {
-            float t = Mathf.InverseLerp(sunriseStart, sunriseEnd, hour);
-            sunLight.color = Color.Lerp(
-                new Color(1f, 0.85f, 0.7f),
-                Color.white,
-                t
-            );
-        }
-        else if (hour >= dayEnd && hour <= sunsetEnd)
-        {
-            float t = Mathf.InverseLerp(dayEnd, sunsetEnd, hour);
-            sunLight.color = Color.Lerp(
-                Color.white,
-                new Color(1f, 0.55f, 0.35f),
-                t
-            );
-        }
-        else
-        {
-            sunLight.color = Color.white;
-        }
+        // cor do sol (mais quente perto do horizonte)
+        Color sunriseColor = new Color(1f, 0.6f, 0.4f);
+        sunLight.color = Color.Lerp(sunriseColor, Color.white, intensity01);
     }
 
     // --------------------------------------------------
+    // 🌌 SKYBOX (CÉU CONTÍNUO)
+    // --------------------------------------------------
 
-    void UpdateSkyColors()
+    void UpdateSkybox()
     {
-        float hour = timeSystem.Hour + timeSystem.Minute / 60f;
+        float sunDot = Vector3.Dot(sunLight.transform.forward, Vector3.down);
 
-        Color zenith;
-        Color horizon;
+        // transição principal noite → dia
+        float t = Mathf.InverseLerp(skySunriseStart, skyFullDay, sunDot);
+        t = Mathf.Clamp01(t);
+        t = Mathf.SmoothStep(0f, 1f, t);
 
-        if (hour < sunriseStart)
-        {
-            zenith = nightZenith;
-            horizon = nightHorizon;
-        }
-        else if (hour < sunriseEnd)
-        {
-            float t = Mathf.InverseLerp(sunriseStart, sunriseEnd, hour);
-            zenith = Color.Lerp(nightZenith, sunriseZenith, t);
-            horizon = Color.Lerp(nightHorizon, sunriseHorizon, t);
-        }
-        else if (hour < dayEnd)
-        {
-            zenith = dayZenith;
-            horizon = dayHorizon;
-        }
-        else if (hour < sunsetEnd)
-        {
-            float t = Mathf.InverseLerp(dayEnd, sunsetEnd, hour);
-            zenith = Color.Lerp(dayZenith, sunsetZenith, t);
-            horizon = Color.Lerp(dayHorizon, sunsetHorizon, t);
-        }
-        else if (hour < nightStart)
-        {
-            float t = Mathf.InverseLerp(sunsetEnd, nightStart, hour);
-            zenith = Color.Lerp(sunsetZenith, nightZenith, t);
-            horizon = Color.Lerp(sunsetHorizon, nightHorizon, t);
-        }
-        else
-        {
-            zenith = nightZenith;
-            horizon = nightHorizon;
-        }
+        // zona do horizonte (sunrise / sunset)
+        float horizonMask = Mathf.InverseLerp(
+            skySunriseStart,
+            skySunriseStart + sunsetWidth,
+            Mathf.Abs(sunDot)
+        );
+        horizonMask = 1f - Mathf.Clamp01(horizonMask);
+
+        // base night → day
+        Color zenith = Color.Lerp(nightZenith, dayZenith, t);
+        Color horizon = Color.Lerp(nightHorizon, dayHorizon, t);
+
+        // tons quentes apenas perto do horizonte
+        zenith = Color.Lerp(zenith, sunsetZenith, horizonMask * (1f - t));
+        horizon = Color.Lerp(horizon, sunsetHorizon, horizonMask);
 
         skyboxInstance.SetColor("_ZenithColor", zenith);
         skyboxInstance.SetColor("_HorizonColor", horizon);
     }
 
     // --------------------------------------------------
+    // 🌙 ESTRELAS & LUA
+    // --------------------------------------------------
 
     void UpdateStars()
     {
-        float hour = timeSystem.Hour + timeSystem.Minute / 60f;
-        float stars;
+        float sunDot = Vector3.Dot(sunLight.transform.forward, Vector3.down);
 
-        // 🌞 Dia (sem estrelas)
-        if (hour >= dayStart && hour < sunsetEnd)
-        {
-            stars = 0f;
-        }
-        // 🌆 Sunset → Night (fade in)
-        else if (hour >= sunsetEnd && hour < nightStart)
-        {
-            float t = Mathf.InverseLerp(sunsetEnd, nightStart, hour);
-            stars = Mathf.SmoothStep(0f, 1f, t);
-        }
-        // 🌙 Noite (inclui meia-noite até sunrise)
-        else
-        {
-            stars = 1f;
-        }
+        // estrelas ON apenas quando o sol está abaixo do horizonte
+        float stars = Mathf.InverseLerp(0.02f, -0.15f, sunDot);
+        stars = Mathf.Clamp01(stars);
+        stars = Mathf.SmoothStep(0f, 1f, stars);
 
         skyboxInstance.SetFloat("_EnableStars", stars);
         skyboxInstance.SetFloat("_EnableMoon", stars);
