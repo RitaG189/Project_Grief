@@ -9,6 +9,7 @@ public class TasksSO : ScriptableObject
     public int minutesCost;
     public bool repeatable;
     public bool animalTask;
+    public bool taskDone;
 
     [Header("Rewards")]
     public float energyReward;

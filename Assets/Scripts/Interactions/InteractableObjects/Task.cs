@@ -3,9 +3,10 @@ using UnityEngine;
 
 public abstract class Task : MonoBehaviour, IInteractable
 {
-    [SerializeField] private TasksSO taskSO;
-    private TMP_Text interactionText;
+    [SerializeField] protected TasksSO taskSO;
+    protected TMP_Text interactionText;
     private bool canInteract = false;
+    public bool TaskEnabled {get; private set;} = true;
 
     void Awake()
     {
@@ -14,17 +15,20 @@ public abstract class Task : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!TaskManager.Instance.TryExecuteTask(taskSO))
-            return;
+        if(TaskEnabled)
+        {
+            if (!TaskManager.Instance.TryExecuteTask(taskSO))
+                return;
         
-        ExecuteTask();
+            ExecuteTask();
+        }
     }
 
     public void ToggleVisibility(bool value)
     {
-        if(interactionText != null)
+        if(interactionText != null && taskSO.taskDone == false)
         {
-            if (!TaskManager.Instance.TryExecuteTask(taskSO))
+            if (!NeedsManager.Instance.CanPerformTask(taskSO))
                 canInteract = false;
             else 
                 canInteract = true;
@@ -38,10 +42,15 @@ public abstract class Task : MonoBehaviour, IInteractable
             }
             else if(!canInteract)
             {
-                interactionText.alpha = .5f; 
+                interactionText.alpha = .2f; 
             }
 
         }
+    }
+
+    public void EnableTask(bool value)
+    {
+        TaskEnabled = value;
     }
 
     protected abstract void ExecuteTask();

@@ -5,11 +5,17 @@ public class PlayerInteraction : MonoBehaviour
 {
     [Header("Interaction")]
     [SerializeField] private float lookDistance = 1.2f;
+    [SerializeField] private float sphereRadius = 0.06f;
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private Camera playerCamera;
 
+    [Header("Stability")]
+    [SerializeField] private float loseFocusDelay = 0.08f;
+
     private readonly HashSet<IInteractable> interactablesInRange = new();
     private IInteractable currentInteractable;
+
+    private float loseFocusTimer;
 
     void Update()
     {
@@ -30,29 +36,51 @@ public class PlayerInteraction : MonoBehaviour
             playerCamera.transform.forward
         );
 
-        if (Physics.Raycast(ray, out RaycastHit hit, lookDistance, interactableLayer))
+        bool hasHit = Physics.SphereCast(
+            ray,
+            sphereRadius,
+            out RaycastHit hit,
+            lookDistance,
+            interactableLayer
+        );
+
+        if (hasHit)
         {
-            if (hit.collider.TryGetComponent(out IInteractable interactable) &&
-                interactablesInRange.Contains(interactable))
+            lookedInteractable = hit.collider.GetComponentInParent<IInteractable>();
+
+            if (lookedInteractable != null &&
+                !interactablesInRange.Contains(lookedInteractable))
             {
-                lookedInteractable = interactable;
+                lookedInteractable = null;
             }
         }
 
-        // Se mudou o foco
-        if (currentInteractable != lookedInteractable)
+        // ───── estabilidade / anti-flicker ─────
+        if (lookedInteractable == currentInteractable)
         {
-            if (currentInteractable != null)
-                currentInteractable.ToggleVisibility(false);
-
-            currentInteractable = lookedInteractable;
-
-            if (currentInteractable != null)
-                currentInteractable.ToggleVisibility(true);
+            loseFocusTimer = 0f;
+            return;
         }
+
+        loseFocusTimer += Time.deltaTime;
+
+        if (loseFocusTimer < loseFocusDelay)
+            return;
+
+        if (currentInteractable != null)
+            currentInteractable.ToggleVisibility(false);
+
+        currentInteractable = lookedInteractable;
+
+        if (currentInteractable != null)
+            currentInteractable.ToggleVisibility(true);
+
+        loseFocusTimer = 0f;
     }
 
-
+    // ─────────────────────────────────────
+    // Trigger range
+    // ─────────────────────────────────────
     void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out IInteractable interactable))
@@ -83,9 +111,15 @@ public class PlayerInteraction : MonoBehaviour
         if (!playerCamera) return;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(
-            playerCamera.transform.position,
-            playerCamera.transform.forward * lookDistance
+
+        Vector3 origin = playerCamera.transform.position;
+        Vector3 direction = playerCamera.transform.forward;
+
+        Gizmos.DrawRay(origin, direction * lookDistance);
+
+        Gizmos.DrawWireSphere(
+            origin + direction * lookDistance,
+            sphereRadius
         );
     }
 }

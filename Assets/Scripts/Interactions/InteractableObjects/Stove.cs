@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class Stove : Task
 {
+    [SerializeField] Sink sinkScript;
 
     protected override void ExecuteTask()
     {
-        print("start cooking");
+        ToggleVisibility(false);
+        sinkScript.SpawnDishes();
+        sinkScript.EnableTask(true);
     }
 }

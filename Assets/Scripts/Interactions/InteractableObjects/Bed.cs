@@ -15,11 +15,14 @@ public class Bed : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        ToggleVisibility(false);
         TaskManager.Instance.Sleep();
     }
 
     public void ToggleVisibility(bool value)
     {
+        interactionText.alpha = 1;    
+        
         if(interactionText != null)
         {
             interactionText.enabled = value;

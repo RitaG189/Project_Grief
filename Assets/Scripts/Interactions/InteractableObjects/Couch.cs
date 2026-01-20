@@ -32,12 +32,15 @@ public class Couch : MonoBehaviour, IInteractable
             PlayerInteractionController.Instance.SitOnCouch(
                 lookAtPoint
             );
-            canvas.SetActive(false);  
+            ToggleVisibility(false);
+
         }
     }
 
     public void ToggleVisibility(bool value)
     {
+        interactionText.alpha = 1;    
+        
         if(interactionText != null)
         {
             interactionText.enabled = value;

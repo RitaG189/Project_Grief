@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b91290deabe479b4e94541b6d0f5ad5b, type: 3}
-  m_Name: Toy
+  m_Name: CleanDishes
   m_EditorClassIdentifier: Assembly-CSharp::TasksSO
-  taskName: Pick up toy
-  minutesCost: 0
-  repeatable: 0
-  animalTask: 1
-  taskDone: 1
+  taskName: Clean Dishes
+  minutesCost: 30
+  repeatable: 1
+  animalTask: 0
+  taskDone: 0
   energyReward: 0
   hungerReward: 0
   hygieneReward: 0
   socialReward: 0
-  energyCost: 4
+  energyCost: 0
   hungerCost: 0
-  hygieneCost: 0
+  hygieneCost: 2
   socialCost: 0

@@ -21,6 +21,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        ToggleVisibility(false);
         lightValue = !lightValue;
 
         light.SetActive(lightValue);

@@ -22,6 +22,7 @@ public class FridgeDoor : MonoBehaviour
 
     public void Interact()
     {
+        ToggleVisibility(false);
         doorValue = !doorValue;
 
         if(doorValue == true)
