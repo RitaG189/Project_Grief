@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class ShowerDoor : MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject canvas;
-    [SerializeField] TMP_Text text;
-    [SerializeField] PlayerInteractionController playerInteractionController;
-    [SerializeField] Transform lookAtPos;
+    private TMP_Text interactionText;
+    private string interactionName = "Open";
+
     private Animator animator;
     private bool doorValue = false;
 
     void Awake()
     {
+        interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
         animator = GetComponent<Animator>();
     }
 
     public void ToggleVisibility(bool value)
     {
-        canvas.SetActive(value);
+        if(interactionText != null)
+        {
+            interactionText.enabled = value;
+            interactionText.text = interactionName;
+        }
     }
 
     public void Interact()
@@ -26,9 +30,9 @@ public class ShowerDoor : MonoBehaviour, IInteractable
         doorValue = !doorValue;
 
         if(doorValue == true)
-            text.text = "Close";
+            interactionText.text = "Close";
         else   
-            text.text = "Open";
+            interactionText.text = "Open";
 
         animator.SetBool("IsOpen", doorValue);
     }

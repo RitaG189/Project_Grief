@@ -4,26 +4,44 @@ using UnityEngine;
 public abstract class Task : MonoBehaviour, IInteractable
 {
     [SerializeField] private TasksSO taskSO;
-    [SerializeField] GameObject canvas;
-    [SerializeField] TMP_Text text;
+    private TMP_Text interactionText;
+    private bool canInteract = false;
 
     void Awake()
     {
-        text.text = taskSO.taskName; 
+        interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
     }
 
     public void Interact()
     {
-        if (!TaskManager.Instance.TryExecuteSimpleTask(taskSO))
+        if (!TaskManager.Instance.TryExecuteTask(taskSO))
             return;
-
-        // Lógica específica
+        
         ExecuteTask();
     }
 
     public void ToggleVisibility(bool value)
     {
-        canvas.SetActive(value);
+        if(interactionText != null)
+        {
+            if (!TaskManager.Instance.TryExecuteTask(taskSO))
+                canInteract = false;
+            else 
+                canInteract = true;
+
+            interactionText.enabled = value;
+            interactionText.text = taskSO.taskName; 
+
+            if(canInteract)
+            {
+                interactionText.alpha = 1;              
+            }
+            else if(!canInteract)
+            {
+                interactionText.alpha = .5f; 
+            }
+
+        }
     }
 
     protected abstract void ExecuteTask();

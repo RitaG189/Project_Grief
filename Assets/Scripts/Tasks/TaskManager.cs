@@ -17,12 +17,14 @@ public class TaskManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public bool TryExecuteSimpleTask(TasksSO task)
+    public bool TryExecuteTask(TasksSO task)
     {
         if (!NeedsManager.Instance.CanPerformTask(task)) 
             return false;
-            
-        StartCoroutine(ExecuteSimpleTaskRoutine(task));
+
+        if(task.animalTask == false)
+            StartCoroutine(ExecuteSimpleTaskRoutine(task));
+
         return true;
     }
 
@@ -56,6 +58,7 @@ public class TaskManager : MonoBehaviour
         yield return BlackoutManager.Instance.FadeIn();
 
         TimeSystem.Instance.SkipHours(hoursSlept);
+        NeedsManager.Instance.Sleep();
 
         yield return new WaitForSeconds(0.5f);
 

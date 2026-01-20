@@ -5,7 +5,7 @@ using UnityEngine;
 public class Couch : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject canvas;
-    [SerializeField] TMP_Text text;
+    private TMP_Text interactionText;
     [SerializeField] string name;
     [SerializeField] FirstPersonMovement movement;
     [SerializeField] Transform sitPoint;
@@ -13,20 +13,20 @@ public class Couch : MonoBehaviour, IInteractable
 
     void Awake()
     {
-        text.text = name;
+        interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
+        interactionText.text = name;
     }
 
     void Update()
     {
-        if(movement.IsSitted == false)
+        if(movement.IsSitted == true)
         {
-            canvas.SetActive(true);  
+            interactionText.enabled = false;
         }
     }
 
     public void Interact()
     {
-        print(movement.IsSitted);
         if(movement.IsSitted == false)
         {
             PlayerInteractionController.Instance.SitOnCouch(
@@ -38,6 +38,10 @@ public class Couch : MonoBehaviour, IInteractable
 
     public void ToggleVisibility(bool value)
     {
-        canvas.SetActive(value);
+        if(interactionText != null)
+        {
+            interactionText.enabled = value;
+            interactionText.text = name;
+        }
     }
 }

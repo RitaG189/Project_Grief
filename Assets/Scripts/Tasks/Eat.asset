@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TasksSO
   taskName: Eat
   minutesCost: 120
-  repeatable: 0
+  repeatable: 1
   energyReward: 0
   hungerReward: 6
   hygieneReward: 0

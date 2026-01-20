@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TasksSO
   taskName: Take a shower
   minutesCost: 60
-  repeatable: 0
+  repeatable: 1
   energyReward: 0
   hungerReward: 0
   hygieneReward: 5

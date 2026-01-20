@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StandUpFinishedBehaviour : StateMachineBehaviour
+public class FinishedAnimationBehaviour : StateMachineBehaviour
 {
     override public void OnStateExit(
         Animator animator,
@@ -8,7 +8,7 @@ public class StandUpFinishedBehaviour : StateMachineBehaviour
         int layerIndex)
     {
         animator.SendMessage(
-            "OnStandUpAnimationFinished",
+            "OnAnimationFinished",
             SendMessageOptions.DontRequireReceiver
         );
     }

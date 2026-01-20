@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class Bed : MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject canvas;
-    [SerializeField] TMP_Text text;
-    [SerializeField] String taskName;
+    [SerializeField] String interactionName;
+    private TMP_Text interactionText;
+
+    void Awake()
+    {
+        interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
+    }
+
     public void Interact()
     {
         TaskManager.Instance.Sleep();
@@ -15,7 +20,10 @@ public class Bed : MonoBehaviour, IInteractable
 
     public void ToggleVisibility(bool value)
     {
-        canvas.SetActive(value);
-        text.text = taskName;
+        if(interactionText != null)
+        {
+            interactionText.enabled = value;
+            interactionText.text = interactionName;
+        }
     }
 }
