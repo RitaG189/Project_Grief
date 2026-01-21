@@ -36,11 +36,17 @@ public class WeatherSO : ScriptableObject
     public Color nightCloudTint = Color.black;
     public float cloudSpeed = 0.05f;
 
-    [Header("Weather FX")]
-    public GameObject weatherPrefab; // chuva, trovoada, etc
+    [Header("Rain")]
+    public GameObject rainPrefab; // chuva, trovoada, etc
+    public AudioClip rainClip;
+    public float rainVolume = 1f;
+    public bool rainLoop; 
 
     [Header("Thunder")]
     public bool enableThunder;
     public float thunderIntensity;
+    public AudioClip thunderClip;
+    public float thudnerVolume = 1f;
+    public bool thunderLoop;        
 }
 

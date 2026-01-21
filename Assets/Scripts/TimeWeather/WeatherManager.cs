@@ -26,8 +26,13 @@ public class WeatherManager : MonoBehaviour
         if (weatherPrefab != null)
             Destroy(weatherPrefab);
 
-        if (preset.weatherPrefab != null)
-            weatherPrefab = Instantiate(preset.weatherPrefab);
+        if (preset.rainPrefab != null)
+        {
+            weatherPrefab = Instantiate(preset.rainPrefab);
+            AudioManager.Instance.PlayRain(preset.rainClip);
+        }
+        else
+            AudioManager.Instance.StopRain();
 
         currentWeather = preset;
 
@@ -35,6 +40,9 @@ public class WeatherManager : MonoBehaviour
             lensFlare.enabled = true;
         else
             lensFlare.enabled = false;
+
+        if(preset.enableThunder)
+            AudioManager.Instance.PlayThunder(preset.thunderClip);
 
         OnWeatherChanged?.Invoke(preset);
     }
