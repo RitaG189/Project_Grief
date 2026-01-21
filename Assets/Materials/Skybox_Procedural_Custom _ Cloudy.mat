@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Skybox_Procedural_Custom
+  m_Name: Skybox_Procedural_Custom _ Cloudy
   m_Shader: {fileID: 4800000, guid: bea2917b14b4f8f4f94359360c380e8d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -97,9 +97,9 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _CloudBaseHeight: 0
-    - _CloudCoverage: 0.9
+    - _CloudCoverage: 1.19
     - _CloudRotationY: 0
-    - _CloudScale: 3
+    - _CloudScale: 1
     - _CloudSeed: 0
     - _CloudSoftness: 0.2
     - _CloudSpeed: 0.02
@@ -135,8 +135,8 @@ Material:
     - _StarIntensity: 0.1
     - _StarSeed: 0
     - _SunDisk: 2
-    - _SunHaze: 0.5
-    - _SunSize: 0.005
+    - _SunHaze: 0.135
+    - _SunSize: 0.008
     - _SunSizeConvergence: 4.36
     - _Surface: 0
     - _WorkflowMode: 1
@@ -144,15 +144,15 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudTint: {r: 1, g: 1, b: 1, a: 1}
+    - _CloudTint: {r: 0.2264151, g: 0.19971521, b: 0.19971521, a: 1}
     - _CloudWindDirection: {r: 1, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HorizonColor: {r: 0.7137255, g: 0.8862745, b: 1, a: 1}
+    - _HorizonColor: {r: 0.13207549, g: 0.110270575, b: 0.110270575, a: 1}
     - _SkyTint: {r: 1, g: 0.73333323, b: 0.5999998, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _ZenithColor: {r: 0.5411765, g: 0.827451, b: 1, a: 1}
+    - _ZenithColor: {r: 0.21698111, g: 0.18934673, b: 0.18934673, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1198676612260575066

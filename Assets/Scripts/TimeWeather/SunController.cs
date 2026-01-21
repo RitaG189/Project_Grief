@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SunAndSkyController : MonoBehaviour
@@ -32,6 +33,14 @@ public class SunAndSkyController : MonoBehaviour
     [SerializeField] private Color nightZenith = new Color(0.04f, 0.06f, 0.15f);
     [SerializeField] private Color nightHorizon = new Color(0.08f, 0.1f, 0.18f);
 
+    // --------------------------------------------------
+    [Header("Sky Settings")]
+    [SerializeField] private float cloudCoverage = 1;
+    [SerializeField] private float cloudScale = 1;
+    [SerializeField] private Color dayCloudTint = Color.white;
+    [SerializeField] private Color nightCloudTint = new Color(0.15f, 0.15f, 0.2f);
+    [SerializeField] private bool stars;
+    [SerializeField] private bool moon;
     // --------------------------------------------------
 
     [Header("Sky Transition Tuning")]
@@ -81,7 +90,7 @@ public class SunAndSkyController : MonoBehaviour
         UpdateSunRotation();
         UpdateSunLight();
         UpdateSkybox();
-        UpdateStars();
+        UpdateStarsAndMoon();
     }
 
     // --------------------------------------------------
@@ -106,10 +115,6 @@ public class SunAndSkyController : MonoBehaviour
         float intensity01 = Mathf.Clamp01(sunDot);
 
         sunLight.intensity = intensity01 * maxSunIntensity;
-
-        // cor do sol (mais quente perto do horizonte)
-        Color sunriseColor = new Color(1f, 0.6f, 0.4f);
-        sunLight.color = Color.Lerp(sunriseColor, Color.white, intensity01);
     }
 
     // --------------------------------------------------
@@ -141,24 +146,58 @@ public class SunAndSkyController : MonoBehaviour
         zenith = Color.Lerp(zenith, sunsetZenith, horizonMask * (1f - t));
         horizon = Color.Lerp(horizon, sunsetHorizon, horizonMask);
 
+        Color clouds = Color.Lerp(nightCloudTint, dayCloudTint, t);
+        skyboxInstance.SetColor("_CloudTint", clouds);
+
+
         skyboxInstance.SetColor("_ZenithColor", zenith);
         skyboxInstance.SetColor("_HorizonColor", horizon);
+        skyboxInstance.SetFloat("_CloudCoverage", cloudCoverage);
+        skyboxInstance.SetFloat("_CloudScale", cloudScale);
+        
     }
 
     // --------------------------------------------------
     // 🌙 ESTRELAS & LUA
     // --------------------------------------------------
 
-    void UpdateStars()
+    void UpdateStarsAndMoon()
     {
         float sunDot = Vector3.Dot(sunLight.transform.forward, Vector3.down);
 
-        // estrelas ON apenas quando o sol está abaixo do horizonte
-        float stars = Mathf.InverseLerp(0.02f, -0.15f, sunDot);
-        stars = Mathf.Clamp01(stars);
-        stars = Mathf.SmoothStep(0f, 1f, stars);
+        if(stars == true)
+        {
+            float stars = Mathf.InverseLerp(0.02f, -0.15f, sunDot);
+            stars = Mathf.Clamp01(stars);
+            stars = Mathf.SmoothStep(0f, 1f, stars);
 
-        skyboxInstance.SetFloat("_EnableStars", stars);
-        skyboxInstance.SetFloat("_EnableMoon", stars);
+            skyboxInstance.SetFloat("_EnableStars", stars);
+        }
+
+        if(moon == true)
+        {
+            float moon = Mathf.InverseLerp(0.25f, -0.35f, sunDot);
+            moon = Mathf.Clamp01(moon);
+            moon = Mathf.SmoothStep(0f, 1f, moon);
+
+            skyboxInstance.SetFloat("_EnableMoon", moon); 
+        }
+    }
+
+    public void ApplyAtmospherePreset(WeatherSO weatherSO)
+    {
+        dayZenith = weatherSO.dayZenith;
+        dayHorizon = weatherSO.dayHorizon;
+        sunsetZenith = weatherSO.sunsetZenith;
+        sunsetHorizon = weatherSO.sunsetHorizon;
+        nightZenith = weatherSO.nightZenith;
+        nightHorizon = weatherSO.nightHorizon;
+        cloudCoverage = weatherSO.cloudCoverage;
+        cloudScale = weatherSO.cloudScale;
+        dayCloudTint = weatherSO.dayCloudTint;
+        nightCloudTint = weatherSO.nightCloudTint;
+        maxSunIntensity = weatherSO.maxLightIntensity;
+        stars = weatherSO.stars;
+        moon = weatherSO.moon;
     }
 }

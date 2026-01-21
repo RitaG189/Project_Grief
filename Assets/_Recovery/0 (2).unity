@@ -2843,7 +2843,6 @@ GameObject:
   - component: {fileID: 386931703}
   - component: {fileID: 386931705}
   - component: {fileID: 386931704}
-  - component: {fileID: 386931706}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2926,18 +2925,6 @@ MonoBehaviour:
   sunriseAngle: -90
   sunsetAngle: 270
   maxSunIntensity: 6
-  dayZenith: {r: 0.42745098, g: 0.7411765, b: 1, a: 0}
-  dayHorizon: {r: 0.7137255, g: 0.8784314, b: 1, a: 0}
-  sunsetZenith: {r: 0.46262014, g: 0.59951097, b: 0.8679245, a: 0}
-  sunsetHorizon: {r: 1, g: 0.65038824, b: 0, a: 0}
-  nightZenith: {r: 0.083659664, g: 0.14506944, b: 0.3773585, a: 0}
-  nightHorizon: {r: 0.047169805, g: 0.08870679, b: 0.18867922, a: 0}
-  cloudCoverage: 1
-  cloudScale: 1
-  dayCloudTint: {r: 1, g: 1, b: 1, a: 1}
-  nightCloudTint: {r: 0.15, g: 0.15, b: 0.2, a: 1}
-  stars: 0
-  moon: 0
   skySunriseStart: -0.025
   skyFullDay: 0.4
   sunsetWidth: 0.5
@@ -3062,25 +3049,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GriefStageManager
   sky: {fileID: 386931700}
   weather: {fileID: 386931704}
-  ambientController: {fileID: 386931701}
-  denial: {fileID: 11400000, guid: 2f7423bae720857448fc7a0cc5e67273, type: 2}
+  denial: {fileID: 11400000, guid: 679df6584d89ea443a682f57224e8456, type: 2}
   bargaining: {fileID: 0}
   anger: {fileID: 0}
   depression: {fileID: 0}
-  acceptance: {fileID: 0}
---- !u!114 &386931706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386931695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4d3dbeba4d00b4d961ce2a36296659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelToGriefStageBinder
-  griefStageManager: {fileID: 386931705}
+  acceptance: {fileID: 11400000, guid: 679df6584d89ea443a682f57224e8456, type: 2}
 --- !u!4 &389433602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2031139763858729824, guid: f5d5ae3bab53d394aa0c1a55bc87cbe8, type: 3}
@@ -3288,7 +3261,6 @@ GameObject:
   - component: {fileID: 410087041}
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
-  - component: {fileID: 410087043}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -3405,136 +3377,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &410087043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410087039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc4d76f733087744991913c9d19d5274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.LensFlareComponentSRP
-  m_LensFlareData: {fileID: 11400000, guid: bd7eaf3bd49c39f4cb77bd809459aa72, type: 2}
-  version: 0
-  intensity: 2
-  maxAttenuationDistance: 100
-  maxAttenuationScale: 100
-  distanceAttenuationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  scaleByDistanceCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  attenuationByLightShape: 1
-  radialScreenAttenuationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  useOcclusion: 1
-  useBackgroundCloudOcclusion: 0
-  environmentOcclusion: 0
-  useWaterOcclusion: 0
-  occlusionRadius: 0.1
-  sampleCount: 32
-  occlusionOffset: 0.05
-  scale: 0.5
-  allowOffScreen: 0
-  volumetricCloudOcclusion: 0
-  occlusionRemapCurve:
-    <length>k__BackingField: 2
-    m_Loop: 0
-    m_ZeroValue: 1
-    m_Range: 1
-    m_Curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  lightOverride: {fileID: 0}
 --- !u!1 &418234028
 GameObject:
   m_ObjectHideFlags: 0

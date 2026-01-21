@@ -22,7 +22,7 @@ public class TaskManager : MonoBehaviour
         if (!NeedsManager.Instance.CanPerformTask(task)) 
             return false;
 
-        if(task.animalTask == false)
+        if(task.category != TaskCategory.Animal)
             StartCoroutine(ExecuteSimpleTaskRoutine(task));
 
         return true;

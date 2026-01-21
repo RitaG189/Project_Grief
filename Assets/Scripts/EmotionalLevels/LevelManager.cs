@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class LevelsManager : MonoBehaviour
 {
-    public LevelSystem Levels { get; private set; }
     public static LevelsManager Instance { get; private set; }
+
     public event Action<int> OnXPChanged;
     public event Action<int> OnLevelChanged;
+
+    [Header("Level Data")]
     public int level = 1;
     public int currentXP = 0;
-    public int maxXP = 100;
     public int xpToNextLevel = 100;
 
     private void Awake()
@@ -22,7 +23,6 @@ public class LevelsManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
     }
 
     void Start()
@@ -36,10 +36,11 @@ public class LevelsManager : MonoBehaviour
         currentXP += value;
         OnXPChanged?.Invoke(currentXP);
 
-        if(currentXP >= maxXP)
+        if (currentXP >= xpToNextLevel)
         {
-            level++;
             currentXP -= xpToNextLevel;
+            level++;
+
             OnXPChanged?.Invoke(currentXP);
             OnLevelChanged?.Invoke(level);
         }

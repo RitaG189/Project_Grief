@@ -22,9 +22,9 @@
         _CloudTint ("Cloud Tint", Color) = (1,1,1,1)
         _CloudSeed ("Cloud Seed", Range(0,1000)) = 0
         _CloudRotationY ("Cloud Rotation Y", Range(0,360)) = 180
-        _CloudCoverage ("Cloud Coverage", Range(0,1)) = 1.0
+        _CloudCoverage ("Cloud Coverage", Range(0,2)) = 1.0
         _CloudSoftness  ("Cloud Softness", Range(0.2,1)) = 0.5
-        _CloudScale ("Cloud Scale", Range(1,2)) = 2
+        _CloudScale ("Cloud Scale", Range(1,3)) = 3
         _CloudBaseHeight ("Cloud Base Height", Range(0,0.5)) = 0.25
         _CloudWindDirection("Cloud Wind Direction", Vector) = (1, 0, 0, 0)
         _CloudSpeed("Cloud Speed", Range(0, 2)) = 0.05

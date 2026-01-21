@@ -18,4 +18,9 @@ public class DayNightAmbientController : MonoBehaviour
         RenderSettings.ambientIntensity =
             ambientIntensityOverDay.Evaluate(time01);
     }
+
+    public void ApplyPresetAmbientColor(WeatherSO weatherSO)
+    {
+        ambientColorOverDay = weatherSO.ambientColorOverDay;
+    }
 }

@@ -15,11 +15,15 @@ MonoBehaviour:
   taskName: Use
   minutesCost: 20
   repeatable: 1
+  taskDone: 0
+  category: 2
   energyReward: 0
   hungerReward: 0
   hygieneReward: 2
   socialReward: 0
+  entertainmentReward: 0
   energyCost: 0.5
   hungerCost: 0.5
   hygieneCost: 0
   socialCost: 0.5
+  entertainmentCost: 0

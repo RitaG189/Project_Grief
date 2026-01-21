@@ -11,8 +11,6 @@ public class Sink : Task
     protected override void ExecuteTask()
     {
         ToggleVisibility(false);
-        
-
         StartCoroutine(WashDishes());
         print("cleaned dishes");
 

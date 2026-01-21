@@ -15,13 +15,15 @@ MonoBehaviour:
   taskName: Pick up blanket
   minutesCost: 0
   repeatable: 0
-  animalTask: 1
   taskDone: 1
+  category: 4
   energyReward: 0
   hungerReward: 0
   hygieneReward: 0
   socialReward: 0
+  entertainmentReward: 0
   energyCost: 4
   hungerCost: 0
   hygieneCost: 0
   socialCost: 0
+  entertainmentCost: 0
