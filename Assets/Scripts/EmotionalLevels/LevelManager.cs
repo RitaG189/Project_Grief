@@ -5,8 +5,8 @@ public class LevelsManager : MonoBehaviour
 {
     public static LevelsManager Instance { get; private set; }
 
-    public event Action<int> OnXPChanged;
-    public event Action<int> OnLevelChanged;
+    public static event Action<int> OnXPChanged;
+    public static event Action<int> OnLevelChanged;
 
     [Header("Level Data")]
     public int level = 1;

@@ -1,9 +1,14 @@
+using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class WeatherManager : MonoBehaviour
 {
     public static WeatherManager Instance {get; private set;}
-    GameObject currentWeather;
+    GameObject weatherPrefab;
+    WeatherSO currentWeather;
+    [SerializeField] LensFlareComponentSRP lensFlare;
+    public static Action<WeatherSO> OnWeatherChanged;
 
     void Awake()
     {
@@ -18,10 +23,24 @@ public class WeatherManager : MonoBehaviour
 
     public void ApplyWeather(WeatherSO preset)
     {
-        if (currentWeather != null)
-            Destroy(currentWeather);
+        if (weatherPrefab != null)
+            Destroy(weatherPrefab);
 
         if (preset.weatherPrefab != null)
-            currentWeather = Instantiate(preset.weatherPrefab);
+            weatherPrefab = Instantiate(preset.weatherPrefab);
+
+        currentWeather = preset;
+
+        if(preset.lensFlare)
+            lensFlare.enabled = true;
+        else
+            lensFlare.enabled = false;
+
+        OnWeatherChanged?.Invoke(preset);
+    }
+
+    public WeatherSO GetCurrentWeather()
+    {
+        return currentWeather;
     }
 }

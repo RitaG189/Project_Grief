@@ -4,21 +4,23 @@ public class LevelToGriefStageBinder : MonoBehaviour
 {
     [SerializeField] private GriefStageManager griefStageManager;
 
-    private void OnEnable()
+    private void Start()
     {
-        LevelsManager.Instance.OnLevelChanged += HandleLevelChanged;
+        if (LevelsManager.Instance != null)
+        {
+            LevelsManager.OnLevelChanged += HandleLevelChanged;
+            HandleLevelChanged(LevelsManager.Instance.level);
+        }
+        else
+        {
+            Debug.LogError("LevelsManager.Instance é null!");
+        }
     }
 
     private void OnDisable()
     {
         if (LevelsManager.Instance != null)
-            LevelsManager.Instance.OnLevelChanged -= HandleLevelChanged;
-    }
-
-    void Start()
-    {
-        // aplica o estado inicial
-        HandleLevelChanged(LevelsManager.Instance.level);
+            LevelsManager.OnLevelChanged -= HandleLevelChanged;
     }
 
     void HandleLevelChanged(int level)

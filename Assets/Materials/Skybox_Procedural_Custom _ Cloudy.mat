@@ -97,11 +97,11 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _CloudBaseHeight: 0
-    - _CloudCoverage: 1.19
+    - _CloudCoverage: 1.01
     - _CloudRotationY: 0
-    - _CloudScale: 1
+    - _CloudScale: 3
     - _CloudSeed: 0
-    - _CloudSoftness: 0.2
+    - _CloudSoftness: 0.234
     - _CloudSpeed: 0.02
     - _Cull: 2
     - _Cutoff: 0.5
@@ -144,15 +144,15 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudTint: {r: 0.2264151, g: 0.19971521, b: 0.19971521, a: 1}
+    - _CloudTint: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
     - _CloudWindDirection: {r: 1, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HorizonColor: {r: 0.13207549, g: 0.110270575, b: 0.110270575, a: 1}
+    - _HorizonColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
     - _SkyTint: {r: 1, g: 0.73333323, b: 0.5999998, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _ZenithColor: {r: 0.21698111, g: 0.18934673, b: 0.18934673, a: 1}
+    - _ZenithColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1198676612260575066

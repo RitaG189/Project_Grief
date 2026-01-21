@@ -21,15 +21,15 @@ public class LevelBarUI : MonoBehaviour
     {
         if (LevelsManager.Instance == null) return;
 
-        LevelsManager.Instance.OnXPChanged += UpdateBar;
-        LevelsManager.Instance.OnLevelChanged += UpdateLevel;
+        LevelsManager.OnXPChanged += UpdateBar;
+        LevelsManager.OnLevelChanged += UpdateLevel;
     }
 
     void OnDisable()
     {
         if (LevelsManager.Instance == null) return;
 
-        LevelsManager.Instance.OnXPChanged -= UpdateBar;
-        LevelsManager.Instance.OnLevelChanged -= UpdateLevel;
+        LevelsManager.OnXPChanged -= UpdateBar;
+        LevelsManager.OnLevelChanged -= UpdateLevel;
     }
 }

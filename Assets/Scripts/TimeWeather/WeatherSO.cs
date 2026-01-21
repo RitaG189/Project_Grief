@@ -16,6 +16,8 @@ public class WeatherSO : ScriptableObject
 
     [Header("Lighting")]
     public float maxLightIntensity;
+    public bool lensFlare = true;
+    public float windowLightsIntensity = 4;
 
     [Header("Exposure & Mood")]
     public float skyExposure = 1f;
@@ -39,5 +41,6 @@ public class WeatherSO : ScriptableObject
 
     [Header("Thunder")]
     public bool enableThunder;
+    public float thunderIntensity;
 }
 

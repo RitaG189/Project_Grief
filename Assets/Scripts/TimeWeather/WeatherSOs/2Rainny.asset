@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b0a6fe570cc5644ca86399eb1678b3d, type: 3}
-  m_Name: Cloudy
+  m_Name: 2Rainny
   m_EditorClassIdentifier: Assembly-CSharp::WeatherSO
   dayZenith: {r: 0.8058473, g: 0.8374333, b: 0.8584906, a: 0}
   dayHorizon: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
@@ -49,6 +49,8 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   maxLightIntensity: 0
+  lensFlare: 0
+  windowLightsIntensity: 1
   skyExposure: 1
   skySaturation: 1
   atmosphereThickness: 0.5
@@ -60,5 +62,6 @@ MonoBehaviour:
   dayCloudTint: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
   nightCloudTint: {r: 0.22745098, g: 0.2, b: 0.2, a: 1}
   cloudSpeed: 0.02
-  weatherPrefab: {fileID: 0}
+  weatherPrefab: {fileID: 7539109796691565378, guid: 9af49dee01d08f34d8f8e9fae69006b4, type: 3}
   enableThunder: 0
+  thunderIntensity: 0
