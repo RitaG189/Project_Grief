@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3323e0aa3fe74368ae9deb7a3874701, type: 3}
   m_Name: HeavyRain
   m_EditorClassIdentifier: Assembly-CSharp::SoundSO
-  clip: {fileID: 8300000, guid: bd1791076d2131c49a244e290827672c, type: 3}
-  volume: 0.3
+  clip: {fileID: 0}
+  volume: 1
   loop: 1

@@ -37,16 +37,13 @@ public class WeatherSO : ScriptableObject
     public float cloudSpeed = 0.05f;
 
     [Header("Rain")]
-    public GameObject rainPrefab; // chuva, trovoada, etc
-    public AudioClip rainClip;
-    public float rainVolume = 1f;
-    public bool rainLoop; 
+    public GameObject rainPrefab;
+    public SoundSO rainSound;    
 
     [Header("Thunder")]
     public bool enableThunder;
-    public float thunderIntensity;
-    public AudioClip thunderClip;
-    public float thudnerVolume = 1f;
-    public bool thunderLoop;        
+    public float thunderIntensity;  
+    public SoundSO[] thunderSound;    
+
 }
 

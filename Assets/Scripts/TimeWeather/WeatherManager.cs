@@ -21,6 +21,16 @@ public class WeatherManager : MonoBehaviour
         Instance = this;
     }
 
+    void OnEnable()
+    {
+        SunAndSkyController.OnThunder += HandleThunder;
+    }
+
+    void OnDisable()
+    {
+        SunAndSkyController.OnThunder -= HandleThunder;
+    }
+
     public void ApplyWeather(WeatherSO preset)
     {
         if (weatherPrefab != null)
@@ -29,7 +39,7 @@ public class WeatherManager : MonoBehaviour
         if (preset.rainPrefab != null)
         {
             weatherPrefab = Instantiate(preset.rainPrefab);
-            AudioManager.Instance.PlayRain(preset.rainClip);
+            AudioManager.Instance.PlayRain(preset.rainSound);
         }
         else
             AudioManager.Instance.StopRain();
@@ -41,14 +51,21 @@ public class WeatherManager : MonoBehaviour
         else
             lensFlare.enabled = false;
 
-        if(preset.enableThunder)
-            AudioManager.Instance.PlayThunder(preset.thunderClip);
-
         OnWeatherChanged?.Invoke(preset);
     }
 
     public WeatherSO GetCurrentWeather()
     {
         return currentWeather;
+    }
+
+    void HandleThunder()
+    {
+        if (currentWeather != null && currentWeather.enableThunder)
+        {
+            AudioManager.Instance.PlayThunder(
+                currentWeather.thunderSound
+            );
+        }
     }
 }

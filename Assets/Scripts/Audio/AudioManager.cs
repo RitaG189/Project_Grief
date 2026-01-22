@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
+    [SerializeField] AudioMixer mixer;
 
     [Header("Sources")]
     public AudioSource musicSource;
@@ -56,14 +59,36 @@ public class AudioManager : MonoBehaviour
         rainSource.Stop();
     }
 
-    public void PlayThunder(AudioClip clip, float volume = 1f)
+    public void PlayThunder(SoundSO[] thunderSounds)
     {
-        thunderSource.PlayOneShot(clip, volume);
+        if (thunderSounds == null || thunderSounds.Length == 0)
+            return;
+
+        SoundSO sound = thunderSounds[Random.Range(0, thunderSounds.Length)];
+        thunderSource.PlayOneShot(sound.clip, sound.volume);
     }
 
     public void SetInside(bool inside)
     {
-        mixer.SetFloat("RainVolume", inside ? -15f : 0f);
-        mixer.SetFloat("RainLowpass", inside ? 800f : 22000f);
+        StopAllCoroutines();
+        StartCoroutine(FadeInside(inside));
+    }
+
+    IEnumerator FadeInside(bool inside)
+    {
+        float targetVol = inside ? -15f : 0f;
+        float targetLPF = inside ? 800f : 22000f;
+
+        mixer.GetFloat("RainVolume", out float startVol);
+        mixer.GetFloat("RainLowpass", out float startLPF);
+
+        float t = 0f;
+        while (t < .1f)
+        {
+            t += Time.deltaTime;
+            mixer.SetFloat("RainVolume", Mathf.Lerp(startVol, targetVol, t));
+            mixer.SetFloat("RainLowpass", Mathf.Lerp(startLPF, targetLPF, t));
+            yield return null;
+        }
     }
 }

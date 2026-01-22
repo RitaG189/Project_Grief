@@ -62,6 +62,8 @@ MonoBehaviour:
   dayCloudTint: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
   nightCloudTint: {r: 0.22745098, g: 0.2, b: 0.2, a: 1}
   cloudSpeed: 0.02
-  weatherPrefab: {fileID: 6661689772855434885, guid: ea5df0b13118ab340ae23b4081f5d6cb, type: 3}
+  rainPrefab: {fileID: 6661689772855434885, guid: ea5df0b13118ab340ae23b4081f5d6cb, type: 3}
+  rainSound: {fileID: 11400000, guid: 6f66052ca6a6243169644151e175ad63, type: 2}
   enableThunder: 0
   thunderIntensity: 0
+  thunderSound: []

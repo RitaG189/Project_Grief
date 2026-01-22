@@ -39,10 +39,17 @@ public class LevelsManager : MonoBehaviour
         if (currentXP >= xpToNextLevel)
         {
             currentXP -= xpToNextLevel;
-            level++;
+            
+            LevelUp();
 
             OnXPChanged?.Invoke(currentXP);
             OnLevelChanged?.Invoke(level);
         }
+    }
+
+    private void LevelUp()
+    {
+        if(level < 5)
+            level++;
     }
 }

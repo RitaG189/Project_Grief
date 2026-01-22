@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3323e0aa3fe74368ae9deb7a3874701, type: 3}
   m_Name: LightRain
   m_EditorClassIdentifier: Assembly-CSharp::SoundSO
-  clip: {fileID: 0}
-  volume: 1
-  loop: 0
+  clip: {fileID: 8300000, guid: 65330def3d8e6054d842e194b88d216e, type: 3}
+  volume: 0.5
+  loop: 1

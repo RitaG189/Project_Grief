@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SunAndSkyController : MonoBehaviour
@@ -7,7 +9,7 @@ public class SunAndSkyController : MonoBehaviour
     [SerializeField] private TimeSystem timeSystem;
     [SerializeField] private Light sunLight;
     [SerializeField] private Material skyboxSourceMaterial;
-
+    public static event Action OnThunder;
     private Material skyboxInstance;
 
     // --------------------------------------------------
@@ -186,7 +188,7 @@ public class SunAndSkyController : MonoBehaviour
 
     void ScheduleThunder()
     {
-        Invoke(nameof(RandomThunder), Random.Range(thunderMinDelay, thunderMaxDelay));
+        Invoke(nameof(RandomThunder), UnityEngine.Random.Range(thunderMinDelay, thunderMaxDelay));
     }
 
     void RandomThunder()
@@ -198,6 +200,8 @@ public class SunAndSkyController : MonoBehaviour
     void TriggerThunder()
     {
         if (thunderLight == null) return;
+
+        OnThunder?.Invoke();
 
         if (thunderRoutine != null)
             StopCoroutine(thunderRoutine);
@@ -215,12 +219,16 @@ public class SunAndSkyController : MonoBehaviour
         skyboxInstance.SetColor("_HorizonColor", Color.white);
         skyboxInstance.SetColor("_CloudTint", Color.Lerp(baseClouds, Color.white, 0.65f));
 
-        yield return new WaitForSeconds(Random.Range(0.04f, 0.09f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(0.04f, 0.09f));
 
         
         skyboxInstance.SetColor("_HorizonColor", baseHorizon);
         skyboxInstance.SetColor("_CloudTint", baseClouds);
         thunderLight.intensity = 0f;
+
+        yield return new WaitForSeconds(1f);
+
+        
     }
 
     // --------------------------------------------------
