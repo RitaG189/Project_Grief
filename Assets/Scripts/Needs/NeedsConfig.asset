@@ -16,6 +16,8 @@ MonoBehaviour:
   maxHunger: 10
   maxHygiene: 10
   maxSocial: 10
+  maxEntertainment: 10
   hungerDailyDecay: 2
   hygieneDailyDecay: 2
   socialDailyDecay: 2
+  entertainmentDecay: 2

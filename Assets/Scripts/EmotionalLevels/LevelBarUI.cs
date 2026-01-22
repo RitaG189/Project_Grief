@@ -14,7 +14,14 @@ public class LevelBarUI : MonoBehaviour
 
     public void UpdateLevel(int level)
     {
-        levelText.text = level.ToString();
+        levelText.text = level switch
+        {
+            1 => "Denial",
+            2 => "Anger",
+            3 => "Bargaining",
+            4 => "Depression",
+            _ => "Acceptance"
+        };
     }
 
     void OnEnable()

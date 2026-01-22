@@ -83,6 +83,7 @@ public class NeedsManager : MonoBehaviour
         Needs.DecreaseHunger(hours);
         Needs.DecreaseHygiene(hours);
         Needs.DecreaseSocial(2);
+        Needs.DecreaseEntertainment(2);
         NotifyAll();
     }
 
