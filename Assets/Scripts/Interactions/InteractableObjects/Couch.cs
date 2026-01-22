@@ -27,7 +27,7 @@ public class Couch : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if(movement.IsSitted == false)
+        if(movement.IsSitted == false && !PlayerHandManager.Instance.IsHoldingItem)
         {
             PlayerInteractionController.Instance.SitOnCouch(
                 lookAtPoint

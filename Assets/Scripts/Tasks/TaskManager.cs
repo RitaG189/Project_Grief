@@ -46,15 +46,14 @@ public class TaskManager : MonoBehaviour
         yield return BlackoutManager.Instance.FadeOut();
     }
 
-    public void Sleep()
+    public void Sleep(int? hours = null)
     {
-        StartCoroutine(SleepRoutine());
+        int hoursSlept = hours ?? NeedsManager.Instance.hoursToSleep();
+        StartCoroutine(SleepRoutine(hoursSlept));
     }
 
-    private IEnumerator SleepRoutine()
+    private IEnumerator SleepRoutine(int hoursSlept)
     {
-        int hoursSlept = NeedsManager.Instance.hoursToSleep();
-
         yield return BlackoutManager.Instance.FadeIn();
 
         TimeSystem.Instance.SkipHours(hoursSlept);

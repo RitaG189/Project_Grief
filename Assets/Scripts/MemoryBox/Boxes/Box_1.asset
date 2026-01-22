@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7935e02bb64a9234ab327d94355f399a, type: 3}
+  m_Name: Box_1
+  m_EditorClassIdentifier: Assembly-CSharp::MemoryBoxSO
+  level: 1
+  objectsNeeded:
+  - {fileID: 11400000, guid: 4d8a93bc0f24f924fabcf9854ad71ab1, type: 2}
+  - {fileID: 11400000, guid: b8d5116b651f3074e9c80e72e0a76490, type: 2}
+  - {fileID: 11400000, guid: 00078a56df76a00478b3f80b0a93b842, type: 2}

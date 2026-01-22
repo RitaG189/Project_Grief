@@ -94,6 +94,11 @@ public class NeedsManager : MonoBehaviour
         return Needs.Energy >= task.energyCost;
     }
 
+    public bool CanEat()
+    {
+        return Needs.Hunger <= 90;
+    }
+
     public void ApplyTaskCostAndRewards(TasksSO task)
     {
         Needs.AddEnergy(task.energyReward);

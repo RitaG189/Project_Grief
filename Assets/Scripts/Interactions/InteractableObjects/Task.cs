@@ -15,7 +15,7 @@ public abstract class Task : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if(TaskEnabled)
+        if(TaskEnabled && !PlayerHandManager.Instance.IsHoldingItem)
         {
             if (!TaskManager.Instance.TryExecuteTask(taskSO))
                 return;

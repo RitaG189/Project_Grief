@@ -4,7 +4,7 @@ public class PlayerCameraController : MonoBehaviour
 {
     [SerializeField] Transform headBone;
     [SerializeField] Transform cameraPivot;
-    [SerializeField] GameObject camera;
+    private GameObject mainCamera;
 
     [SerializeField] float followSpeed = 8f;
     [SerializeField] FirstPersonLook look;
@@ -17,19 +17,24 @@ public class PlayerCameraController : MonoBehaviour
         FollowHead   // sentar, dormir, cutscene
     }
 
+    void Awake()
+    {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+    }
+
     public void SetFollowMode(CameraFollowMode newMode)
     {
         mode = newMode;
 
         if (mode == CameraFollowMode.FollowHead)
         {
-            camera.transform.SetParent(headBone);
+            mainCamera.transform.SetParent(headBone);
             look.DisableLook();
 
         }
         else if(mode == CameraFollowMode.Static)
         {
-            camera.transform.SetParent(cameraPivot);
+            mainCamera.transform.SetParent(cameraPivot);
             look.EnableLook();
 
         }

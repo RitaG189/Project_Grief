@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
 
-public class Bed : MonoBehaviour, IInteractable
+public class Alarm : MonoBehaviour, IInteractable
 {
+    [SerializeField] int hoursToSleep = 8;
     [SerializeField] string interactionName;
     private TMP_Text interactionText;
 
@@ -16,8 +17,9 @@ public class Bed : MonoBehaviour, IInteractable
         if(!PlayerHandManager.Instance.IsHoldingItem)
         {
             ToggleVisibility(false);
-            TaskManager.Instance.Sleep();  
+            TaskManager.Instance.Sleep(hoursToSleep);            
         }
+
     }
 
     public void ToggleVisibility(bool value)

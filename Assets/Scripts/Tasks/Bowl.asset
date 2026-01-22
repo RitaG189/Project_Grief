@@ -15,14 +15,14 @@ MonoBehaviour:
   taskName: Pick up bowl
   minutesCost: 0
   repeatable: 0
-  taskDone: 0
-  category: 4
+  taskDone: 1
+  category: 5
   energyReward: 0
   hungerReward: 0
   hygieneReward: 0
   socialReward: 0
   entertainmentReward: 0
-  energyCost: 4
+  energyCost: 3
   hungerCost: 0
   hygieneCost: 0
   socialCost: 0
