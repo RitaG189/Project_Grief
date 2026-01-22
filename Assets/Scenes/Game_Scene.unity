@@ -3155,6 +3155,7 @@ GameObject:
   - component: {fileID: 386931705}
   - component: {fileID: 386931704}
   - component: {fileID: 386931706}
+  - component: {fileID: 386931707}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3397,6 +3398,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelToGriefStageBinder
   griefStageManager: {fileID: 386931705}
+--- !u!114 &386931707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386931695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418e09fdedf954c628b19398bc43e6b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
 --- !u!4 &389433602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2031139763858729824, guid: f5d5ae3bab53d394aa0c1a55bc87cbe8, type: 3}
