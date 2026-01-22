@@ -5,10 +5,10 @@ public abstract class Task : MonoBehaviour, IInteractable
 {
     [SerializeField] protected TasksSO taskSO;
     protected TMP_Text interactionText;
-    private bool canInteract = false;
+    protected bool canInteract = false;
     public bool TaskEnabled {get; private set;} = true;
 
-    void Awake()
+    protected virtual void Awake()
     {
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
     }
@@ -24,13 +24,13 @@ public abstract class Task : MonoBehaviour, IInteractable
         }
     }
 
-    public void ToggleVisibility(bool value)
+    public virtual void ToggleVisibility(bool value)
     {
         if(interactionText != null && taskSO.taskDone == false)
         {
             if (!NeedsManager.Instance.CanPerformTask(taskSO))
                 canInteract = false;
-            else 
+            else
                 canInteract = true;
 
             interactionText.enabled = value;

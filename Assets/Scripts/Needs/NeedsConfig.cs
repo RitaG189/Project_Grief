@@ -9,9 +9,11 @@ public class NeedsConfig : ScriptableObject
     public float maxHunger;
     public float maxHygiene;
     public float maxSocial;
+    public float maxEntertainment;
 
     [Header("Daily Decay")]
     public float hungerDailyDecay;
     public float hygieneDailyDecay;
     public float socialDailyDecay;
+    public float entertainmentDecay;
 }

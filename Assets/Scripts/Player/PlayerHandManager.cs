@@ -26,6 +26,7 @@ public class PlayerHandManager : MonoBehaviour
         IsHoldingItem = true;
         ItemOnHand = obj;
 
+        ItemOnHand.layer = LayerMask.NameToLayer("HeldItem");
         ItemOnHand.transform.SetParent(playerHand);
         ItemOnHand.transform.localPosition = Vector3.zero;
         ItemOnHand.transform.localRotation = Quaternion.identity;
@@ -33,6 +34,7 @@ public class PlayerHandManager : MonoBehaviour
 
     public void RemoveItemOnHand()
     {
+        ItemOnHand.layer = LayerMask.NameToLayer("Default");
         IsHoldingItem = false;
         ItemOnHand = null;
     }

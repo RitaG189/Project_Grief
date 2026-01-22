@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bef069ac4d3744346a97dc97ff23db1e, type: 3}
-  m_Name: Toy2
+  m_Name: Bed
   m_EditorClassIdentifier: Assembly-CSharp::MemoryItemSO
-  itemID: 1B
-  level: 1
+  itemID: 2C
+  level: 2

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Toy
   m_EditorClassIdentifier: Assembly-CSharp::MemoryItemSO
   itemID: 1A
+  level: 1

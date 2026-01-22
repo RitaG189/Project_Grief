@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MemoryBox : MonoBehaviour, IInteractable
 {
@@ -9,7 +10,12 @@ public class MemoryBox : MonoBehaviour, IInteractable
     [SerializeField] int xp;
     [SerializeField] string interactionName;
     [SerializeField] MemoryBoxSO boxSO;
+    [SerializeField]
+    private List<MemoryBoxEntry> requiredItems = new();
     private bool canInteract = false;
+    private bool boxCompleted = false;
+    private bool boxClosed = false;
+
 
     [SerializeField]
     private List<MemoryItemSO> missingItems = new List<MemoryItemSO>();
@@ -17,87 +23,151 @@ public class MemoryBox : MonoBehaviour, IInteractable
     void Awake()
     {
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
-        
-        missingItems.AddRange(boxSO.objectsNeeded);
+
+        requiredItems.Clear();
+
+        foreach (var item in boxSO.objectsNeeded)
+        {
+            requiredItems.Add(new MemoryBoxEntry
+            {
+                item = item,
+                done = false
+            });
+        }
     }
     
     public void Interact()
     {
-        if (LevelsManager.Instance.level != boxSO.level)
-            return;
-
-        if (!PlayerHandManager.Instance.ItemOnHand)
-            return;
-
-        MemoryBoxItem memoryItem = PlayerHandManager.Instance.ItemOnHand
-            .GetComponent<MemoryBoxItem>();
-
-        if (memoryItem == null)
-            return;
-
-        // ❌ Se o objeto NÃO é aceite
-        if (!IsItemAccepted(memoryItem.itemData))
+        if(!boxCompleted)
         {
-            Debug.Log("Objeto errado para esta caixa");
-            return;
+            if (!PlayerHandManager.Instance.ItemOnHand)
+                return;
+
+            MemoryBoxItem memoryItem =
+                PlayerHandManager.Instance.ItemOnHand.GetComponent<MemoryBoxItem>();
+
+            if (memoryItem == null)
+                return;
+
+            if (memoryItem.itemData.level != boxSO.level)
+                return;
+
+            if (!IsItemAccepted(memoryItem.itemData))
+                return;
+
+            PlaceItem(memoryItem);
+        }
+        else
+        {
+            CloseBox();
         }
 
-        // ✅ Se é aceite
-        PlaceItem(memoryItem);
     }
+
 
     public void ToggleVisibility(bool value)
     {
-        if(interactionText != null)
+        if (interactionText == null)
+            return;
+
+        if(boxClosed)
+            value = false;
+        
+        canInteract = false;
+
+        if(boxCompleted)
         {
-            if (!PlayerHandManager.Instance.ItemOnHand)
-                canInteract = false;
-            else 
+            interactionName = "Close box";
+            canInteract = true;
+        }    
+
+        
+
+        if (PlayerHandManager.Instance.ItemOnHand)
+        {
+            MemoryBoxItem memoryItem =
+                PlayerHandManager.Instance.ItemOnHand.GetComponent<MemoryBoxItem>();
+
+            if (memoryItem != null &&
+                memoryItem.itemData.level == boxSO.level &&
+                IsItemAccepted(memoryItem.itemData))
+            {
                 canInteract = true;
-
-            interactionText.enabled = value;
-            interactionText.text = interactionName;
-
-            if(canInteract)
-            {
-                interactionText.alpha = 1;              
-            }
-            else if(!canInteract)
-            {
-                interactionText.alpha = .2f; 
             }
         }
+
+        interactionText.enabled = value;
+        interactionText.text = interactionName;
+        interactionText.alpha = canInteract ? 1f : 0.2f;
     }
+
 
     bool IsItemAccepted(MemoryItemSO item)
     {
-        return missingItems.Contains(item);
+        foreach (var entry in requiredItems)
+        {
+            if (entry.item == item && !entry.done)
+                return true;
+        }
+        return false;
+    }
+
+    void MarkItemDone(MemoryItemSO item)
+    {
+        foreach (var entry in requiredItems)
+        {
+            if (entry.item == item)
+            {
+                entry.done = true;
+                return;
+            }
+        }
     }
 
     void PlaceItem(MemoryBoxItem item)
     {
         ToggleVisibility(false);
 
+        //item.SetPlaced(); // desativa colliders, layer, etc
+
         item.transform.SetParent(objectPos);
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
+        item.gameObject.layer = default;
 
-        // Remove da lista de itens em falta
-        missingItems.Remove(item.itemData);
+        MarkItemDone(item.itemData);
 
         PlayerHandManager.Instance.RemoveItemOnHand();
-
         LevelsManager.Instance.AddXP(xp);
 
+        //UpdateUI();
         CheckIfCompleted();
     }
 
     void CheckIfCompleted()
     {
-        if (missingItems.Count == 0)
+        foreach (var entry in requiredItems)
         {
-            Debug.Log("Memory Box completa!");
+            if (!entry.done)
+                return;
         }
+
+        boxCompleted = true;
+        Debug.Log("Memory Box completa!");
     }
 
+    private void CloseBox()
+    {
+        boxClosed = true;
+        ToggleVisibility(false);
+        Debug.Log("Caixa fechada");
+    }
+
+}
+
+[System.Serializable]
+public class MemoryBoxEntry
+{
+    public MemoryItemSO item;
+    public bool done;
 }

@@ -9,5 +9,8 @@ public class DebugCheats : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F6))
             TimeSystem.Instance.SkipHours(1);
+
+        if(Input.GetKeyDown(KeyCode.F7))
+            NeedsManager.Instance.MaxAll();
     }
 }

@@ -4,4 +4,5 @@ using UnityEngine;
 public class MemoryItemSO : ScriptableObject
 {
     public string itemID;
+    public int level;
 }

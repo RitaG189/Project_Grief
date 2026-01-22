@@ -8,11 +8,13 @@ public class NeedsSystem
     public float Hunger { get; private set; }
     public float Social { get; private set; }
     public float Hygiene { get; private set; }
+    public float Entertainment { get; private set; }
 
     public float MaxEnergy => config.maxEnergy;
     public float MaxHunger => config.maxHunger;
     public float MaxSocial => config.maxSocial;
     public float MaxHygiene => config.maxHygiene;
+    public float MaxEntertainment => config.maxEntertainment;
 
     public void Init(NeedsConfig config)
     {
@@ -22,6 +24,7 @@ public class NeedsSystem
         Hunger = config.maxHunger;
         Social = config.maxSocial;
         Hygiene = config.maxHygiene;
+        Entertainment = config.maxEntertainment;
     }
 
     public void RestoreEnergyToMax()
@@ -37,6 +40,16 @@ public class NeedsSystem
     public void RestoreHygieneToMax()
     {
         Hygiene = MaxHygiene;
+    }
+
+    public void RestoreSocialToMax()
+    {
+        Social = MaxSocial;
+    }
+
+    public void RestoreEntertainmentToMax()
+    {
+        Entertainment = MaxEntertainment;
     }
 
     public void AddEnergy(float amount)
@@ -59,6 +72,11 @@ public class NeedsSystem
         Hygiene = Mathf.Min(Hygiene + amount, MaxHygiene);
     }
 
+    public void AddEntertainment(float amount)
+    {
+        Entertainment = Mathf.Min(Entertainment + amount, MaxEntertainment);
+    }
+
     public void DecreaseEnergy(float amount)
     {
         Energy = Mathf.Max(Energy - amount, 0f);
@@ -77,5 +95,10 @@ public class NeedsSystem
     public void DecreaseHygiene(float amount)
     {
         Hygiene = Mathf.Max(Hygiene - amount, 0f);
+    }
+
+    public void DecreaseEntertainment(float amount)
+    {
+        Entertainment = Mathf.Max(Entertainment - amount, 0f);
     }
 }

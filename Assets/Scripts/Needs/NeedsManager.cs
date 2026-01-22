@@ -12,6 +12,7 @@ public class NeedsManager : MonoBehaviour
     public event Action<float, float> OnHungerChanged;
     public event Action<float, float> OnSocialChanged;
     public event Action<float, float> OnHygieneChanged;
+    public event Action<float, float> OnEntertainmentChanged;
     private int lastMinuteTick = -1;
 
     private void Awake()
@@ -56,6 +57,7 @@ public class NeedsManager : MonoBehaviour
         Needs.DecreaseHunger(decayPerTick);
         Needs.DecreaseSocial(decayPerTick);
         Needs.DecreaseHygiene(decayPerTick);
+        Needs.DecreaseEntertainment(decayPerTick);
 
         NotifyAll();
     }
@@ -66,6 +68,7 @@ public class NeedsManager : MonoBehaviour
         OnHungerChanged?.Invoke(Needs.Hunger, Needs.MaxHunger);
         OnSocialChanged?.Invoke(Needs.Social, Needs.MaxSocial);
         OnHygieneChanged?.Invoke(Needs.Hygiene, Needs.MaxHygiene);
+        OnEntertainmentChanged?.Invoke(Needs.Entertainment, Needs.MaxEntertainment);
     }
 
     public int GetHoursToFullEnergy()
@@ -105,12 +108,26 @@ public class NeedsManager : MonoBehaviour
         Needs.AddHunger(task.hungerReward);
         Needs.AddHygiene(task.hygieneReward);
         Needs.AddSocial(task.socialReward);
+        Needs.AddEntertainment(task.entertainmentReward);
 
         Needs.DecreaseEnergy(task.energyCost);
         Needs.DecreaseHunger(task.hungerCost);
         Needs.DecreaseHygiene(task.hygieneCost);
         Needs.DecreaseSocial(task.socialCost);
+        Needs.DecreaseEntertainment(task.entertainmentCost);
 
         NotifyAll();
     }
+
+    public void MaxAll()
+    {
+        Needs.RestoreEnergyToMax();
+        Needs.RestoreEntertainmentToMax();
+        Needs.RestoreHungerToMax();
+        Needs.RestoreHygieneToMax();
+        Needs.RestoreSocialToMax();
+        NotifyAll();
+    }
+
+
 }
