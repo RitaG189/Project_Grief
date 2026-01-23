@@ -15,6 +15,15 @@ public class NeedsManager : MonoBehaviour
     public event Action<float, float> OnEntertainmentChanged;
     private int lastMinuteTick = -1;
 
+    private float energyZeroHours;
+    private float hungerZeroHours;
+    private float socialZeroHours;
+    private float hygieneZeroHours;
+    private float entertainmentZeroHours;
+    private int lastTotalMinutes = -1;
+
+    [SerializeField] private float hoursUntilGameOver = 24f;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -43,23 +52,38 @@ public class NeedsManager : MonoBehaviour
 
     private void OnTimeChanged(int hour, int minute)
     {
-        // Só executa de 10 em 10 minutos
-        if (minute % minutesPerTick != 0)
+        int currentTotalMinutes = GetTotalMinutes(hour, minute, TimeSystem.Instance.Day);
+
+        if (lastTotalMinutes < 0)
+        {
+            lastTotalMinutes = currentTotalMinutes;
+            return;
+        }
+
+        int minutesPassed = currentTotalMinutes - lastTotalMinutes;
+
+        if (minutesPassed <= 0)
             return;
 
-        // Evita executar duas vezes no mesmo minuto
-        if (minute == lastMinuteTick)
-            return;
+        lastTotalMinutes = currentTotalMinutes;
 
-        lastMinuteTick = minute;
-        
-        Needs.DecreaseEnergy(decayPerTick);
-        Needs.DecreaseHunger(decayPerTick);
-        Needs.DecreaseSocial(decayPerTick);
-        Needs.DecreaseHygiene(decayPerTick);
-        Needs.DecreaseEntertainment(decayPerTick);
+        float hoursPassed = minutesPassed / 60f;
 
+        ApplyDecay(hoursPassed);
+        UpdateZeroTimers(hoursPassed);
+        CheckGameOver();
         NotifyAll();
+    }
+
+    void ApplyDecay(float hoursPassed)
+    {
+        float decay = decayPerTick * (hoursPassed * 60f / minutesPerTick);
+
+        Needs.DecreaseEnergy(decay);
+        Needs.DecreaseHunger(decay);
+        Needs.DecreaseSocial(decay);
+        Needs.DecreaseHygiene(decay);
+        Needs.DecreaseEntertainment(decay);
     }
 
     void NotifyAll()
@@ -130,5 +154,41 @@ public class NeedsManager : MonoBehaviour
         NotifyAll();
     }
 
+    public void DecreaseEnergy()
+    {
+        Needs.DecreaseEnergy(10);
+    }
 
+    void UpdateZeroTimers(float hoursPassed)
+    {
+        energyZeroHours = Needs.Energy <= 0 ? energyZeroHours + hoursPassed : 0f;
+        hungerZeroHours = Needs.Hunger <= 0 ? hungerZeroHours + hoursPassed : 0f;
+        socialZeroHours = Needs.Social <= 0 ? socialZeroHours + hoursPassed : 0f;
+        hygieneZeroHours = Needs.Hygiene <= 0 ? hygieneZeroHours + hoursPassed : 0f;
+        entertainmentZeroHours = Needs.Entertainment <= 0 ? entertainmentZeroHours + hoursPassed : 0f;
+    }
+
+    void CheckGameOver()
+    {
+        if (energyZeroHours >= hoursUntilGameOver ||
+            hungerZeroHours >= hoursUntilGameOver ||
+            socialZeroHours >= hoursUntilGameOver ||
+            hygieneZeroHours >= hoursUntilGameOver ||
+            entertainmentZeroHours >= hoursUntilGameOver)
+        {
+            TriggerGameOver();
+        }
+    }
+
+    void TriggerGameOver()
+    {
+        Debug.Log("GAME OVER – Need neglected too long");
+
+        //GameManager.Instance.GameOver();
+    }
+
+    int GetTotalMinutes(int hour, int minute, int day)
+    {
+        return day * 24 * 60 + hour * 60 + minute;
+    }
 }

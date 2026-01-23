@@ -12,5 +12,8 @@ public class DebugCheats : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.F7))
             NeedsManager.Instance.MaxAll();
+        
+        if(Input.GetKeyDown(KeyCode.F8))
+            NeedsManager.Instance.DecreaseEnergy();
     }
 }

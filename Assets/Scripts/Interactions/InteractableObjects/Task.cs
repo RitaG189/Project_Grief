@@ -7,6 +7,8 @@ public abstract class Task : MonoBehaviour, IInteractable
     protected TMP_Text interactionText;
     protected bool canInteract = false;
     public bool TaskEnabled {get; private set;} = true;
+    [SerializeField] NeedsPreviewController needsPreviewController;
+
 
     protected virtual void Awake()
     {
@@ -36,16 +38,19 @@ public abstract class Task : MonoBehaviour, IInteractable
             interactionText.enabled = value;
             interactionText.text = taskSO.taskName; 
 
-            if(canInteract)
-            {
-                interactionText.alpha = 1;              
-            }
-            else if(!canInteract)
-            {
-                interactionText.alpha = .2f; 
-            }
-
+            interactionText.alpha = canInteract ? 1f : 0.2f;
         }
+
+        if (!value)
+        {
+            needsPreviewController.ClearPreview();
+            return;
+        }
+
+        if (taskSO != null && canInteract)
+            needsPreviewController.ShowTaskPreview(taskSO);
+        else
+            needsPreviewController.ClearPreview();
     }
 
     public void EnableTask(bool value)
