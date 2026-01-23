@@ -38,6 +38,10 @@ public class GameStateManager : MonoBehaviour
             case GameState.MainMenu:
                 Time.timeScale = 1f;
                 break;
+            case GameState.Cutscene:
+                Time.timeScale = 0f;
+                lookScript.DisableLook();
+                break;
         }
     }
 }
@@ -46,5 +50,6 @@ public enum GameState
 {
     Gameplay,
     MainMenu,
-    Paused
+    Paused,
+    Cutscene
 }

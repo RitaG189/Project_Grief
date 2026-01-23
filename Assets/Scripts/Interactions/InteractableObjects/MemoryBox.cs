@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Video;
 
 public class MemoryBox : MonoBehaviour, IInteractable
 {
@@ -10,15 +11,15 @@ public class MemoryBox : MonoBehaviour, IInteractable
     [SerializeField] int xp;
     [SerializeField] string interactionName;
     [SerializeField] MemoryBoxSO boxSO;
+    [SerializeField] VideoClip completionClip;
+    
     [SerializeField]
     private List<MemoryBoxEntry> requiredItems = new();
+    
     private bool canInteract = false;
     private bool boxCompleted = false;
     private bool boxClosed = false;
 
-
-    [SerializeField]
-    private List<MemoryItemSO> missingItems = new List<MemoryItemSO>();
 
     void Awake()
     {
@@ -159,7 +160,9 @@ public class MemoryBox : MonoBehaviour, IInteractable
     {
         boxClosed = true;
         ToggleVisibility(false);
-        //MemoryBoxUI.Instance.MarkCloseTaskDone();
+        
+        // pausar o jogo
+        MemoryCutsceneManager.Instance.PlayCustcene(completionClip);        
         Debug.Log("Caixa fechada");
     }
 
