@@ -7,7 +7,7 @@ public abstract class Task : MonoBehaviour, IInteractable
     protected TMP_Text interactionText;
     protected bool canInteract = false;
     public bool TaskEnabled {get; private set;} = true;
-    [SerializeField] NeedsPreviewController needsPreviewController;
+    //[SerializeField] NeedsPreviewController needsPreviewController;
 
 
     protected virtual void Awake()
@@ -41,6 +41,7 @@ public abstract class Task : MonoBehaviour, IInteractable
             interactionText.alpha = canInteract ? 1f : 0.2f;
         }
 
+        /*
         if (!value)
         {
             needsPreviewController.ClearPreview();
@@ -51,6 +52,7 @@ public abstract class Task : MonoBehaviour, IInteractable
             needsPreviewController.ShowTaskPreview(taskSO);
         else
             needsPreviewController.ClearPreview();
+            */
     }
 
     public void EnableTask(bool value)

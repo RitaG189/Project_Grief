@@ -8711,14 +8711,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4788126787143632937, guid: b56cb311ead8df84f81d8d4eaadeca9c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6250963037229339696, guid: b56cb311ead8df84f81d8d4eaadeca9c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -8757,8 +8749,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2440877, y: 1.3493847, z: 0.7317542}
-  m_Center: {x: 0.70038533, y: 0.67469233, z: -0.5726367}
+  m_Size: {x: 0.79696226, y: 1.1794564, z: 0.5768676}
+  m_Center: {x: 0.47682267, y: 0.5897282, z: -0.49519354}
 --- !u!114 &985158304
 MonoBehaviour:
   m_ObjectHideFlags: 0

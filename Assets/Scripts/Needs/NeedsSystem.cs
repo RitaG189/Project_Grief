@@ -20,11 +20,11 @@ public class NeedsSystem
     {
         this.config = config;
 
-        Energy = config.maxEnergy;
-        Hunger = config.maxHunger;
-        Social = config.maxSocial;
-        Hygiene = config.maxHygiene;
-        Entertainment = config.maxEntertainment;
+        Energy = config.startEnergy;
+        Hunger = config.startHunger;
+        Social = config.startSocial;
+        Hygiene = config.startHygiene;
+        Entertainment = config.startEntertainment;
     }
 
     public void RestoreEnergyToMax()

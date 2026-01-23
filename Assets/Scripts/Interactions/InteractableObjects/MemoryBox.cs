@@ -136,9 +136,8 @@ public class MemoryBox : MonoBehaviour, IInteractable
         MarkItemDone(item.itemData);
 
         PlayerHandManager.Instance.RemoveItemOnHand();
-        LevelsManager.Instance.AddXP(xp);
 
-        MemoryBoxUI.Instance.Refresh(); // 👈
+        MemoryBoxUI.Instance.Refresh();
         CheckIfCompleted();
     }
 
@@ -160,6 +159,8 @@ public class MemoryBox : MonoBehaviour, IInteractable
     {
         boxClosed = true;
         ToggleVisibility(false);
+
+        LevelsManager.Instance.LevelUp();
         
         // pausar o jogo
         MemoryCutsceneManager.Instance.PlayCustcene(completionClip);        

@@ -21,3 +21,8 @@ MonoBehaviour:
   hygieneDailyDecay: 2
   socialDailyDecay: 2
   entertainmentDecay: 2
+  startEnergy: 5
+  startHunger: 5
+  startHygiene: 5
+  startSocial: 5
+  startEntertainment: 0

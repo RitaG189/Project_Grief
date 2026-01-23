@@ -27,27 +27,21 @@ public class LevelsManager : MonoBehaviour
 
     void Start()
     {
-        OnXPChanged?.Invoke(currentXP);
-        OnLevelChanged?.Invoke(level);
+        //OnXPChanged?.Invoke(currentXP);
+        //OnLevelChanged?.Invoke(level);
     }
 
     public void AddXP(int value)
     {
-        currentXP += value;
-        OnXPChanged?.Invoke(currentXP);
+        //currentXP += value;
+        //OnXPChanged?.Invoke(currentXP);
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
-        if (currentXP >= xpToNextLevel)
-        {
-            currentXP -= xpToNextLevel;
-            
-            if(level < 5)
-                level++;
+        if(level < 5)
+            level++;
 
-            OnXPChanged?.Invoke(currentXP);
-            OnLevelChanged?.Invoke(level);
-        }
+        OnLevelChanged?.Invoke(level);
     }
 }

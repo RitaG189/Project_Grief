@@ -18,7 +18,7 @@ public class NeedsBarUI : MonoBehaviour
         slider.value = currentValue01;
 
         fillImage.color = colorGradient.Evaluate(currentValue01);
-        ClearPreview();
+        //ClearPreview();
     }
 
     public void ShowPreview(float delta, float max)
