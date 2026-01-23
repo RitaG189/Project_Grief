@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
+    [SerializeField] FirstPersonLook lookScript;
     public static GameStateManager Instance;
-    public GameState currentState {get; private set;}
+    public GameState CurrentState {get; private set;}
     
     private void Awake() {
         if(Instance != null)
@@ -14,7 +15,7 @@ public class GameStateManager : MonoBehaviour
         Instance = this;
     }
 
-    public void SetState()
+    public void SetState(GameState newState)
     {
         CurrentState = newState;
 
@@ -22,10 +23,16 @@ public class GameStateManager : MonoBehaviour
         {
             case GameState.Gameplay:
                 Time.timeScale = 1f;
+                CursorUtils.DisableUICursor();
+                CursorUtils.EnableLockedCursor();
+                lookScript.EnableLook();
                 break;
 
             case GameState.Paused:
                 Time.timeScale = 0f;
+                CursorUtils.EnableUICursor();
+                CursorUtils.EnableUnlockedCursor();
+                lookScript.DisableLook();
                 break;
 
             case GameState.MainMenu:

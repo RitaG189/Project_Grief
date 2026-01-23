@@ -5,4 +5,5 @@ public class MemoryItemSO : ScriptableObject
 {
     public string itemID;
     public int level;
+    public string description;
 }

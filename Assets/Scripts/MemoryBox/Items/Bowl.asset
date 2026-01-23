@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MemoryItemSO
   itemID: 1D
   level: 1
+  description: Pick up bowl

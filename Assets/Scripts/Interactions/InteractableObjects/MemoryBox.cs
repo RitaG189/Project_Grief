@@ -128,19 +128,16 @@ public class MemoryBox : MonoBehaviour, IInteractable
     {
         ToggleVisibility(false);
 
-        //item.SetPlaced(); // desativa colliders, layer, etc
-
         item.transform.SetParent(objectPos);
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
-        item.gameObject.layer = default;
 
         MarkItemDone(item.itemData);
 
         PlayerHandManager.Instance.RemoveItemOnHand();
         LevelsManager.Instance.AddXP(xp);
 
-        //UpdateUI();
+        MemoryBoxUI.Instance.Refresh(); // 👈
         CheckIfCompleted();
     }
 
@@ -153,6 +150,8 @@ public class MemoryBox : MonoBehaviour, IInteractable
         }
 
         boxCompleted = true;
+
+        MemoryBoxUI.Instance.OnBoxCompleted(this);
         Debug.Log("Memory Box completa!");
     }
 
@@ -160,9 +159,19 @@ public class MemoryBox : MonoBehaviour, IInteractable
     {
         boxClosed = true;
         ToggleVisibility(false);
+        //MemoryBoxUI.Instance.MarkCloseTaskDone();
         Debug.Log("Caixa fechada");
     }
 
+    public List<MemoryBoxEntry> GetRequiredItems()
+    {
+        return requiredItems;
+    }
+
+    public MemoryBoxSO GetCurrentBox()
+    {
+        return boxSO;
+    }
 }
 
 [System.Serializable]

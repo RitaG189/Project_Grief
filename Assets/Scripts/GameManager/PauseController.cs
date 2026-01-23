@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
@@ -25,5 +26,15 @@ public class PauseController : MonoBehaviour
     {
         GameStateManager.Instance.SetState(GameState.Gameplay);
         pauseUI.SetActive(false);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu_Scene");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
