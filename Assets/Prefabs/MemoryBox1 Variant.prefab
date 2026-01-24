@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6177590248080247466}
   - component: {fileID: 5962799116294934116}
   - component: {fileID: 3845549859170551779}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 7576793773548433910}
   - component: {fileID: 8261015868520080962}
   - component: {fileID: 4544421317595062345}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7542240687312841752}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Tasks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4254095511787195071}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -268,7 +268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.28}
+  m_AnchoredPosition: {x: -0.5, y: 2.36}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8436925133814263342
@@ -312,11 +312,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1918216598304246777, guid: 40413875b6606ba458a9cd910cf95fbf, type: 3}
       propertyPath: m_Size.x
-      value: 0.8954458
+      value: 1.0041344
       objectReference: {fileID: 0}
     - target: {fileID: 1918216598304246777, guid: 40413875b6606ba458a9cd910cf95fbf, type: 3}
       propertyPath: m_Size.y
       value: 0.6349983
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918216598304246777, guid: 40413875b6606ba458a9cd910cf95fbf, type: 3}
+      propertyPath: m_Size.z
+      value: 1.058795
       objectReference: {fileID: 0}
     - target: {fileID: 1918216598304246777, guid: 40413875b6606ba458a9cd910cf95fbf, type: 3}
       propertyPath: m_Enabled
@@ -324,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1918216598304246777, guid: 40413875b6606ba458a9cd910cf95fbf, type: 3}
       propertyPath: m_Center.x
-      value: -0.029987592
+      value: -0.013923793
       objectReference: {fileID: 0}
     - target: {fileID: 1918216598304246777, guid: 40413875b6606ba458a9cd910cf95fbf, type: 3}
       propertyPath: m_Center.y
@@ -332,7 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1918216598304246777, guid: 40413875b6606ba458a9cd910cf95fbf, type: 3}
       propertyPath: m_Center.z
-      value: -0.121904455
+      value: -0.052133102
       objectReference: {fileID: 0}
     - target: {fileID: 1918216598304246777, guid: 40413875b6606ba458a9cd910cf95fbf, type: 3}
       propertyPath: m_IsTrigger

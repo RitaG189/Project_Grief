@@ -17,27 +17,26 @@ public class AnimalTask : Task
 
     protected override void ExecuteTask()
     {
-        ToggleVisibility(false);
-
         if(item.itemData.level != LevelsManager.Instance.level)
         {
             return;
         }
 
-        if(IsOnBox == false)
+        if(IsOnBox == false && TaskManager.Instance.TryExecuteAnimalTask(taskSO))
         {
             NeedsManager.Instance.ApplyTaskCostAndRewards(taskSO);
             PlayerHandManager.Instance.SetItemOnHand(gameObject);
             taskSO.taskDone = true;
+            ToggleVisibility(false);
         }        
     }
 
     public override void ToggleVisibility(bool value)
     {
-        if (item.itemData.level != LevelsManager.Instance.level)
-            canInteract = true;
-        else
+        if (item.itemData.level != LevelsManager.Instance.level || !TaskManager.Instance.TryExecuteAnimalTask(taskSO))
             canInteract = false;
+        else
+            canInteract = true;
         
         base.ToggleVisibility(value);
     }

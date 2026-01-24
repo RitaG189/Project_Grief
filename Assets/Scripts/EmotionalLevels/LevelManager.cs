@@ -4,7 +4,6 @@ using UnityEngine;
 public class LevelsManager : MonoBehaviour
 {
     public static LevelsManager Instance { get; private set; }
-
     public static event Action<int> OnXPChanged;
     public static event Action<int> OnLevelChanged;
 
@@ -43,5 +42,6 @@ public class LevelsManager : MonoBehaviour
             level++;
 
         OnLevelChanged?.Invoke(level);
+        print("level up");
     }
 }

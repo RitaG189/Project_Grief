@@ -63,9 +63,7 @@ public class MemoryBox : MonoBehaviour, IInteractable
         {
             CloseBox();
         }
-
     }
-
 
     public void ToggleVisibility(bool value)
     {
@@ -82,8 +80,6 @@ public class MemoryBox : MonoBehaviour, IInteractable
             interactionName = "Close box";
             canInteract = true;
         }    
-
-        
 
         if (PlayerHandManager.Instance.ItemOnHand)
         {

@@ -30,7 +30,7 @@ public abstract class Task : MonoBehaviour, IInteractable
     {
         if(interactionText != null && taskSO.taskDone == false)
         {
-            if (!NeedsManager.Instance.CanPerformTask(taskSO))
+            if (!NeedsManager.Instance.CanPerformTask(taskSO) && taskSO.category != TaskCategory.Animal)
                 canInteract = false;
             else
                 canInteract = true;

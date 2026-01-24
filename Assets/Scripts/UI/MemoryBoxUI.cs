@@ -20,22 +20,16 @@ public class MemoryBoxUI : MonoBehaviour
 
     void OnEnable()
     {
-        if (LevelsManager.Instance == null) return;
-
         LevelsManager.OnLevelChanged += UpdateBox;
     }
 
     void OnDisable()
     {
-        if (LevelsManager.Instance == null) return;
-
         LevelsManager.OnLevelChanged -= UpdateBox;
     }
 
     private void UpdateBox(int level)
-    {
-        Debug.Log($"Level event: {level}, Box level: {box.GetCurrentBox().level}");
-        
+    {        
         if(box.GetCurrentBox().level == level)
             SetBox();
     }

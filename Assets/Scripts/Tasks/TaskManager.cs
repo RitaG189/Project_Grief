@@ -27,6 +27,14 @@ public class TaskManager : MonoBehaviour
 
         return true;
     }
+    
+    public bool TryExecuteAnimalTask(TasksSO task)
+    {
+        if (!NeedsManager.Instance.CanPerformAnimalTask(task)) 
+            return false;
+
+        return true;
+    }
 
     private IEnumerator ExecuteSimpleTaskRoutine(TasksSO task)
     {

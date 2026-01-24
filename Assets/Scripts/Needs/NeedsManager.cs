@@ -122,6 +122,11 @@ public class NeedsManager : MonoBehaviour
         return Needs.Energy >= task.energyCost;
     }
 
+    public bool CanPerformAnimalTask(TasksSO task)
+    {
+        return Needs.Entertainment >= task.entertainmentCost;
+    }
+
     public bool CanEat()
     {
         return Needs.Hunger <= 90;
