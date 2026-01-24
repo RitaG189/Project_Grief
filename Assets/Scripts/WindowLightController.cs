@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WindowLightController : MonoBehaviour
@@ -8,6 +7,12 @@ public class WindowLightController : MonoBehaviour
     [SerializeField] float fadeSpeed = 0.5f;
 
     float targetIntensity;
+
+    void Awake()
+    {
+        // Vai buscar todas as Lights filhas (inclui inativas)
+        windowLights = GetComponentsInChildren<Light>(true);
+    }
 
     void OnEnable()
     {
@@ -30,6 +35,8 @@ public class WindowLightController : MonoBehaviour
 
         foreach (var l in windowLights)
         {
+            if (l == null) continue;
+
             l.intensity = Mathf.MoveTowards(
                 l.intensity,
                 target,

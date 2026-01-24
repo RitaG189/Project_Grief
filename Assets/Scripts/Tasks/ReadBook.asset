@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ReadBook
   m_EditorClassIdentifier: Assembly-CSharp::TasksSO
   taskName: Read book
-  minutesCost: 1
+  minutesCost: 10
   repeatable: 0
   taskDone: 0
   category: 4

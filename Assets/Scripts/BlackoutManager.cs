@@ -33,6 +33,7 @@ public class BlackoutManager : MonoBehaviour
     {
         movementScript.DisableMovement();
         lookScript.DisableLook();
+        lookScript.LockClick();
 
         yield return FadeImage(0f, 1f);
         yield return FadeText(text, 0f, 1f);
@@ -45,6 +46,7 @@ public class BlackoutManager : MonoBehaviour
 
         movementScript.EnableMovement();
         lookScript.EnableLook();
+        lookScript.UnlockClick();
     }
 
     private IEnumerator FadeImage(float startAlpha, float endAlpha)

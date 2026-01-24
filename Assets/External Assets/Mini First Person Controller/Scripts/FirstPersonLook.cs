@@ -8,6 +8,8 @@ public class FirstPersonLook : MonoBehaviour
     public float sensitivity = 2;
     public float smoothing = 1.5f;
     public bool CanLook { get; private set; } = true;
+    public static bool IsLocked { get; private set; }
+
 
     Vector2 velocity;
     Vector2 frameVelocity;
@@ -28,7 +30,7 @@ public class FirstPersonLook : MonoBehaviour
 
     void Update()
     {
-        if (!CanLook)
+        if (!CanLook || IsLocked)
             return;
 
         Vector2 mouseDelta = new Vector2(
@@ -107,6 +109,16 @@ public class FirstPersonLook : MonoBehaviour
     {
         velocity = Vector2.zero;
         frameVelocity = Vector2.zero;
+    }
+
+    public void LockClick()
+    {
+        IsLocked = true;
+    }
+
+    public void UnlockClick()
+    {
+        IsLocked = false;
     }
 
 }

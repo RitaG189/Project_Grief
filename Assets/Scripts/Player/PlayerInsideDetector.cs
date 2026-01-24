@@ -29,7 +29,8 @@ public class PlayerInsideDetector : MonoBehaviour
         // Só reage quando muda de estado
         if (IsInside != wasInside)
         {
-            AudioManager.Instance.SetInside(IsInside);
+            if(AudioManager.Instance != null)
+                AudioManager.Instance.SetInside(IsInside);
         }
     }
 

@@ -67,3 +67,4 @@ MonoBehaviour:
   enableThunder: 0
   thunderIntensity: 0
   thunderSound: []
+  saturation: -20

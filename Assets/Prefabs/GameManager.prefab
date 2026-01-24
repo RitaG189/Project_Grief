@@ -1,0 +1,306 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6560255260398531955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6948738864615520869}
+  - component: {fileID: 6950412455397308573}
+  - component: {fileID: 3573847026508596843}
+  - component: {fileID: 5046779851181303557}
+  - component: {fileID: 6267408007188191242}
+  - component: {fileID: 5942936579071238801}
+  - component: {fileID: 7114202493292431724}
+  - component: {fileID: 498179964791111087}
+  - component: {fileID: 7841091123886964106}
+  - component: {fileID: 1999688909798801125}
+  - component: {fileID: 2042954751764945641}
+  - component: {fileID: 6264501104906242558}
+  - component: {fileID: 2353336159595093546}
+  - component: {fileID: 7830923536169490021}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6948738864615520869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 545.626, y: 434.90363, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6950412455397308573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b26280fb7d0bb4ba81ab3543c5b64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NeedsManager
+  needsConfig: {fileID: 11400000, guid: 4100d87bfa03cb74a8adad2c6644b53f, type: 2}
+  decayPerTick: 0.1667
+  minutesPerTick: 10
+  hoursUntilGameOver: 24
+--- !u!114 &3573847026508596843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620b4e8715ce0884a810d4ef117e8cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeSystem
+  hourStartDay: 8
+  realSecondsPerTick: 5
+  minutesPerTick: 10
+--- !u!114 &5046779851181303557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39249c28713031a4cab144cc0b515113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskManager
+--- !u!114 &6267408007188191242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6436e24b6c3c22f4c950054f927ec362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SunTimeBinder
+  timeSystem: {fileID: 3573847026508596843}
+  sunLight: {fileID: 0}
+  skyboxSourceMaterial: {fileID: 2100000, guid: fd4622cb50dfe8542a18cf6008b0e424, type: 2}
+  sunriseAngle: -90
+  sunsetAngle: 270
+  maxSunIntensity: 6
+  dayZenith: {r: 0.42745098, g: 0.7411765, b: 1, a: 0}
+  dayHorizon: {r: 0.7137255, g: 0.8784314, b: 1, a: 0}
+  sunsetZenith: {r: 0.46262014, g: 0.59951097, b: 0.8679245, a: 0}
+  sunsetHorizon: {r: 1, g: 0.65038824, b: 0, a: 0}
+  nightZenith: {r: 0.083659664, g: 0.14506944, b: 0.3773585, a: 0}
+  nightHorizon: {r: 0.047169805, g: 0.08870679, b: 0.18867922, a: 0}
+  cloudCoverage: 1
+  cloudScale: 1
+  dayCloudTint: {r: 1, g: 1, b: 1, a: 1}
+  nightCloudTint: {r: 0.15, g: 0.15, b: 0.2, a: 1}
+  stars: 0
+  moon: 0
+  thunderLight: {fileID: 0}
+  thunderIntensity: 10
+  thunderMinDelay: 4
+  thunderMaxDelay: 10
+  skySunriseStart: -0.025
+  skyFullDay: 0.4
+  sunsetWidth: 0.5
+--- !u!114 &5942936579071238801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e828bc5617f06304989d618481143bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayNightAmbientController
+  timeSystem: {fileID: 3573847026508596843}
+  ambientColorOverDay:
+    serializedVersion: 2
+    key0: {r: 0.5411765, g: 0.654902, b: 0.8235294, a: 1}
+    key1: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 1}
+    key2: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 0}
+    key3: {r: 0.9716981, g: 0.850075, b: 0.71960664, a: 0}
+    key4: {r: 0.5980331, g: 0.6730092, b: 0.8396226, a: 0}
+    key5: {r: 0.53813636, g: 0.6528222, b: 0.8207547, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 9445
+    ctime1: 19082
+    ctime2: 45104
+    ctime3: 48573
+    ctime4: 54356
+    ctime5: 58982
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  ambientIntensityOverDay:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7114202493292431724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54edeb975e02b7f40b720d924a9677de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmotionalLevels
+  level: 1
+  currentXP: 0
+  xpToNextLevel: 100
+--- !u!114 &498179964791111087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a67930dc15624a4faa0a60a6b4ec963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHandManager
+  playerHand: {fileID: 0}
+--- !u!114 &7841091123886964106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2677e04211def4b4ab833fe3ebdcef8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GriefStageManager
+  sky: {fileID: 6267408007188191242}
+  weather: {fileID: 1999688909798801125}
+  ambientController: {fileID: 5942936579071238801}
+  denial: {fileID: 11400000, guid: 2f7423bae720857448fc7a0cc5e67273, type: 2}
+  bargaining: {fileID: 11400000, guid: a77e53d3b9752f848a559f1d03b7c589, type: 2}
+  anger: {fileID: 11400000, guid: f8584de0a94a1854dad1d523b6df1a1b, type: 2}
+  depression: {fileID: 11400000, guid: 959d542049bb10041a6280f1540c3f5f, type: 2}
+  acceptance: {fileID: 11400000, guid: 679df6584d89ea443a682f57224e8456, type: 2}
+--- !u!114 &1999688909798801125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0a2569ae601bd40ad5f22cb784da54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeatherManager
+  lensFlare: {fileID: 0}
+--- !u!114 &2042954751764945641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4d3dbeba4d00b4d961ce2a36296659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelToGriefStageBinder
+  griefStageManager: {fileID: 7841091123886964106}
+--- !u!114 &6264501104906242558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418e09fdedf954c628b19398bc43e6b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
+  lookScript: {fileID: 0}
+--- !u!114 &2353336159595093546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299f3c112dad047cf82571dea4d72a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseController
+  pauseUI: {fileID: 0}
+--- !u!114 &7830923536169490021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5320b43d8076a48aed4d5607876473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MemoryCutsceneManager
+  videoPlayer: {fileID: 0}

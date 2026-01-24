@@ -70,3 +70,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d402f4c28b0eb4648ae1049a271b7793, type: 2}
   - {fileID: 11400000, guid: 6f2d974b1a506a44092ee9655a6bb7c5, type: 2}
   - {fileID: 11400000, guid: 98ebe6b158d4d434e86fdeef34f40726, type: 2}
+  saturation: -40

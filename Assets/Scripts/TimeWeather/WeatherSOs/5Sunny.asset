@@ -20,19 +20,19 @@ MonoBehaviour:
   nightHorizon: {r: 0.036356356, g: 0.060171157, b: 0.1792453, a: 0}
   ambientColorOverDay:
     serializedVersion: 2
-    key0: {r: 0.5411765, g: 0.654902, b: 0.8235294, a: 1}
+    key0: {r: 0.47258815, g: 0.5132184, b: 0.5660378, a: 1}
     key1: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 1}
     key2: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 0}
     key3: {r: 0.9716981, g: 0.850075, b: 0.71960664, a: 0}
-    key4: {r: 0.5980331, g: 0.6730092, b: 0.8396226, a: 0}
-    key5: {r: 0.53813636, g: 0.6528222, b: 0.8207547, a: 0}
+    key4: {r: 0.5825027, g: 0.6070947, b: 0.6603774, a: 0}
+    key5: {r: 0.4745098, g: 0.5137255, b: 0.5686275, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 9445
     ctime1: 19082
     ctime2: 45104
     ctime3: 48573
-    ctime4: 54356
+    ctime4: 54548
     ctime5: 58982
     ctime6: 0
     ctime7: 0
@@ -62,6 +62,9 @@ MonoBehaviour:
   dayCloudTint: {r: 1, g: 1, b: 1, a: 1}
   nightCloudTint: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
   cloudSpeed: 0.02
-  weatherPrefab: {fileID: 0}
+  rainPrefab: {fileID: 0}
+  rainSound: {fileID: 0}
   enableThunder: 0
   thunderIntensity: 0
+  thunderSound: []
+  saturation: 0

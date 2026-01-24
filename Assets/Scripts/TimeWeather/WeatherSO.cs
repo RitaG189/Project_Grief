@@ -44,6 +44,9 @@ public class WeatherSO : ScriptableObject
     public bool enableThunder;
     public float thunderIntensity;  
     public SoundSO[] thunderSound;    
+    
+    [Header("Global Volume")]
+    public float saturation;
 
 }
 
