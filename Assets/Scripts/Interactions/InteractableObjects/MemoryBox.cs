@@ -20,11 +20,13 @@ public class MemoryBox : MonoBehaviour, IInteractable
     private bool canInteract = false;
     private bool boxCompleted = false;
     private bool boxClosed = false;
+    private Outline outline;
 
 
     void Awake()
     {
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
+        outline = GetComponent<Outline>();
 
         requiredItems.Clear();
 
@@ -94,6 +96,7 @@ public class MemoryBox : MonoBehaviour, IInteractable
             }
         }
 
+        outline.enabled = value;
         interactionText.enabled = value;
         interactionText.text = interactionName;
         interactionText.alpha = canInteract ? 1f : 0.2f;

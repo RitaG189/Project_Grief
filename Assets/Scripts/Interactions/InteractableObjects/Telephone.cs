@@ -1,26 +1,70 @@
+using TMPro;
 using UnityEngine;
 
-public class Telephone : Task
+public class Telephone : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject telephoneMenu;
-    protected override void ExecuteTask()
+    [SerializeField] protected TasksSO taskSO;
+    protected TMP_Text interactionText;
+    protected bool canInteract = false;
+    public bool TaskEnabled {get; private set;} = true;
+
+    protected virtual void Awake()
     {
-        ToggleVisibility(false);
-        ToggleTelephoneMenu(true);
+        interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
     }
 
-    private void ToggleTelephoneMenu(bool value)
+    public void Interact()
     {
-        telephoneMenu.SetActive(value);
+        if(TaskEnabled && !PlayerHandManager.Instance.IsHoldingItem)
+        {
+            if (!NeedsManager.Instance.CanPerformTask(taskSO))
+                return;
         
-        if(value == true)
-            GameStateManager.Instance.SetState(GameState.Paused);
-        else 
-            GameStateManager.Instance.SetState(GameState.Gameplay);
+            NeedsManager.Instance.ApplyTaskCostAndRewards(taskSO);
+
+            ToggleVisibility(false);
+            ToggleTelephoneMenu();
+        }
+    }
+
+
+    private void ToggleTelephoneMenu()
+    {
+        telephoneMenu.SetActive(true);
+        GameStateManager.Instance.SetState(GameState.Paused);
     }
 
     public void CloseTelephone()
     {
-        ToggleTelephoneMenu(false);
+        telephoneMenu.SetActive(false);
+        GameStateManager.Instance.SetState(GameState.Gameplay);
+        ToggleVisibility(false);
+    }
+
+    public void ToggleVisibility(bool value)
+    {
+        if(interactionText != null && taskSO.taskDone == false)
+        {
+            if (!NeedsManager.Instance.CanPerformTask(taskSO))
+                canInteract = false;
+            else
+                canInteract = true;
+
+            interactionText.enabled = value;
+            interactionText.text = taskSO.taskName; 
+
+            interactionText.alpha = canInteract ? 1f : 0.2f;
+        }
+    }
+
+    public void CallMom()
+    {
+        
+    }
+
+    public void CallFriend()
+    {
+        
     }
 }
