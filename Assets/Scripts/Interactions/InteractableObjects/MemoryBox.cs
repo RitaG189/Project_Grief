@@ -12,6 +12,7 @@ public class MemoryBox : MonoBehaviour, IInteractable
     [SerializeField] string interactionName;
     [SerializeField] MemoryBoxSO boxSO;
     [SerializeField] VideoClip completionClip;
+    [SerializeField] MemoryBoxUI boxUI;
     
     [SerializeField]
     private List<MemoryBoxEntry> requiredItems = new();
@@ -137,7 +138,7 @@ public class MemoryBox : MonoBehaviour, IInteractable
 
         PlayerHandManager.Instance.RemoveItemOnHand();
 
-        MemoryBoxUI.Instance.Refresh();
+        boxUI.Refresh();
         CheckIfCompleted();
     }
 
@@ -151,7 +152,7 @@ public class MemoryBox : MonoBehaviour, IInteractable
 
         boxCompleted = true;
 
-        MemoryBoxUI.Instance.OnBoxCompleted(this);
+        //MemoryBoxUI.Instance.OnBoxCompleted(this);
         Debug.Log("Memory Box completa!");
     }
 

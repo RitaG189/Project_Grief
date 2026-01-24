@@ -5,40 +5,42 @@ using UnityEngine.UIElements;
 
 public class MemoryBoxUI : MonoBehaviour
 {
-    public static MemoryBoxUI Instance {get; private set;}
     [SerializeField] Transform contentParent;
     [SerializeField] MemoryTaskUI taskPrefab;
-    [SerializeField] List<MemoryBox> boxes;
+    [SerializeField] MemoryBox box;
     List<MemoryBoxEntry> entries = new();
     List<MemoryTaskUI> spawnedTasks = new();
 
-    void Awake()
-    {
-        if(Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }    
-
-        Instance = this;
-    }
 
     void Start()
     {
-        foreach (MemoryBox box in boxes)
-        {
-            if (box == null)
-                continue;
-
-            if (box.GetCurrentBox() != null && box.GetCurrentBox().level == 1)
-            {
-                SetBox(box);
-                break; // só queremos a primeira
-            }
-        }
+        if(box.GetCurrentBox().level == 1)
+            SetBox();        
     }
 
-    public void SetBox(MemoryBox box)
+    void OnEnable()
+    {
+        if (LevelsManager.Instance == null) return;
+
+        LevelsManager.OnLevelChanged += UpdateBox;
+    }
+
+    void OnDisable()
+    {
+        if (LevelsManager.Instance == null) return;
+
+        LevelsManager.OnLevelChanged -= UpdateBox;
+    }
+
+    private void UpdateBox(int level)
+    {
+        Debug.Log($"Level event: {level}, Box level: {box.GetCurrentBox().level}");
+        
+        if(box.GetCurrentBox().level == level)
+            SetBox();
+    }
+
+    public void SetBox()
     {
         entries = box.GetRequiredItems();
         BuildUI();
@@ -63,14 +65,5 @@ public class MemoryBoxUI : MonoBehaviour
     {
         foreach (var task in spawnedTasks)
             task.Refresh();
-    }
-
-    public void OnBoxCompleted(MemoryBox box)
-    {
-        // spawn da task extra
-        MemoryTaskUI ui = Instantiate(taskPrefab, contentParent);
-        ui.SetupSimple("Close box");
-
-        spawnedTasks.Add(ui);
     }
 }
