@@ -42,23 +42,41 @@ public class TaskManager : MonoBehaviour
         if (!NeedsManager.Instance.CanPerformTask(task))
             yield break;
 
-        // Espera até o ecrã ficar completamente preto
+        // Fade to black
         BlackoutManager.Instance.SetTime();
         yield return BlackoutManager.Instance.FadeIn();
 
-        // Agora já não há fugas visuais
+        bool captionFinished = false;
+
+        void OnCaptionDone()
+        {
+            captionFinished = true;
+        }
+        
+
+        TypewriterCaption.Instance.OnCaptionFinished += OnCaptionDone;
+
+        // Mostrar caption
+        CaptionByLevel.Instance.ShowCaptionForCurrentLevel();
+
+
+        // Espera ATÉ a caption acabar
+        yield return new WaitUntil(() => captionFinished);
+
+        TypewriterCaption.Instance.OnCaptionFinished -= OnCaptionDone;
+
+        yield return new WaitForSeconds(1f);
+
         NeedsManager.Instance.ApplyTaskCostAndRewards(task);
         TimeSystem.Instance.AdvanceMinutes(task.minutesCost);
 
-        yield return new WaitForSeconds(0.5f);
-
         BlackoutManager.Instance.SetTime();
-        
-        // Pequena pausa opcional (sensação de passagem de tempo)
+
         yield return new WaitForSeconds(1f);
 
         yield return BlackoutManager.Instance.FadeOut();
     }
+
 
     public void Sleep(int? hours = null)
     {

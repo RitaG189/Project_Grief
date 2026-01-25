@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Game/Task")]
@@ -10,6 +11,15 @@ public class TasksSO : ScriptableObject
     public bool repeatable;
     public bool taskDone;
     public TaskCategory category; 
+
+    [Header("Caption")]
+    public List<string> denialCaptions;
+    public List<string> angerCaptions;
+    public List<string> bargainingCaptions;
+    public List<string> depressionCaptions;
+    public List<string> acceptanceCaptions;
+
+
 
     [Header("Rewards")]
     public float energyReward;

@@ -15,11 +15,22 @@ MonoBehaviour:
   taskName: Eat
   minutesCost: 120
   repeatable: 1
+  taskDone: 0
+  category: 0
+  denialCaptions: []
+  angerCaptions:
+  - You pull out pots and pans. You chop, stir, and season on autopilot. The familiar
+    routine is a dull comfort. You plate it, but it feels wrong to set just one place.
+  bargainingCaptions: []
+  depressionCaptions: []
+  acceptanceCaptions: []
   energyReward: 0
   hungerReward: 6
   hygieneReward: 0
   socialReward: 0
+  entertainmentReward: 0
   energyCost: 2
   hungerCost: 0
   hygieneCost: 2
   socialCost: 2
+  entertainmentCost: 0
