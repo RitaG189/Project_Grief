@@ -13,10 +13,15 @@ public class NeedsEffects : MonoBehaviour
     [SerializeField] private float dirtyAtZero = 1f;
     [SerializeField] private float maxCriticalDirt = 1000f;
 
-    [Header("Energy → Vignette")]
-    [SerializeField] private float energyThreshold = 10f;
-    [SerializeField] private float vignetteAtZero = 0.45f;
-    [SerializeField] private float maxCriticalVignette = 1f;
+    [Header("Energy → Vignette Pulse")]
+    [SerializeField] private float pulseSpeed = 1.2f;
+    [SerializeField] private float pulseAtZero = 0.3f;
+    [SerializeField] private float maxPulseIntensity = 1f;
+
+    [Header("Energy → Vignette Pulse Speed")]
+    [SerializeField] private float pulsePeriodAtZero = 5f;   // segundos por pulso
+    [SerializeField] private float pulsePeriodAtCritical = 0.4f;
+
 
     [Header("Hunger → Chromatic Aberration")]
     [SerializeField] private float hungerThreshold = 10f;
@@ -39,6 +44,13 @@ public class NeedsEffects : MonoBehaviour
     private float targetVignetteIntensity;
     private float targetChromaticIntensity;
 
+    private float targetVignettePulse;
+    private bool vignettePulsing;
+    private float currentPulseSpeed;
+    private float vignettePulseTimer;
+
+
+
     void Awake()
     {
         globalVolume.profile = Instantiate(globalVolume.profile);
@@ -54,7 +66,6 @@ public class NeedsEffects : MonoBehaviour
 
         // reset garantido
         bloom.dirtIntensity.value = 0f;
-        vignette.intensity.value = 0f;
         chromaticAberration.intensity.value = 0f;
     }
 
@@ -101,12 +112,29 @@ public class NeedsEffects : MonoBehaviour
 
         if (vignette != null)
         {
-            vignette.intensity.value = Mathf.Lerp(
-                vignette.intensity.value,
-                targetVignetteIntensity,
-                Time.deltaTime * lerpSpeed
-            );
+            if (vignettePulsing)
+            {
+                vignettePulseTimer += Time.deltaTime * currentPulseSpeed;
+
+                float wave = Mathf.PingPong(vignettePulseTimer, 1f); // ciclo fixo
+                float pulse = wave * targetVignettePulse;
+
+                vignette.intensity.value = pulse;
+            }
+            else
+            {
+                vignettePulseTimer = 0f;
+
+                vignette.intensity.value = Mathf.Lerp(
+                    vignette.intensity.value,
+                    0f,
+                    Time.deltaTime * lerpSpeed
+                );
+            }
         }
+
+
+
 
         if (chromaticAberration != null)
         {
@@ -153,30 +181,42 @@ public class NeedsEffects : MonoBehaviour
     {
         var manager = NeedsManager.Instance;
 
-        if (current > energyThreshold)
+        // ───── Energia normal ─────
+        if (current > 0f)
         {
+            vignettePulsing = false;
+
             targetVignetteIntensity = 0f;
-            vignette.intensity.value = 0f; // hard reset
+            targetVignettePulse = 0f;
+            currentPulseSpeed = 0f;
             return;
         }
 
-        if (current > 0f)
-        {
-            float t = Mathf.InverseLerp(energyThreshold, 0f, current);
-            targetVignetteIntensity = Mathf.Lerp(0f, vignetteAtZero, t);
-            return;
-        }
+        // ───── Energia a 0 ─────
+        vignettePulsing = true;
 
         float zero01 = Mathf.Clamp01(
             manager.EnergyZeroHours / manager.HoursUntilGameOver
         );
 
-        targetVignetteIntensity = Mathf.Lerp(
-            vignetteAtZero,
-            maxCriticalVignette,
+        // amplitude do pulso
+        targetVignettePulse = Mathf.Lerp(
+            pulseAtZero,
+            maxPulseIntensity,
             zero01
         );
+
+        // speed cresce com o tempo (período → velocidade)
+        float pulsePeriod = Mathf.Lerp(
+            pulsePeriodAtZero,
+            pulsePeriodAtCritical,
+            zero01
+        );
+
+        currentPulseSpeed = 1f / pulsePeriod;
     }
+
+
 
     // ───────────── Hunger ─────────────
 
