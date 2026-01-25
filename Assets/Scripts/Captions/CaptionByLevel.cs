@@ -4,11 +4,6 @@ using UnityEngine;
 public class CaptionByLevel : MonoBehaviour
 {
     [Header("Caption")]
-    public List<string> denialCaptions;
-    public List<string> angerCaptions;
-    public List<string> bargainingCaptions;
-    public List<string> depressionCaptions;
-    public List<string> acceptanceCaptions;
     public static CaptionByLevel Instance {get; private set;}
 
     void Awake()
@@ -19,11 +14,11 @@ public class CaptionByLevel : MonoBehaviour
         Instance = this;
     }
 
-    public void ShowCaptionForCurrentLevel()
+    public void ShowCaptionForCurrentLevel(TasksSO task)
     {
         int level = LevelsManager.Instance.level;
 
-        List<string> selectedList = GetListByLevel(level);
+        List<string> selectedList = GetListByLevel(level, task);
 
         if (selectedList == null || selectedList.Count == 0)
         {
@@ -35,16 +30,16 @@ public class CaptionByLevel : MonoBehaviour
         TypewriterCaption.Instance.ShowCaption(randomCaption);
     }
 
-    List<string> GetListByLevel(int level)
+    List<string> GetListByLevel(int level, TasksSO task)
     {
         return level switch
         {
-            1 => denialCaptions,
-            2 => angerCaptions,
-            3 => bargainingCaptions,
-            4 => depressionCaptions,
-            5 => acceptanceCaptions,
-            _ => denialCaptions
+            1 => task.denialCaptions,
+            2 => task.angerCaptions,
+            3 => task.bargainingCaptions,
+            4 => task.depressionCaptions,
+            5 => task.acceptanceCaptions,
+            _ => task.acceptanceCaptions
         };
     }
 }

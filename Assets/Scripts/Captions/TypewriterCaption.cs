@@ -26,24 +26,36 @@ public class TypewriterCaption : MonoBehaviour
     [SerializeField] private float fadeInDuration = 0.25f;
     [SerializeField] private float fadeOutDuration = 0.25f;
 
-
+    private string animalName;
 
     void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
+        {
             Destroy(gameObject);
+            return;
+        }
 
         Instance = this;
-        
+
+        if (GameChoices.Instance != null && 
+            !string.IsNullOrEmpty(GameChoices.Instance.PetName))
+        {
+            animalName = GameChoices.Instance.PetName;
+        }
+        else
+        {
+            animalName = "placeholder";
+        }
     }
 
     public void ShowCaption(string text)
     {
-        // Se já estiver a escrever, pára
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
 
-        typingCoroutine = StartCoroutine(TypeText(text));
+        string formattedText = FormatText(text);
+        typingCoroutine = StartCoroutine(TypeText(formattedText));
     }
 
     IEnumerator TypeText(string text)
@@ -93,7 +105,6 @@ public class TypewriterCaption : MonoBehaviour
     }
 
 
-
     public void Skip(string fullText)
     {
         if (typingCoroutine != null)
@@ -141,6 +152,11 @@ public class TypewriterCaption : MonoBehaviour
 
         color.a = to;
         captionText.color = color;
+    }
+
+    string FormatText(string rawText)
+    {
+        return rawText.Replace("{animal}", animalName);
     }
 
 }

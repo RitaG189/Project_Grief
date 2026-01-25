@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class TaskManager : MonoBehaviour
 {
     public static TaskManager Instance { get; private set; }
+    private PauseController pauseController;
+    [SerializeField] FirstPersonLook firstLook;
 
     void Awake()
     {
@@ -16,6 +18,8 @@ public class TaskManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        pauseController = GetComponent<PauseController>();
     }
 
     public bool TryExecuteTask(TasksSO task)
@@ -43,7 +47,9 @@ public class TaskManager : MonoBehaviour
             yield break;
 
         // Fade to black
+        firstLook.LockClick();
         BlackoutManager.Instance.SetTime();
+        pauseController.CanPause = false;
         yield return BlackoutManager.Instance.FadeIn();
 
         bool captionFinished = false;
@@ -57,7 +63,7 @@ public class TaskManager : MonoBehaviour
         TypewriterCaption.Instance.OnCaptionFinished += OnCaptionDone;
 
         // Mostrar caption
-        CaptionByLevel.Instance.ShowCaptionForCurrentLevel();
+        CaptionByLevel.Instance.ShowCaptionForCurrentLevel(task);
 
 
         // Espera ATÉ a caption acabar
@@ -75,6 +81,8 @@ public class TaskManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         yield return BlackoutManager.Instance.FadeOut();
+        pauseController.CanPause = true;
+        firstLook.UnlockClick();
     }
 
 

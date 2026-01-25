@@ -4,16 +4,21 @@ using UnityEngine.SceneManagement;
 public class PauseController : MonoBehaviour
 {
     [SerializeField] GameObject pauseUI;
+    public bool CanPause {get;set;} = true;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (CanPause)
         {
-            if (GameStateManager.Instance.CurrentState == GameState.Gameplay)
-                Pause();
-            else if (GameStateManager.Instance.CurrentState == GameState.Paused)
-                Resume();
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (GameStateManager.Instance.CurrentState == GameState.Gameplay)
+                    Pause();
+                else if (GameStateManager.Instance.CurrentState == GameState.Paused)
+                    Resume();
+            }
         }
+
     }
 
     void Pause()

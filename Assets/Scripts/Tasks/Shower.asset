@@ -17,6 +17,19 @@ MonoBehaviour:
   repeatable: 1
   taskDone: 0
   category: 2
+  denialCaptions:
+  - You turn on the water and undress mechanically. The bathroom feels wrong without
+    {animal} scratching at the door, peeking in. You shower quickly, numbed.
+  - You step into the shower and close your eyes. You used to hear {animal} pawing
+    at the bathroom door. Now there's nothing. The water can't wash away the absence.
+  - You stand under the spray, unmoving. You keep expecting to hear {animal}'s familiar
+    whine of protest at being left outside. The silence rings in your ears.
+  - You wash yourself on autopilot. The routine is muscle memory, but it feels hollow.
+  angerCaptions:
+  - 
+  bargainingCaptions: []
+  depressionCaptions: []
+  acceptanceCaptions: []
   energyReward: 0
   hungerReward: 0
   hygieneReward: 5

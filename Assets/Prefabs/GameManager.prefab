@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 6264501104906242558}
   - component: {fileID: 2353336159595093546}
   - component: {fileID: 7830923536169490021}
+  - component: {fileID: 5574473423455514828}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39249c28713031a4cab144cc0b515113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskManager
+  firstLook: {fileID: 0}
 --- !u!114 &6267408007188191242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +236,7 @@ MonoBehaviour:
   sky: {fileID: 6267408007188191242}
   weather: {fileID: 1999688909798801125}
   ambientController: {fileID: 5942936579071238801}
+  volume: {fileID: 0}
   denial: {fileID: 11400000, guid: 2f7423bae720857448fc7a0cc5e67273, type: 2}
   bargaining: {fileID: 11400000, guid: a77e53d3b9752f848a559f1d03b7c589, type: 2}
   anger: {fileID: 11400000, guid: f8584de0a94a1854dad1d523b6df1a1b, type: 2}
@@ -304,3 +307,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MemoryCutsceneManager
   videoPlayer: {fileID: 0}
+--- !u!114 &5574473423455514828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560255260398531955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baeaa37d43f2ae54aab2fa5fc98a659a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameChoices

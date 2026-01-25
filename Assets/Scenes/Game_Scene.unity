@@ -10455,6 +10455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1977022266}
   - component: {fileID: 1977022267}
+  - component: {fileID: 1977022268}
   m_Layer: 5
   m_Name: Captions
   m_TagString: Untagged
@@ -10501,6 +10502,18 @@ MonoBehaviour:
   commaPauseMultiplier: 3
   fadeInDuration: 0.15
   fadeOutDuration: 0.15
+--- !u!114 &1977022268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977022265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3a992bd1ae40942b4d1a834972df27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CaptionByLevel
 --- !u!1001 &1979831617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12638,6 +12651,10 @@ PrefabInstance:
       propertyPath: pauseUI
       value: 
       objectReference: {fileID: 508898208}
+    - target: {fileID: 5046779851181303557, guid: b87c3af222194164690096832f23663f, type: 3}
+      propertyPath: firstLook
+      value: 
+      objectReference: {fileID: 114657889519242439}
     - target: {fileID: 6264501104906242558, guid: b87c3af222194164690096832f23663f, type: 3}
       propertyPath: lookScript
       value: 

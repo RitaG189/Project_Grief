@@ -19,6 +19,9 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
+        if (FirstPersonLook.IsLocked)
+            return;
+
         DetectLookInteractable();
 
         if (Input.GetMouseButtonDown(0) && currentInteractable != null)

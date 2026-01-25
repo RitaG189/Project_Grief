@@ -17,13 +17,55 @@ MonoBehaviour:
   repeatable: 1
   taskDone: 0
   category: 0
-  denialCaptions: []
-  angerCaptions:
+  denialCaptions:
   - You pull out pots and pans. You chop, stir, and season on autopilot. The familiar
     routine is a dull comfort. You plate it, but it feels wrong to set just one place.
-  bargainingCaptions: []
-  depressionCaptions: []
-  acceptanceCaptions: []
+  - You open the cupboard and reach for {animal}'s bowl before stopping yourself.
+    Wait. This isn't real. {animal} will be back. You cook anyway, numb and distant.
+  - You move around the kitchen in a daze. This must be a nightmare. {animal} always
+    waits here. Your hands prepare food but your mind refuses to accept the empty
+    space.
+  - You cook mechanically, half-expecting {animal} to appear at any moment. This
+    can't be happening. The food tastes like nothing. None of this feels real.
+  angerCaptions:
+  - You slam ingredients onto the counter. Why did this happen? It's not fair! {animal}
+    should be here, begging for scraps. You cook violently, chopping with barely
+    contained rage.
+  - You throw food into the pan with force. Every movement is sharp, angry. Why cook
+    at all? {animal} is gone and nothing fucking matters anymore.
+  - "The knife hits the cutting board too hard. You're furious\u2014at the world,
+    at fate, at yourself. {animal} deserved more time. You deserved more time together.
+    This is bullshit."
+  - You cook aggressively, jaw clenched, eyes burning. You used to sneak treats to
+    {animal} and now you can't and it's so fucking unfair you want to scream.
+  bargainingCaptions:
+  - You cook slowly, deliberately. The motions are familiar again, no longer painful.
+    You still glance at the empty space, but it doesn't shatter you like before.
+  - You prepare a meal and smile faintly, remembering the little paws that used to
+    dance around your ankles. The memory is bittersweet, but you can hold it now.
+  - You set the table and pause. Maybe if you keep the routine exactly the same,
+    the pain will fade faster. Maybe if you're good enough, strong enough.
+  - 'You move through the kitchen quietly, as if making noise will make {animal}''s
+    absence more real. You bargain with the silence: just let me get through this
+    one meal.'
+  depressionCaptions:
+  - You cook because you must. The motions are heavy, exhausting. Everything reminds
+    you of {animal}. You plate the food but can't bring yourself to eat.
+  - You stand at the counter, ingredients in hand, and feel the weight of {animal}'s
+    absence crush you. You cook anyway, tears falling silently into the pot.
+  - You prepare a meal in slow motion. Each step feels impossible. {animal} made
+    this space feel like home. Now it's just a room with appliances.
+  - You finish cooking and sit down alone. The chair feels too hard, the table too
+    empty. You pick at your food, thinking of {animal}, and nothing tastes like anything.
+  acceptanceCaptions:
+  - You cook with steady hands and a quiet mind. The kitchen is peaceful now. You
+    remember {animal} without aching, the love still there but no longer sharp.
+  - You try a new recipe today. It feels like a small rebellion, a gentle step forward.
+    You think of {animal} and smile at the memories without breaking.
+  - You move through the kitchen with ease. Sometimes you still glance at {animal}'s
+    corner, a soft acknowledgment. The grief has made room for gratitude.
+  - "You plate your meal and sit down. The silence is no longer empty\u2014it's just
+    quiet. You carry {animal} in your heart as you nourish yourself again."
   energyReward: 0
   hungerReward: 6
   hygieneReward: 0
