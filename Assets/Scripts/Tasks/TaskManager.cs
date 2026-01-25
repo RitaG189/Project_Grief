@@ -51,7 +51,7 @@ public class TaskManager : MonoBehaviour
         TimeSystem.Instance.AdvanceMinutes(task.minutesCost);
 
         yield return new WaitForSeconds(0.5f);
-        
+
         BlackoutManager.Instance.SetTime();
         
         // Pequena pausa opcional (sensação de passagem de tempo)
@@ -68,12 +68,17 @@ public class TaskManager : MonoBehaviour
 
     private IEnumerator SleepRoutine(int hoursSlept)
     {
+        BlackoutManager.Instance.SetTime();
         yield return BlackoutManager.Instance.FadeIn();
 
         TimeSystem.Instance.SkipHours(hoursSlept);
         NeedsManager.Instance.Sleep();
 
         yield return new WaitForSeconds(0.5f);
+
+        BlackoutManager.Instance.SetTime();
+
+        yield return new WaitForSeconds(1f);
 
         yield return BlackoutManager.Instance.FadeOut();
     }

@@ -13,6 +13,12 @@ public class NeedsManager : MonoBehaviour
     public event Action<float, float> OnSocialChanged;
     public event Action<float, float> OnHygieneChanged;
     public event Action<float, float> OnEntertainmentChanged;
+    public float HygieneZeroHours => hygieneZeroHours;
+    public float EnergyZeroHours => energyZeroHours;
+    public float HungerZeroHours => hungerZeroHours;
+
+    public float HoursUntilGameOver => hoursUntilGameOver;
+
     private int lastMinuteTick = -1;
 
     private float energyZeroHours;
@@ -21,7 +27,6 @@ public class NeedsManager : MonoBehaviour
     private float hygieneZeroHours;
     private float entertainmentZeroHours;
     private int lastTotalMinutes = -1;
-
     [SerializeField] private float hoursUntilGameOver = 24f;
 
     private void Awake()

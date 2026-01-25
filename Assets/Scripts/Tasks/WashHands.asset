@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b91290deabe479b4e94541b6d0f5ad5b, type: 3}
-  m_Name: Toilet
+  m_Name: WashHands
   m_EditorClassIdentifier: Assembly-CSharp::TasksSO
-  taskName: Use
-  minutesCost: 20
-  repeatable: 1
+  taskName: Wash Hands
+  minutesCost: 10
+  repeatable: 0
   taskDone: 0
-  category: 2
+  category: 0
   energyReward: 0
   hungerReward: 0
-  hygieneReward: 3
+  hygieneReward: 2
   socialReward: 0
   entertainmentReward: 0
   energyCost: 0.5
-  hungerCost: 0.5
+  hungerCost: 0
   hygieneCost: 0
-  socialCost: 0.5
+  socialCost: 0
   entertainmentCost: 0

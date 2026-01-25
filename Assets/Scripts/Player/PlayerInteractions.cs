@@ -41,8 +41,10 @@ public class PlayerInteraction : MonoBehaviour
             sphereRadius,
             out RaycastHit hit,
             lookDistance,
-            interactableLayer
+            interactableLayer,
+            QueryTriggerInteraction.Ignore
         );
+
 
         if (hasHit)
         {

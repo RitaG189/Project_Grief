@@ -119,7 +119,7 @@ Material:
     - _HorizonHeight: -0.259
     - _HorizonSharpness: 0
     - _Metallic: 0
-    - _MoonSize: 0.065
+    - _MoonSize: 0.05
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0

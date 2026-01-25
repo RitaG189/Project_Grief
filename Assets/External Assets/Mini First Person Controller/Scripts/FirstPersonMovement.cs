@@ -3,26 +3,37 @@ using UnityEngine;
 
 public class FirstPersonMovement : MonoBehaviour
 {
-    public float speed = 5;
+    [Header("Walking")]
+    public float speed = 5f;
 
     [Header("Running")]
     public bool canRun = true;
     public bool IsRunning { get; private set; }
-    public float runSpeed = 9;
+    public float runSpeed = 9f;
     public KeyCode runningKey = KeyCode.LeftShift;
 
-    Rigidbody rigidbody;
-    /// <summary> Functions to override movement speed. Will use the last added override. </summary>
+    [Header("Movement Smoothing")]
+    public float acceleration = 20f;
+    public float deceleration = 25f;
+
+    [Header("Gravity")]
+    public float gravity = -20f;
+    public float groundSnapForce = -2f;
+
+    private CharacterController controller;
+    private Vector3 velocity;          // Y (gravidade)
+    private Vector3 currentMove;       // XZ suavizado
+
     public List<System.Func<float>> speedOverrides = new List<System.Func<float>>();
 
     private bool canMove = true;
     public bool IsSitted { get; private set; }
-    [SerializeField] private PlayerAnimationController animationController;
 
+    [SerializeField] private PlayerAnimationController animationController;
 
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -31,63 +42,91 @@ public class FirstPersonMovement : MonoBehaviour
         {
             Stand();
         }
+
+        ApplyMovement();
     }
 
-    void FixedUpdate()
+    void ApplyMovement()
     {
         if (!canMove)
         {
-            rigidbody.linearVelocity = new Vector3(0, rigidbody.linearVelocity.y, 0);
+            currentMove = Vector3.zero;
+            velocity.y = 0;
+            controller.Move(Vector3.zero);
+            animationController.SetMovementSpeed(0);
             return;
         }
 
-        // Update IsRunning from input.
+        // ───── Running
         IsRunning = canRun && Input.GetKey(runningKey);
 
-        // Get targetMovingSpeed.
-        float targetMovingSpeed = IsRunning ? runSpeed : speed;
+        float targetSpeed = IsRunning ? runSpeed : speed;
         if (speedOverrides.Count > 0)
         {
-            targetMovingSpeed = speedOverrides[speedOverrides.Count - 1]();
+            targetSpeed = speedOverrides[speedOverrides.Count - 1]();
         }
 
-        // Get targetVelocity from input.
-        Vector2 targetVelocity =new Vector2( Input.GetAxis("Horizontal") * targetMovingSpeed, Input.GetAxis("Vertical") * targetMovingSpeed);
+        // ───── Input (RAW)
+        Vector2 rawInput = new Vector2(
+            Input.GetAxisRaw("Horizontal"),
+            Input.GetAxisRaw("Vertical")
+        );
 
-        // Apply movement.
-        rigidbody.linearVelocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.linearVelocity.y, targetVelocity.y);
+        rawInput = Vector2.ClampMagnitude(rawInput, 1f);
 
-        float currentSpeed = new Vector2(
-            rigidbody.linearVelocity.x,
-            rigidbody.linearVelocity.z
-        ).magnitude;
+        // ───── Target movement
+        Vector3 targetMove = Vector3.zero;
+        if (rawInput != Vector2.zero)
+        {
+            Vector3 dir =
+                transform.right * rawInput.x +
+                transform.forward * rawInput.y;
 
-        animationController.SetMovementSpeed(currentSpeed);
+            targetMove = dir.normalized * targetSpeed;
+        }
+
+        // ───── Accel / Decel
+        float accel = rawInput != Vector2.zero ? acceleration : deceleration;
+        currentMove = Vector3.MoveTowards(
+            currentMove,
+            targetMove,
+            accel * Time.deltaTime
+        );
+
+        controller.Move(currentMove * Time.deltaTime);
+
+        // ───── Gravity + ground snap
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = groundSnapForce;
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(Vector3.up * velocity.y * Time.deltaTime);
+
+        // ───── Animation speed
+        float animSpeed = currentMove.magnitude;
+        animationController.SetMovementSpeed(animSpeed);
     }
 
     bool HasMovementInput()
     {
         return Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.1f ||
-            Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.1f;
+               Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.1f;
     }
 
+    // ───── External control
     public void EnableMovement()
     {
         canMove = true;
-
-        rigidbody.constraints =
-            RigidbodyConstraints.FreezeRotationX |
-            RigidbodyConstraints.FreezeRotationZ;
     }
 
     public void DisableMovement()
     {
         canMove = false;
-        rigidbody.linearVelocity = Vector3.zero;
-
-        rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        currentMove = Vector3.zero;
+        velocity = Vector3.zero;
     }
-
 
     public void ToggleSitting(bool value)
     {
@@ -104,7 +143,7 @@ public class FirstPersonMovement : MonoBehaviour
     public void Stand()
     {
         IsSitted = false;
+        EnableMovement();
         animationController.StandUp();
     }
-
 }

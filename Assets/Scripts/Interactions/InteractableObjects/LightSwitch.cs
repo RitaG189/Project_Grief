@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class LightSwitch : MonoBehaviour, IInteractable
 {
-    [SerializeField] TMP_Text text;
     [SerializeField] GameObject light;
     [SerializeField] string interactionName;
     private TMP_Text interactionText;
     private bool lightValue = false;
+    private Outline outline;
 
     void Awake()
     {
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
-        light.SetActive(lightValue);
+        outline = GetComponent<Outline>();
+
+        light?.SetActive(lightValue);
     }
 
     public void ToggleVisibility(bool value)
@@ -24,6 +26,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
             interactionText.enabled = value;
             interactionText.text = interactionName;
         }
+
+        outline.enabled = value;
     }
 
     public void Interact()
@@ -34,9 +38,9 @@ public class LightSwitch : MonoBehaviour, IInteractable
         light.SetActive(lightValue);
 
         if(lightValue == false)
-            text.text = "Off";
+            interactionText.text = "Turn On";
         else
-            text.text = "On";
+            interactionText.text = "Turn Off";
           
     }
 }

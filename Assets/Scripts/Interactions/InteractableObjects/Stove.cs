@@ -8,7 +8,11 @@ public class Stove : Task
     protected override void ExecuteTask()
     {
         ToggleVisibility(false);
-        sinkScript.SpawnDishes();
-        sinkScript.EnableTask(true);
+
+        if(sinkScript != null)
+        {
+            sinkScript.SpawnDishes();
+            sinkScript.EnableTask(true);
+        }
     }
 }
