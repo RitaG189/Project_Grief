@@ -9,6 +9,8 @@ public class AnimalTask : Task
 
     protected override void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         base.Awake();
 
         taskSO.taskDone = false;

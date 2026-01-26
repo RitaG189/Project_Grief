@@ -13,16 +13,81 @@ MonoBehaviour:
   m_Name: ReadBook
   m_EditorClassIdentifier: Assembly-CSharp::TasksSO
   taskName: Read book
-  minutesCost: 10
+  minutesCost: 20
   repeatable: 0
   taskDone: 0
   category: 4
+  denialCaptions:
+  - You open a book and stare blankly at the pages. The words don't register. This
+    isn't real. None of this makes sense.
+  - You hold the book, but you're not really here. {animal} will curl up on your
+    lap any second now. You wait. The weight never comes.
+  - You try to focus but your mind keeps slipping away. This must be a mistake. It
+    has to be.
+  - You sit with the book unopened. {animal} will jump up and demand attention any
+    moment. You keep waiting. The cushion stays empty.
+  - The letters swim across the page. You read the same sentence six times without
+    comprehending. Your brain refuses to process anything.
+  - You turn a page out of habit, but nothing is sinking in. Reality feels thin,
+    like paper.
+  angerCaptions:
+  - You try to read but the words blur with rage. This is bullshit. You slam the
+    book shut so hard it echoes.
+  - You glare at the empty cushion where {animal} used to sleep. It's not fair. Why?
+    You're so angry you can't see straight.
+  - The pages turn but you're seething. The injustice chokes you. You want to throw
+    the book across the room.
+  - You grip the book tight enough to hurt. {animal} deserved more. You deserved
+    more time. The unfairness burns.
+  - Every word on the page feels like an insult. How dare the world expect you to
+    sit here and read like everything's normal?
+  - You try to focus but fury keeps flooding in. The book deserves to be ripped apart.
+    Everything deserves to be destroyed.
+  bargainingCaptions:
+  - You pick a different book. Maybe new things will hurt less. Maybe if you avoid
+    the memories, you can function. Please.
+  - 'You make yourself a deal: read one chapter without crying. If only you''d spent
+    more time with {animal} instead of reading.'
+  - You read the same paragraph over and over. If you stay right here, frozen, maybe
+    you won't have to face what comes next.
+  - You tell yourself if you finish this book, you've made progress. If only you
+    could go back. If only.
+  - 'You set a timer: read for ten minutes and you''ve earned a break. Small goals.
+    Manageable pieces. Maybe this is how you survive.'
+  - You choose the lightest book you can find. Maybe if the content is easy enough,
+    your brain can handle it. Maybe you can trick yourself into feeling normal.
+  depressionCaptions:
+  - You open the book but the words swim through tears. What's the point of reading?
+    What's the point of anything?
+  - You try to read but end up sobbing quietly. {animal} used to rest their head
+    on your knee. Now there's just emptiness.
+  - You sit with the book forgotten in your hands, drowning in sadness. Everything
+    you loved feels distant, meaningless.
+  - You hold the book against your chest but it doesn't fill the void. You miss {animal}
+    so much you can't breathe.
+  - The pages blur together. You can't remember the last time you cared about a story.
+    Nothing matters. Nothing will ever matter again.
+  - You close the book without reading. You're too exhausted to pretend. The weight
+    of sadness makes even this simple task impossible.
+  acceptanceCaptions:
+  - You curl up with a book and read peacefully. Sometimes you reach out absently,
+    then smile softly. The habit is a tribute now.
+  - You finish a chapter with satisfaction. You think of {animal} curled beside you
+    and feel grateful for those quiet moments.
+  - Reading is a comfort again. The silence is no longer oppressive. You've learned
+    to be alone without being lonely.
+  - You read contentedly. The memory is woven into this ritual, but it no longer
+    hurts. Love and loss sit together in your heart.
+  - You lose yourself in the story completely. When you surface, you feel peaceful.
+    Reading is a gift again.
+  - You turn the pages with gentle focus. The words carry you somewhere else, and
+    when you return, you're still okay. You're going to be okay.
   energyReward: 0
   hungerReward: 0
   hygieneReward: 0
   socialReward: 0
   entertainmentReward: 1
-  energyCost: 0
+  energyCost: 1
   hungerCost: 0
   hygieneCost: 0
   socialCost: 0

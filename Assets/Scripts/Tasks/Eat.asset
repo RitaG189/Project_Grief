@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91290deabe479b4e94541b6d0f5ad5b, type: 3}
   m_Name: Eat
   m_EditorClassIdentifier: Assembly-CSharp::TasksSO
-  taskName: Eat
+  taskName: Cook a meal
   minutesCost: 120
   repeatable: 1
   taskDone: 0
@@ -21,57 +21,74 @@ MonoBehaviour:
   - You pull out pots and pans. You chop, stir, and season on autopilot. The familiar
     routine is a dull comfort. You plate it, but it feels wrong to set just one place.
   - You open the cupboard and reach for {animal}'s bowl before stopping yourself.
-    Wait. This isn't real. {animal} will be back. You cook anyway, numb and distant.
-  - You move around the kitchen in a daze. This must be a nightmare. {animal} always
-    waits here. Your hands prepare food but your mind refuses to accept the empty
-    space.
-  - You cook mechanically, half-expecting {animal} to appear at any moment. This
-    can't be happening. The food tastes like nothing. None of this feels real.
+    Wait. This isn't real. You stare at your hands, confused by their emptiness.
+  - You move through the kitchen in a daze. This must be a nightmare. Your hands
+    prepare food but your mind is somewhere else, somewhere this isn't happening.
+  - You cook mechanically, half-expecting {animal} to appear at any moment. The food
+    tastes like nothing. None of this feels real.
+  - You stare at the ingredients without seeing them. Your mind refuses to process
+    what's happened. The kitchen exists in a fog, unreal and strange.
+  - Your body goes through the motions but you're not really here. Everything feels
+    distant, muffled. Surely you'll blink and wake up from this.
   angerCaptions:
-  - You slam ingredients onto the counter. Why did this happen? It's not fair! {animal}
-    should be here, begging for scraps. You cook violently, chopping with barely
-    contained rage.
-  - You throw food into the pan with force. Every movement is sharp, angry. Why cook
-    at all? {animal} is gone and nothing fucking matters anymore.
-  - "The knife hits the cutting board too hard. You're furious\u2014at the world,
-    at fate, at yourself. {animal} deserved more time. You deserved more time together.
-    This is bullshit."
-  - You cook aggressively, jaw clenched, eyes burning. You used to sneak treats to
-    {animal} and now you can't and it's so fucking unfair you want to scream.
+  - You slam ingredients onto the counter. Why did this happen? It's not fair! The
+    knife hits the board too hard. Every movement is sharp, violent.
+  - You throw food into the pan with force. {animal} should be here begging for scraps.
+    This is bullshit and you want to break something.
+  - "The spoon clatters against the pot. You're furious\u2014at the world, at fate,
+    at yourself. Cooking feels pointless and you hate it."
+  - You cook aggressively, jaw clenched. You used to sneak treats to {animal} and
+    now you can't and it's so unfair you could scream.
+  - Every movement is too rough, too hard. The anger needs somewhere to go so you
+    take it out on the food, the counter, anything within reach.
+  - You want to throw the pan across the room. The injustice burns in your chest.
+    Why should you have to eat? Why should you have to keep going?
   bargainingCaptions:
-  - You cook slowly, deliberately. The motions are familiar again, no longer painful.
-    You still glance at the empty space, but it doesn't shatter you like before.
-  - You prepare a meal and smile faintly, remembering the little paws that used to
-    dance around your ankles. The memory is bittersweet, but you can hold it now.
-  - You set the table and pause. Maybe if you keep the routine exactly the same,
-    the pain will fade faster. Maybe if you're good enough, strong enough.
-  - 'You move through the kitchen quietly, as if making noise will make {animal}''s
-    absence more real. You bargain with the silence: just let me get through this
-    one meal.'
+  - You cook slowly, carefully. Maybe if you do everything perfectly, the pain will
+    ease. If you can just get through this meal without breaking down, you're making
+    progress.
+  - You prepare {animal}'s favorite food without thinking, then freeze. If only you'd
+    done more. If you'd been better, maybe things would be different.
+  - 'You make deals with yourself: finish cooking and you can rest. Just hold it
+    together a little longer. Please, just a little longer.'
+  - "You move through the kitchen quietly, bargaining. You'd give anything\u2014anything\u2014to
+    go back. Just one more meal together. Please."
+  - You measure each ingredient twice, as if precision will earn you something. If
+    you do this right, follow every rule, maybe tomorrow will be easier.
+  - You set the timer for exactly the right time. Control this, and maybe you can
+    control the pain. Just get through dinner. Just one more day.
   depressionCaptions:
-  - You cook because you must. The motions are heavy, exhausting. Everything reminds
-    you of {animal}. You plate the food but can't bring yourself to eat.
-  - You stand at the counter, ingredients in hand, and feel the weight of {animal}'s
-    absence crush you. You cook anyway, tears falling silently into the pot.
-  - You prepare a meal in slow motion. Each step feels impossible. {animal} made
-    this space feel like home. Now it's just a room with appliances.
-  - You finish cooking and sit down alone. The chair feels too hard, the table too
-    empty. You pick at your food, thinking of {animal}, and nothing tastes like anything.
+  - You cook because you must, but it feels pointless. The motions are heavy, exhausting.
+    Why are you even trying? What's the point?
+  - You stand at the counter and tears fall silently into the pot. {animal} made
+    this kitchen feel alive. Now it's just a hollow room.
+  - The chair feels too hard, the table too empty. You can't eat. The grief sits
+    in your throat like a stone.
+  - You finish cooking and slump over the counter, overwhelmed. Everything reminds
+    you of {animal}. The sadness is crushing.
+  - Your arms feel like lead as you stir. Every action takes monumental effort. You
+    plate the food but the thought of eating makes you nauseous.
+  - You stand in the kitchen, meal finished, and feel nothing. The emptiness is so
+    vast it swallows everything. You can't remember why you started cooking.
   acceptanceCaptions:
-  - You cook with steady hands and a quiet mind. The kitchen is peaceful now. You
-    remember {animal} without aching, the love still there but no longer sharp.
-  - You try a new recipe today. It feels like a small rebellion, a gentle step forward.
-    You think of {animal} and smile at the memories without breaking.
-  - You move through the kitchen with ease. Sometimes you still glance at {animal}'s
-    corner, a soft acknowledgment. The grief has made room for gratitude.
-  - "You plate your meal and sit down. The silence is no longer empty\u2014it's just
-    quiet. You carry {animal} in your heart as you nourish yourself again."
-  energyReward: 0
-  hungerReward: 6
+  - You cook with steady hands and a quiet mind. The kitchen is peaceful now. The
+    motions are familiar and comforting again.
+  - You try a new recipe today. It's okay to move forward. You think of {animal}
+    and smile softly, the memory bittersweet but bearable.
+  - You move through the kitchen with ease. Sometimes you whisper a soft hello to
+    the empty corner. The love remains.
+  - "You plate your meal and sit down. The silence is no longer empty\u2014it's peaceful.
+    You're learning to nourish yourself again."
+  - You taste the food and notice the flavors again. It's good. You're allowed to
+    enjoy things again, to take pleasure in small moments.
+  - The kitchen feels like yours once more. You cook without thinking, without bracing
+    for pain. Life has found its rhythm again.
+  energyReward: 3
+  hungerReward: 7
   hygieneReward: 0
   socialReward: 0
   entertainmentReward: 0
-  energyCost: 2
+  energyCost: 0
   hungerCost: 0
   hygieneCost: 2
   socialCost: 2

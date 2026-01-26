@@ -9,8 +9,14 @@ public class Bed : MonoBehaviour, IInteractable
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
+        
         outline = GetComponent<Outline>();
+
+        outline.enabled = true;
+        outline.OutlineWidth = 0f;
     }
 
     public void Interact()
@@ -32,6 +38,6 @@ public class Bed : MonoBehaviour, IInteractable
             interactionText.text = interactionName;
         }
 
-        outline.enabled = value;
+        outline.OutlineWidth = value ? 3f : 0f;
     }
 }

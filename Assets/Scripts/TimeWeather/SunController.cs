@@ -62,6 +62,8 @@ public class SunAndSkyController : MonoBehaviour
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         skyboxInstance = new Material(skyboxSourceMaterial);
         RenderSettings.skybox = skyboxInstance;
 

@@ -16,7 +16,32 @@ MonoBehaviour:
   minutesCost: 120
   repeatable: 0
   taskDone: 0
-  category: 0
+  category: 4
+  denialCaptions:
+  - You step outside and the air hits your face. Your feet move but you don't know
+    where you're going. Everything looks the same but feels completely foreign.
+  - The world moves around you but you're frozen in place. People pass by, cars drive
+    past. How is everything still normal when nothing makes sense?
+  angerCaptions:
+  - Every tree, every corner reminds you of {animal}. You're furious at the world
+    for continuing, for not stopping, for not caring that everything is wrong.
+  - our fists clench as you walk. The neighborhood looks the same but it's all wrong
+    now. Everything is a reminder and you hate it, hate all of it.
+  bargainingCaptions:
+  - You count your steps, making deals with yourself. One hundred steps and you can
+    go home. If you're strong enough to finish this walk, maybe you're healing.
+  - You turn around halfway, unable to continue. Maybe tomorrow. If you build up
+    slowly, take it in pieces, maybe you can handle this. Please let this get easier.
+  depressionCaptions:
+  - You drag yourself outside because you have to. Each step is heavy, exhausting.
+    The world is gray and meaningless. What's the point of walking?
+  - 'You wander aimlessly, too tired to care where you''re going. The neighborhood
+    feels like a ghost town. '
+  acceptanceCaptions:
+  - You notice the trees, the sky, the world around you again. The walk is for you
+    now, and that's okay. You're learning to move through life again.
+  - You walk with steady steps, breathing in the fresh air. The route is familiar,
+    comforting.
   energyReward: 0
   hungerReward: 0
   hygieneReward: 0

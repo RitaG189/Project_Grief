@@ -10,6 +10,8 @@ public class WindowLightController : MonoBehaviour
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         // Vai buscar todas as Lights filhas (inclui inativas)
         windowLights = GetComponentsInChildren<Light>(true);
     }

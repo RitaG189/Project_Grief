@@ -9,15 +9,24 @@ public class FridgeDoor : MonoBehaviour
     [SerializeField] Transform lookAtPos;
     private Animator animator;
     private bool doorValue = false;
+    private Outline outline;
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         animator = GetComponent<Animator>();
+
+        outline = GetComponent<Outline>();
+
+        outline.enabled = true;
+        outline.OutlineWidth = 0f;
     }
 
     public void ToggleVisibility(bool value)
     {
         canvas.SetActive(value);
+        outline.OutlineWidth = value ? 3f : 0f;
     }
 
     public void Interact()

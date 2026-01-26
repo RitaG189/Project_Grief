@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91290deabe479b4e94541b6d0f5ad5b, type: 3}
+  m_Name: Microwave
+  m_EditorClassIdentifier: Assembly-CSharp::TasksSO
+  taskName: Microwave something
+  minutesCost: 30
+  repeatable: 0
+  taskDone: 0
+  category: 1
+  denialCaptions:
+  - You press buttons on the microwave, watching it spin. The beep startles you.
+    You stare at the food, confused about why you're here.
+  - 'You heat something frozen. {animal} used to sit and watch the microwave light. '
+  - 'The microwave hums. You stand there, numb, not really present. '
+  - You take out the container, barely registering the heat. Food. You're supposed
+    to eat. The routine feels absurd, meaningless.
+  angerCaptions:
+  - You slam the microwave door shut. Why bother? Why eat at all? Nothing matters
+    anyway.
+  - 'The beep is too loud, too cheerful. You yank the food out violently. '
+  - You stab at the reheated food with a fork. Every bite tastes like anger.
+  - You heat leftovers and think of all the scraps you used to sneak to {animal}.
+    The unfairness chokes you. You want to throw the plate.
+  - The food spins behind the glass. You're furious at how normal this is, how the
+    world expects you to just keep eating, keep living.
+  bargainingCaptions:
+  - You set the timer carefully. If you eat something, anything, maybe you're taking
+    care of yourself. Maybe that counts as progress.
+  - You heat the meal {animal} used to beg for. If only you'd shared more. If only
+    you'd known each meal together mattered.
+  - 'You stand by the microwave making deals. Just eat this and you can rest. '
+  - You watch the food rotate, counting the seconds. Control this small thing and
+    maybe you can control the grief. Maybe.
+  - You heat something quick. If you don't think about it, don't linger, maybe you
+    won't remember {animal} waiting by your feet.
+  depressionCaptions:
+  - You heat food because you're supposed to. The microwave beeps but you don't care.
+    Everything tastes like nothing anyway.
+  - You stand in front of the microwave, tears streaming. {animal} used to make even
+    this feel less lonely. Now it's just you and the hum.
+  - The food is ready but you can't bring yourself to eat. What's the point? You
+    lean against the counter, crushed by sadness.
+  - You microwave something and think of {animal} circling your feet. The memory
+    breaks you.
+  acceptanceCaptions:
+  - You heat a quick meal efficiently. The microwave beeps and you eat without ceremony.
+    It's just food. That's okay.
+  - You warm up leftovers and think of {animal} begging. You smile softly at the
+    memory, grateful for those moments.
+  - The microwave hums and you wait peacefully. Simple routines are comforting again.
+    You're nourishing yourself, and that's enough.
+  - You heat something quick and eat standing up. Life moves forward in small moments
+    like these. You carry {animal} with you, gently.
+  - The beep signals it's ready. You eat without thinking too hard. The grief has
+    softened into something you can live with.
+  energyReward: 2
+  hungerReward: 0
+  hygieneReward: 0
+  socialReward: 0
+  entertainmentReward: 0
+  energyCost: 0
+  hungerCost: 0
+  hygieneCost: 0.5
+  socialCost: 0.5
+  entertainmentCost: 0

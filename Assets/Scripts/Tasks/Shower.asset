@@ -18,25 +18,77 @@ MonoBehaviour:
   taskDone: 0
   category: 2
   denialCaptions:
-  - You turn on the water and undress mechanically. The bathroom feels wrong without
-    {animal} scratching at the door, peeking in. You shower quickly, numbed.
-  - You step into the shower and close your eyes. You used to hear {animal} pawing
-    at the bathroom door. Now there's nothing. The water can't wash away the absence.
-  - You stand under the spray, unmoving. You keep expecting to hear {animal}'s familiar
-    whine of protest at being left outside. The silence rings in your ears.
-  - You wash yourself on autopilot. The routine is muscle memory, but it feels hollow.
+  - You turn on the water and undress mechanically. This doesn't feel real. You wait
+    for a sound that doesn't come. This can't be happening.
+  - You step into the shower in a fog. {animal} always scratches at the door. Any
+    moment now. You wait. The water runs cold.
+  - You stand under the spray, frozen. Your body is here but your mind is somewhere
+    else, somewhere this isn't real.
+  - You wash yourself on autopilot. When you step out, {animal} will be there on
+    the bath mat. They have to be.
+  - 'The water hits your skin but you barely feel it. You''re floating somewhere
+    outside yourself, watching from a distance. '
+  - 'You blink and realize you''ve been standing still for minutes. Time doesn''t
+    work right. Nothing works right. '
   angerCaptions:
-  - 
-  bargainingCaptions: []
-  depressionCaptions: []
-  acceptanceCaptions: []
+  - You turn the water scalding hot and welcome the burn. Fuck this. Fuck everything.
+    The injustice boils inside you.
+  - You sit in the tub and sob angrily, fists clenched. Why? {animal} should still
+    be scratching at that door. It's not fair.
+  - You scrub your skin hard, furious. You want to scream. The bathroom feels like
+    a prison of rage.
+  - The silence is deafening. You're so angry at the world, at the cruel unfairness
+    that took {animal}. You stay under the water and rage.
+  - The water beats down and you want to break everything. Why continue? Why does
+    the world keep spinning when everything is wrong?
+  - You punch the tile wall. The pain in your knuckles is satisfying, real. At least
+    that makes sense. At least that you can control.
+  bargainingCaptions:
+  - You shower quickly. If you don't linger, maybe you won't break down. Please just
+    let this get easier.
+  - You stand under the water making bargains. If only you'd done things differently.
+    If only you'd had more time with {animal}.
+  - You wash methodically, clinging to routine. If you keep everything the same,
+    maybe life will feel normal again. Please.
+  - You listen for sounds that won't come. If you wait just a little longer, maybe
+    {animal} will come back. Maybe.
+  - 'You promise yourself: just five more minutes and you''ll be okay. If you can
+    make it through this shower, tomorrow will be better.'
+  - You adjust the water temperature exactly right. Control what you can. Follow
+    the routine. Maybe if you're perfect, the pain will fade faster.
+  depressionCaptions:
+  - You stand under the spray and let it mix with your tears. The emptiness is crushing.
+    Everything is so heavy.
+  - You can barely lift your arms to wash. You sink to the floor, thinking of {animal},
+    missing them so much it aches in your bones.
+  - The steam doesn't comfort. The water doesn't cleanse. Nothing will ever fill
+    that void.
+  - You lean against the wall, exhausted by grief. {animal}'s absence is everywhere,
+    even here. You're so tired of hurting.
+  - You sit in the tub and let the water pour over you. What's the point of being
+    clean? What's the point of any of this?
+  - The bathroom feels like a tomb. You're too tired to stand, too sad to care. The
+    water washes over you but you remain dirty with grief.
+  acceptanceCaptions:
+  - You shower peacefully. The bathroom is just a bathroom again. The warmth on your
+    skin is soothing, gentle.
+  - You enjoy the water's comfort. You think of {animal} and smile at the memory
+    of muddy paws and wet fur. It's gentle now.
+  - You finish your shower feeling clean, refreshed. The ritual is yours again, familiar
+    and safe.
+  - You dry off with calm. The silence is comfortable. You've made peace with it,
+    carrying love without breaking.
+  - You take your time under the spray, letting the warmth relax your shoulders.
+    The shower is a gift again, not a trial.
+  - You step out feeling renewed. The simple act of caring for yourself feels right
+    again.
   energyReward: 0
   hungerReward: 0
   hygieneReward: 5
   socialReward: 0
   entertainmentReward: 0
   energyCost: 1
-  hungerCost: 1
+  hungerCost: 0
   hygieneCost: 0
-  socialCost: 1
+  socialCost: 0
   entertainmentCost: 0

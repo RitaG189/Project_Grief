@@ -16,8 +16,14 @@ public abstract class Task : MonoBehaviour, IInteractable
 
     protected virtual void Awake()
     {
+        if (!Application.isPlaying) return;
+
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
+        
         outline = GetComponent<Outline>();
+
+        outline.enabled = true;
+        outline.OutlineWidth = 0f;
     }
 
     public void Interact()
@@ -28,44 +34,37 @@ public abstract class Task : MonoBehaviour, IInteractable
         if (!TaskManager.Instance.TryExecuteTask(taskSO))
             return;
 
+        NeedsPreviewController.Instance.ClearPreview(); // 👈 aqui
+
         ExecuteTask();
         StartCoroutine(CooldownRoutine());
     }
 
+
     public virtual void ToggleVisibility(bool value)
     {
-        if(interactionText != null && taskSO.taskDone == false)
+        if (interactionText != null && !taskSO.taskDone)
         {
-            if(taskSO.category != TaskCategory.Animal)
-            {
-                if (!NeedsManager.Instance.CanPerformTask(taskSO))
-                    canInteract = false;
-                else
-                    canInteract = true;
-            }
+            if (taskSO.category != TaskCategory.Animal)
+                canInteract = NeedsManager.Instance.CanPerformTask(taskSO);
+            else
+                canInteract = true;
 
             interactionText.enabled = value;
-            interactionText.text = taskSO.taskName; 
-
+            interactionText.text = taskSO.taskName;
             interactionText.alpha = canInteract ? 1f : 0.2f;
         }
-        
-        if(outline != null)
-            outline.enabled = value;
 
+        outline.OutlineWidth = value ? 3f : 0f;
 
-        /*
-        if (!value)
+        // PREVIEW LOGIC (limpa e segura)
+        if (!value || !canInteract || taskSO == null)
         {
-            needsPreviewController.ClearPreview();
+            NeedsPreviewController.Instance.ClearPreview();
             return;
         }
 
-        if (taskSO != null && canInteract)
-            needsPreviewController.ShowTaskPreview(taskSO);
-        else
-            needsPreviewController.ClearPreview();
-            */
+        NeedsPreviewController.Instance.ShowTaskPreview(taskSO);
     }
 
     public void EnableTask(bool value)

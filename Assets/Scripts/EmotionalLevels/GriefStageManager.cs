@@ -19,6 +19,8 @@ public class GriefStageManager : MonoBehaviour
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         volume.profile.TryGet(out colorAdjustments);
     }
 

@@ -12,6 +12,8 @@ public class NeedsPreviewController : MonoBehaviour
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         Instance = this;
     }
 

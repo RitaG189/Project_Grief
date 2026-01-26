@@ -19,6 +19,8 @@ public class PlayerCameraController : MonoBehaviour
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 

@@ -11,23 +11,29 @@ public class LightSwitch : MonoBehaviour, IInteractable
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
+        
         outline = GetComponent<Outline>();
+
+        outline.enabled = true;
+        outline.OutlineWidth = 0f;
 
         light?.SetActive(lightValue);
     }
 
     public void ToggleVisibility(bool value)
     {
-        interactionText.alpha = 1;    
-        
-        if(interactionText != null)
+        interactionText.alpha = 1;
+
+        if (interactionText != null)
         {
             interactionText.enabled = value;
             interactionText.text = interactionName;
         }
 
-        outline.enabled = value;
+        outline.OutlineWidth = value ? 3f : 0f;
     }
 
     public void Interact()

@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class Sink : Task
 {
-    private void Awake() {
+    private void Awake() 
+    {
+        if (!Application.isPlaying) return;
+
         EnableTask(false); 
     }
 

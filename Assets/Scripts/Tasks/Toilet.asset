@@ -17,13 +17,18 @@ MonoBehaviour:
   repeatable: 1
   taskDone: 0
   category: 2
+  denialCaptions: []
+  angerCaptions: []
+  bargainingCaptions: []
+  depressionCaptions: []
+  acceptanceCaptions: []
   energyReward: 0
   hungerReward: 0
   hygieneReward: 3
   socialReward: 0
   entertainmentReward: 0
   energyCost: 0.5
-  hungerCost: 0.5
+  hungerCost: 0
   hygieneCost: 0
-  socialCost: 0.5
+  socialCost: 0
   entertainmentCost: 0

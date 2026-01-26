@@ -9,6 +9,8 @@ public class Alarm : MonoBehaviour, IInteractable
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
     }
 

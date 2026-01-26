@@ -7,6 +7,8 @@ public class GameStateManager : MonoBehaviour
     public GameState CurrentState {get; private set;}
     
     private void Awake() {
+        if (!Application.isPlaying) return;
+        
         if(Instance != null)
         {
             Destroy(gameObject);
@@ -42,6 +44,9 @@ public class GameStateManager : MonoBehaviour
                 Time.timeScale = 0f;
                 lookScript.DisableLook();
                 break;
+            case GameState.Fast:
+                Time.timeScale = 10f;
+                break;
         }
     }
 }
@@ -51,5 +56,6 @@ public enum GameState
     Gameplay,
     MainMenu,
     Paused,
-    Cutscene
+    Cutscene,
+    Fast
 }

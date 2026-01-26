@@ -12,6 +12,8 @@ public class ShowerDoor : MonoBehaviour, IInteractable
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
         animator = GetComponent<Animator>();
     }

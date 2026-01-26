@@ -53,6 +53,8 @@ public class NeedsEffects : MonoBehaviour
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         globalVolume.profile = Instantiate(globalVolume.profile);
 
         if (!globalVolume.profile.TryGet(out bloom))

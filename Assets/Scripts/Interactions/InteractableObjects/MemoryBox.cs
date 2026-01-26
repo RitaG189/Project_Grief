@@ -25,8 +25,14 @@ public class MemoryBox : MonoBehaviour, IInteractable
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
+        
         outline = GetComponent<Outline>();
+
+        outline.enabled = true;
+        outline.OutlineWidth = 0f;
 
         requiredItems.Clear();
 
@@ -96,7 +102,7 @@ public class MemoryBox : MonoBehaviour, IInteractable
             }
         }
 
-        outline.enabled = value;
+        outline.OutlineWidth = value ? 3f : 0f;
         interactionText.enabled = value;
         interactionText.text = interactionName;
         interactionText.alpha = canInteract ? 1f : 0.2f;

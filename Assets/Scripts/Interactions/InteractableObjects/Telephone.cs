@@ -8,10 +8,18 @@ public class Telephone : MonoBehaviour, IInteractable
     protected TMP_Text interactionText;
     protected bool canInteract = false;
     public bool TaskEnabled {get; private set;} = true;
+    private Outline outline;
 
     protected virtual void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
+
+        outline = GetComponent<Outline>();
+
+        outline.enabled = true;
+        outline.OutlineWidth = 0f;
     }
 
     public void Interact()
@@ -56,6 +64,8 @@ public class Telephone : MonoBehaviour, IInteractable
 
             interactionText.alpha = canInteract ? 1f : 0.2f;
         }
+
+        outline.OutlineWidth = value ? 3f : 0f;
     }
 
     public void CallMom()

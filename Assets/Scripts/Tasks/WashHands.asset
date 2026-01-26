@@ -16,7 +16,68 @@ MonoBehaviour:
   minutesCost: 10
   repeatable: 0
   taskDone: 0
-  category: 0
+  category: 2
+  denialCaptions:
+  - You wash and dry automatically. {animal} was just here. When you turn around,
+    they'll be there.
+  - You turn on the tap and soap your hands on autopilot. This doesn't feel real.
+    The water runs clear but nothing makes sense.
+  - 'You watch the water swirl down the drain in a daze. '
+  - 'The soap, the water, the towel... All familiar but foreign. You''re watching
+    yourself from outside your body. '
+  - Your hands move through the motions but you're not present. Everything is happening
+    to someone else. This isn't your life.
+  - You scrub mechanically, mind disconnected.
+  angerCaptions:
+  - You scrub your hands violently, water scalding. What's the point of these hands
+    now? You're furious at their uselessness.
+  - You turn off the tap with force. These hands said goodbye to {animal} and you
+    hate them for it.
+  - You wash with jerky, angry movements.
+  - You grip the soap so hard it hurts.
+  - The water burns but you don't care. You want to scrub the skin off. These hands
+    failed and you despise them.
+  - You slam your palms against the sink. Even this simple act fills you with rage.
+    Everything is a reminder that the world is cruel and wrong.
+  bargainingCaptions:
+  - You wash carefully, ritualistically. If you do it exactly right, maybe the pain
+    will ease. Please.
+  - You count to twenty while scrubbing, making bargains. If only you'd touched {animal}
+    more while you could.
+  - You wash quickly, efficiently. If you don't pause, you won't remember. If only
+    you'd known each touch was precious.
+  - You use the same soap you used for {animal}'s baths. If you hold onto small things,
+    maybe the big loss will be bearable.
+  - You scrub each finger individually, methodically. Control this and maybe you
+    can control the grief. Perfect technique might earn you peace.
+  - You time it exactly. Twenty seconds, like you're supposed to. If you follow the
+    rules, do everything right, maybe tomorrow will hurt less.
+  depressionCaptions:
+  - You wash your hands and stare at them, tears falling into the sink. They're just
+    empty vessels of grief now.
+  - Your hands shake as you soap them. They felt {animal}'s last heartbeat. Now they're
+    useless and heavy with loss.
+  - You wash slowly, overwhelmed by sadness. The void is everywhere, even in your
+    trembling hands.
+  - You dry your hands but they feel unbearably light. They used to be so full of
+    purpose, of {animal}. Now just emptiness.
+  - The water runs but you barely notice. Your hands feel like they belong to someone
+    else.
+  - You can barely lift them to the towel. Everything is too heavy. These hands have
+    nothing left to hold.
+  acceptanceCaptions:
+  - You wash your hands calmly. The routine is simple, grounding. Your hands are
+    steady again, ready for life.
+  - You dry your hands and move on with your day. You gave love fully to {animal},
+    and that's enough. That will always be enough.
+  - You wash with quiet gratitude. Your hands carry memories gently now, without
+    breaking.
+  - You finish and turn off the tap. The grief shaped your hands into something deeper.
+    You carry forward with grace.
+  - You rinse and dry efficiently. Your hands are capable again. They've held loss
+    and can now hold life once more.
+  - The water is the right temperature. Your movements are practiced, calm. You're
+    taking care of yourself again, and it feels natural.
   energyReward: 0
   hungerReward: 0
   hygieneReward: 2

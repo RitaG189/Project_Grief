@@ -12,6 +12,8 @@ public class WeatherManager : MonoBehaviour
 
     void Awake()
     {
+        if (!Application.isPlaying) return;
+        
         if(Instance != null && Instance != this)
         {
             Destroy(gameObject);
