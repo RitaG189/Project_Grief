@@ -40,7 +40,6 @@ public class NeedsManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         Needs = new NeedsSystem();
         Needs.Init(needsConfig);

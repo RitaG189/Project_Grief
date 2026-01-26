@@ -29,7 +29,6 @@ public class TimeSystem : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()

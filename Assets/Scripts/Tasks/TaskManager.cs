@@ -19,7 +19,6 @@ public class TaskManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         pauseController = GetComponent<PauseController>();
     }
