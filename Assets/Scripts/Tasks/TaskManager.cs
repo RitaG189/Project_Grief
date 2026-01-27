@@ -52,23 +52,24 @@ public class TaskManager : MonoBehaviour
         BlackoutManager.Instance.SetTime();
         pauseController.CanPause = false;
         yield return BlackoutManager.Instance.FadeIn();
-
+        
         bool captionFinished = false;
 
         void OnCaptionDone()
         {
             captionFinished = true;
         }
-        
 
         TypewriterCaption.Instance.OnCaptionFinished += OnCaptionDone;
 
-        // Mostrar caption
-        CaptionByLevel.Instance.ShowCaptionForCurrentLevel(task);
+        // Mostrar caption (agora devolve true/false)
+        bool captionShown = CaptionByLevel.Instance.ShowCaptionForCurrentLevel(task);
 
-
-        // Espera ATÉ a caption acabar
-        yield return new WaitUntil(() => captionFinished);
+        // 👉 Só espera se realmente houver caption
+        if (captionShown)
+        {
+            yield return new WaitUntil(() => captionFinished);
+        }
 
         TypewriterCaption.Instance.OnCaptionFinished -= OnCaptionDone;
 

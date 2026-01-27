@@ -63,13 +63,13 @@ MonoBehaviour:
     like these. You carry {animal} with you, gently.
   - The beep signals it's ready. You eat without thinking too hard. The grief has
     softened into something you can live with.
-  energyReward: 2
-  hungerReward: 0
+  energyReward: 1
+  hungerReward: 4
   hygieneReward: 0
   socialReward: 0
   entertainmentReward: 0
   energyCost: 0
   hungerCost: 0
-  hygieneCost: 0.5
-  socialCost: 0.5
+  hygieneCost: 0
+  socialCost: 0
   entertainmentCost: 0

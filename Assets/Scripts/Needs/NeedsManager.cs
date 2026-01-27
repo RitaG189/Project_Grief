@@ -89,7 +89,6 @@ public class NeedsManager : MonoBehaviour
         Needs.DecreaseHunger(decay);
         Needs.DecreaseSocial(decay);
         Needs.DecreaseHygiene(decay);
-        Needs.DecreaseEntertainment(decay);
     }
 
     void NotifyAll()
@@ -113,7 +112,6 @@ public class NeedsManager : MonoBehaviour
         Needs.DecreaseHunger(hours);
         Needs.DecreaseHygiene(hours);
         Needs.DecreaseSocial(2);
-        Needs.DecreaseEntertainment(2);
         NotifyAll();
     }
 
@@ -176,7 +174,6 @@ public class NeedsManager : MonoBehaviour
         hungerZeroHours = Needs.Hunger <= 0 ? hungerZeroHours + hoursPassed : 0f;
         socialZeroHours = Needs.Social <= 0 ? socialZeroHours + hoursPassed : 0f;
         hygieneZeroHours = Needs.Hygiene <= 0 ? hygieneZeroHours + hoursPassed : 0f;
-        entertainmentZeroHours = Needs.Entertainment <= 0 ? entertainmentZeroHours + hoursPassed : 0f;
     }
 
     void CheckGameOver()
@@ -184,8 +181,7 @@ public class NeedsManager : MonoBehaviour
         if (energyZeroHours >= hoursUntilGameOver ||
             hungerZeroHours >= hoursUntilGameOver ||
             socialZeroHours >= hoursUntilGameOver ||
-            hygieneZeroHours >= hoursUntilGameOver ||
-            entertainmentZeroHours >= hoursUntilGameOver)
+            hygieneZeroHours >= hoursUntilGameOver)     
         {
             TriggerGameOver();
         }

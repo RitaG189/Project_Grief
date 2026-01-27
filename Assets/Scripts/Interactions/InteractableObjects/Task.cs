@@ -34,10 +34,10 @@ public abstract class Task : MonoBehaviour, IInteractable
         if (!TaskManager.Instance.TryExecuteTask(taskSO))
             return;
 
-        NeedsPreviewController.Instance.ClearPreview(); // 👈 aqui
-
         ExecuteTask();
         StartCoroutine(CooldownRoutine());
+
+        NeedsUIController.Instance.ClearPreview();
     }
 
 
@@ -57,14 +57,9 @@ public abstract class Task : MonoBehaviour, IInteractable
 
         outline.OutlineWidth = value ? 3f : 0f;
 
-        // PREVIEW LOGIC (limpa e segura)
-        if (!value || !canInteract || taskSO == null)
-        {
-            NeedsPreviewController.Instance.ClearPreview();
-            return;
-        }
+        if(value = true) 
+            NeedsUIController.Instance.ShowTaskPreview(taskSO);
 
-        NeedsPreviewController.Instance.ShowTaskPreview(taskSO);
     }
 
     public void EnableTask(bool value)

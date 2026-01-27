@@ -83,7 +83,7 @@ MonoBehaviour:
   hygieneReward: 2
   socialReward: 0
   entertainmentReward: 0
-  energyCost: 0.5
+  energyCost: 0
   hungerCost: 0
   hygieneCost: 0
   socialCost: 0

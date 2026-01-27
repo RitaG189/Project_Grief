@@ -74,6 +74,8 @@ public class PlayerInteraction : MonoBehaviour
 
         if (currentInteractable != null)
             currentInteractable.ToggleVisibility(false);
+            NeedsUIController.Instance.ClearPreview();
+
 
         currentInteractable = lookedInteractable;
 
@@ -103,6 +105,7 @@ public class PlayerInteraction : MonoBehaviour
             if (currentInteractable == interactable)
             {
                 currentInteractable.ToggleVisibility(false);
+                NeedsUIController.Instance.ClearPreview();
                 currentInteractable = null;
             }
         }

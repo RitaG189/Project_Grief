@@ -90,6 +90,6 @@ MonoBehaviour:
   entertainmentReward: 0
   energyCost: 0
   hungerCost: 0
-  hygieneCost: 2
-  socialCost: 2
+  hygieneCost: 0
+  socialCost: 0
   entertainmentCost: 0

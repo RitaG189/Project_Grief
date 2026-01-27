@@ -16,20 +16,17 @@ public class CaptionByLevel : MonoBehaviour
         Instance = this;
     }
 
-    public void ShowCaptionForCurrentLevel(TasksSO task)
+    public bool ShowCaptionForCurrentLevel(TasksSO task)
     {
         int level = LevelsManager.Instance.level;
-
         List<string> selectedList = GetListByLevel(level, task);
 
         if (selectedList == null || selectedList.Count == 0)
-        {
-            Debug.LogWarning("No captions for level " + level);
-            return;
-        }
+            return false;
 
         string randomCaption = selectedList[Random.Range(0, selectedList.Count)];
         TypewriterCaption.Instance.ShowCaption(randomCaption);
+        return true;
     }
 
     List<string> GetListByLevel(int level, TasksSO task)

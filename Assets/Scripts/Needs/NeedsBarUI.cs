@@ -5,11 +5,11 @@ public class NeedsBarUI : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private Image fillImage;
-    [SerializeField] private Image previewFillImage;
+
+    [SerializeField] private Image iconUp;
+    [SerializeField] private Image iconDown;
 
     [SerializeField] private Gradient colorGradient;
-    [SerializeField] private Color positivePreviewColor = new Color(0f, 1f, 0f, 0.35f);
-    [SerializeField] private Color negativePreviewColor = new Color(1f, 0f, 0f, 0.35f);
 
     private float currentValue01;
 
@@ -19,28 +19,56 @@ public class NeedsBarUI : MonoBehaviour
 
         slider.value = currentValue01;
         fillImage.color = colorGradient.Evaluate(currentValue01);
-
-        ClearPreview();
     }
 
-    public void ShowPreview(float delta, float max)
+    /// <summary>
+    /// Usa diretamente o valor recebido:
+    /// positivo = sobe | negativo = desce
+    /// </summary>
+    public void ShowChange(float value)
     {
-        float currentValue = currentValue01 * max;
-        float targetValue = Mathf.Clamp(currentValue + delta, 0f, max);
-        float target01 = targetValue / max;
-
-        previewFillImage.fillAmount = target01;
-
-        bool isPositive = target01 > currentValue01;
-        previewFillImage.color = isPositive
-            ? positivePreviewColor
-            : negativePreviewColor;
-
-        previewFillImage.gameObject.SetActive(true);
+        if (value > 0f)
+        {
+            iconUp.gameObject.SetActive(true);
+            iconDown.gameObject.SetActive(false);
+        }
+        else if (value < 0f)
+        {
+            iconUp.gameObject.SetActive(false);
+            iconDown.gameObject.SetActive(true);
+        }
+        else
+        {
+            iconUp.gameObject.SetActive(false);
+            iconDown.gameObject.SetActive(true);
+        }
     }
 
-    public void ClearPreview()
+    public void ShowEmotionalEnergyChange(float reward, float cost)
     {
-        previewFillImage.gameObject.SetActive(false);
+        if (reward > 0f)
+        {
+            iconUp.gameObject.SetActive(true);
+            iconDown.gameObject.SetActive(false);
+        }
+        else if(cost > 0)
+        {
+            iconUp.gameObject.SetActive(false);
+            iconDown.gameObject.SetActive(true);
+        }
+        else
+        {
+            iconUp.gameObject.SetActive(false);
+            iconDown.gameObject.SetActive(false);
+        }
+    }
+
+    public void ClearIcons()
+    {
+        if (iconUp != null)
+            iconUp.gameObject.SetActive(false);
+
+        if (iconDown != null)
+            iconDown.gameObject.SetActive(false);
     }
 }
