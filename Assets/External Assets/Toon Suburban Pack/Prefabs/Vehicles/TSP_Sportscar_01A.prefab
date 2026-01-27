@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329a4dbbcb6d4d04b1423fb6809c6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarMovement
-  speed: 5
+  speed: 8
 --- !u!82 &7577689391725834317
 AudioSource:
   m_ObjectHideFlags: 0
