@@ -10,7 +10,7 @@ public abstract class Task : MonoBehaviour, IInteractable
     protected TMP_Text interactionText;
     protected bool canInteract = false;
     public bool TaskEnabled {get; private set;} = true;
-    private Outline outline;
+    //private Outline outline;
     //[SerializeField] NeedsPreviewController needsPreviewController;
 
 
@@ -20,10 +20,9 @@ public abstract class Task : MonoBehaviour, IInteractable
 
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
         
-        outline = GetComponent<Outline>();
+        //outline = GetComponent<Outline>();
 
-        outline.enabled = true;
-        outline.OutlineWidth = 0f;
+        //outline.enabled = false;
     }
 
     public void Interact()
@@ -55,7 +54,7 @@ public abstract class Task : MonoBehaviour, IInteractable
             interactionText.alpha = canInteract ? 1f : 0.2f;
         }
 
-        outline.OutlineWidth = value ? 3f : 0f;
+        //outline.enabled = value;
 
         if(value = true) 
             NeedsUIController.Instance.ShowTaskPreview(taskSO);

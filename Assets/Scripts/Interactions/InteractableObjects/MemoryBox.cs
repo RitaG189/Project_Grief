@@ -15,7 +15,11 @@ public class MemoryBox : MonoBehaviour, IInteractable
     [SerializeField] VideoClip maleCatCompletionClip;
     [SerializeField] VideoClip femaleDogCompletionClip;
     [SerializeField] VideoClip femaleCatCompletionClip;
+    [SerializeField] VideoManager videoManager;
     [SerializeField] VideoPlayer videoPlayer;
+    [SerializeField] GameObject boxOpenedGO;
+    [SerializeField] GameObject boxClosedGO;
+
 
     [SerializeField] MemoryBoxUI boxUI;
     
@@ -25,7 +29,7 @@ public class MemoryBox : MonoBehaviour, IInteractable
     private bool canInteract = false;
     private bool boxCompleted = false;
     private bool boxClosed = false;
-    private Outline outline;
+    //private Outline outline;
 
     void Awake()
     {
@@ -33,10 +37,10 @@ public class MemoryBox : MonoBehaviour, IInteractable
         
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
         
-        outline = GetComponent<Outline>();
+        //outline = GetComponent<Outline>();
 
-        outline.enabled = true;
-        outline.OutlineWidth = 0f;
+        // outline.enabled = true;
+        //outline.OutlineWidth = 0f;
 
         requiredItems.Clear();
 
@@ -48,6 +52,11 @@ public class MemoryBox : MonoBehaviour, IInteractable
                 done = false
             });
         }
+    }
+    
+    void Start()
+    {
+        videoManager.OnVideoFinished.AddListener(HideVideoPlayer);
     }
     
     public void Interact()
@@ -106,7 +115,7 @@ public class MemoryBox : MonoBehaviour, IInteractable
             }
         }
 
-        outline.OutlineWidth = value ? 3f : 0f;
+        //outline.OutlineWidth = value ? 3f : 0f;
         interactionText.enabled = value;
         interactionText.text = interactionName;
         interactionText.alpha = canInteract ? 1f : 0.2f;
@@ -173,21 +182,36 @@ public class MemoryBox : MonoBehaviour, IInteractable
         LevelsManager.Instance.LevelUp();
         
         // pausar o jogo
-        if (GameChoices.Instance.PetSpecies == "Dog")
+        if(GameChoices.Instance != null)
         {
-            videoPlayer.clip = 
-                GameChoices.Instance.PetGenre == "Male"
-                ? maleDogCompletionClip
-                : femaleDogCompletionClip;
+            if (GameChoices.Instance.PetSpecies == "Dog")
+            {
+                videoPlayer.clip = 
+                    GameChoices.Instance.PetGenre == "Male"
+                    ? maleDogCompletionClip
+                    : femaleDogCompletionClip;
+            }
+            else if (GameChoices.Instance.PetSpecies == "Cat")
+            {
+                videoPlayer.clip =
+                    GameChoices.Instance.PetGenre == "Male"
+                    ? maleCatCompletionClip
+                    : femaleCatCompletionClip;
+            }     
+
+            videoManager.gameObject.SetActive(true);
+            videoManager.VideoPlayerPlay();  
         }
-        else if (GameChoices.Instance.PetSpecies == "Cat")
-        {
-            videoPlayer.clip =
-                GameChoices.Instance.PetGenre == "Male"
-                ? maleCatCompletionClip
-                : femaleCatCompletionClip;
-        }      
+
+        boxClosedGO.SetActive(true);
+        boxOpenedGO.SetActive(false);
+        Destroy(objectPos.gameObject);
         Debug.Log("Caixa fechada");
+    }
+
+    void HideVideoPlayer()
+    {
+        videoManager.gameObject.SetActive(false);
     }
 
     public List<MemoryBoxEntry> GetRequiredItems()

@@ -10,20 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b91290deabe479b4e94541b6d0f5ad5b, type: 3}
-  m_Name: Toy 2
+  m_Name: CleanMess
   m_EditorClassIdentifier: Assembly-CSharp::TasksSO
-  taskName: Pick up toy
-  minutesCost: 0
+  taskName: Clean mess
+  minutesCost: 40
   repeatable: 0
   taskDone: 0
-  category: 5
+  category: 4
+  denialCaptions: []
+  angerCaptions: []
+  bargainingCaptions: []
+  depressionCaptions: []
+  acceptanceCaptions: []
   energyReward: 0
   hungerReward: 0
-  hygieneReward: 0
+  hygieneReward: 3
   socialReward: 0
-  entertainmentReward: 0
-  energyCost: 1
+  entertainmentReward: 4
+  energyCost: 0
   hungerCost: 0
   hygieneCost: 0
   socialCost: 0
-  entertainmentCost: 5
+  entertainmentCost: 0

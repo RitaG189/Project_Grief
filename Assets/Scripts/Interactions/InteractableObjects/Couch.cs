@@ -12,7 +12,7 @@ public class Couch : MonoBehaviour, IInteractable
     [SerializeField] Transform lookAtPoint;
     [SerializeField] TVRemote tvRemote;
 
-    private Outline outline;
+    //private Outline outline;
 
     void Awake()
     {
@@ -21,10 +21,10 @@ public class Couch : MonoBehaviour, IInteractable
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
         interactionText.text = name;
 
-        outline = GetComponent<Outline>();
+        //outline = GetComponent<Outline>();
 
-        outline.enabled = true;
-        outline.OutlineWidth = 0f;
+        //outline.enabled = true;
+        //outline.OutlineWidth = 0f;
     }
 
     void Update()
@@ -62,6 +62,6 @@ public class Couch : MonoBehaviour, IInteractable
             interactionText.text = name;
         }
 
-        outline.OutlineWidth = value ? 3f : 0f;
+        //outline.OutlineWidth = value ? 3f : 0f;
     }
 }

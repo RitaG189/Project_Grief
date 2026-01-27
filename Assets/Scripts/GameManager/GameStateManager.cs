@@ -5,6 +5,9 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] FirstPersonLook lookScript;
     public static GameStateManager Instance;
     public GameState CurrentState {get; private set;}
+    [SerializeField] GameObject gameOverMenu;
+    [SerializeField] GameObject finishMenu;
+
     
     private void Awake() {
         if (!Application.isPlaying) return;
@@ -47,6 +50,21 @@ public class GameStateManager : MonoBehaviour
             case GameState.Fast:
                 Time.timeScale = 10f;
                 break;
+            case GameState.GameOver:
+                Time.timeScale = 0f;
+                CursorUtils.EnableUICursor();
+                CursorUtils.EnableUnlockedCursor();
+                lookScript.DisableLook();
+                gameOverMenu.SetActive(true);
+                break;
+            case GameState.Finish:
+                Time.timeScale = 0f;
+                CursorUtils.EnableUICursor();
+                CursorUtils.EnableUnlockedCursor();
+                lookScript.DisableLook();
+                finishMenu.SetActive(true);
+                break;
+
         }
     }
 }
@@ -57,5 +75,7 @@ public enum GameState
     MainMenu,
     Paused,
     Cutscene,
-    Fast
+    Fast,
+    GameOver,
+    Finish
 }

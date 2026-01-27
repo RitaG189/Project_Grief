@@ -459,7 +459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531249153429156928}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rato
   m_TagString: Untagged
   m_Icon: {fileID: 0}

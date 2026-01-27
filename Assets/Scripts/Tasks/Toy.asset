@@ -17,6 +17,11 @@ MonoBehaviour:
   repeatable: 0
   taskDone: 0
   category: 5
+  denialCaptions: []
+  angerCaptions: []
+  bargainingCaptions: []
+  depressionCaptions: []
+  acceptanceCaptions: []
   energyReward: 0
   hungerReward: 0
   hygieneReward: 0
@@ -26,4 +31,4 @@ MonoBehaviour:
   hungerCost: 0
   hygieneCost: 0
   socialCost: 0
-  entertainmentCost: 5
+  entertainmentCost: 8

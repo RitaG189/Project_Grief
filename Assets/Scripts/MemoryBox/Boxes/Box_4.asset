@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Box_4
   m_EditorClassIdentifier: Assembly-CSharp::MemoryBoxSO
   level: 4
-  objectsNeeded: []
+  objectsNeeded:
+  - {fileID: 11400000, guid: 73135c7c9795a834c861338f7787c32b, type: 2}
+  - {fileID: 11400000, guid: af63d56868cd1468bbaa93348b1694f2, type: 2}

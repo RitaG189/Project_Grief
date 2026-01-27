@@ -9,7 +9,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
 
     private TMP_Text interactionText;
     private bool lightValue = false;
-    private Outline outline;
+    //private Outline outline;
 
     void Awake()
     {
@@ -18,9 +18,9 @@ public class LightSwitch : MonoBehaviour, IInteractable
         interactionText = GameObject.FindGameObjectWithTag("InteractionText")
                                    .GetComponent<TMP_Text>();
 
-        outline = GetComponent<Outline>();
-        outline.enabled = true;
-        outline.OutlineWidth = 0f;
+        //outline = GetComponent<Outline>();
+        //outline.enabled = true;
+        //outline.OutlineWidth = 0f;
 
         SetLights(lightValue);
     }
@@ -46,7 +46,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
             interactionText.text = interactionName;
         }
 
-        outline.OutlineWidth = value ? 3f : 0f;
+        //outline.OutlineWidth = value ? 3f : 0f;
     }
 
     public void Interact()

@@ -191,7 +191,7 @@ public class NeedsManager : MonoBehaviour
     {
         Debug.Log("GAME OVER – Need neglected too long");
 
-        //GameManager.Instance.GameOver();
+        GameStateManager.Instance.SetState(GameState.GameOver);
     }
 
     int GetTotalMinutes(int hour, int minute, int day)

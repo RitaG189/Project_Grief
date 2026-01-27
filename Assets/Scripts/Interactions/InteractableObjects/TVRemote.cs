@@ -5,7 +5,7 @@ using UnityEngine.Video;
 
 public class TVRemote : MonoBehaviour, IInteractable
 {
-    private Outline outline;
+    //private Outline outline;
     protected TMP_Text interactionText;
     protected bool canInteract = false;
     [SerializeField] VideoPlayer videoPlayer;
@@ -17,10 +17,10 @@ public class TVRemote : MonoBehaviour, IInteractable
         
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
         
-        outline = GetComponent<Outline>();
+        //outline = GetComponent<Outline>();
 
-        outline.enabled = true;
-        outline.OutlineWidth = 0f;
+        //outline.enabled = true;
+        //Width = 0f;
     }
 
     public void Interact()
@@ -42,7 +42,7 @@ public class TVRemote : MonoBehaviour, IInteractable
                 interactionText.text = "Turn off tv"; 
         }
 
-        outline.OutlineWidth = value ? 3f : 0f;
+        //outline.OutlineWidth = value ? 3f : 0f;
     }
 
     private void ToggleTV()

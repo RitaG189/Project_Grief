@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class IntroController : MonoBehaviour
 {
     [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private VideoManager videoManager;
+
     [SerializeField] private string nextSceneName = "MainGame";
 
     [SerializeField] private VideoClip clipDogFemale;
@@ -14,7 +16,7 @@ public class IntroController : MonoBehaviour
 
     void Start()
     {
-        videoPlayer.loopPointReached += OnVideoEnd;
+        videoManager.OnVideoFinished.AddListener(HideVideoPlayer);
 
         if (GameChoices.Instance != null)
         {
@@ -43,12 +45,7 @@ public class IntroController : MonoBehaviour
             SceneManager.LoadScene(nextSceneName);
     }
 
-    void OnDestroy()
-    {
-        videoPlayer.loopPointReached -= OnVideoEnd;
-    }
-
-    void OnVideoEnd(VideoPlayer vp)
+    void HideVideoPlayer()
     {
         SceneManager.LoadScene(nextSceneName);
     }

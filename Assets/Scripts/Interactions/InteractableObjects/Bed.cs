@@ -5,7 +5,7 @@ public class Bed : MonoBehaviour, IInteractable
 {
     [SerializeField] string interactionName;
     private TMP_Text interactionText;
-    private Outline outline;
+    //private Outline outline;
 
     void Awake()
     {
@@ -13,10 +13,10 @@ public class Bed : MonoBehaviour, IInteractable
         
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
         
-        outline = GetComponent<Outline>();
+        //outline = GetComponent<Outline>();
 
-        outline.enabled = true;
-        outline.OutlineWidth = 0f;
+        //outline.enabled = true;
+        //outline.OutlineWidth = 0f;
     }
 
     public void Interact()
@@ -38,6 +38,6 @@ public class Bed : MonoBehaviour, IInteractable
             interactionText.text = interactionName;
         }
 
-        outline.OutlineWidth = value ? 3f : 0f;
+        //outline.OutlineWidth = value ? 3f : 0f;
     }
 }

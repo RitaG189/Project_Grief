@@ -15,7 +15,7 @@ MonoBehaviour:
   taskName: Pick up bowl
   minutesCost: 0
   repeatable: 0
-  taskDone: 1
+  taskDone: 0
   category: 5
   denialCaptions: []
   angerCaptions: []
@@ -31,4 +31,4 @@ MonoBehaviour:
   hungerCost: 0
   hygieneCost: 0
   socialCost: 0
-  entertainmentCost: 5
+  entertainmentCost: 10

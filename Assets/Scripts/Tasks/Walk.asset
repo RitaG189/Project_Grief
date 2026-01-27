@@ -45,10 +45,10 @@ MonoBehaviour:
   energyReward: 0
   hungerReward: 0
   hygieneReward: 0
-  socialReward: 0
+  socialReward: 1
   entertainmentReward: 2
-  energyCost: 2
+  energyCost: 0
   hungerCost: 0
-  hygieneCost: 0
+  hygieneCost: 2
   socialCost: 0
   entertainmentCost: 0
