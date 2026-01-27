@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef069ac4d3744346a97dc97ff23db1e, type: 3}
   m_Name: Bowl
   m_EditorClassIdentifier: Assembly-CSharp::MemoryItemSO
-  itemID: 1D
-  level: 1
+  itemID: 3A
+  level: 3
   description: Pick up bowl

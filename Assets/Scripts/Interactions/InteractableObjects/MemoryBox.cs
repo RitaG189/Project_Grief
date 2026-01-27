@@ -11,7 +11,12 @@ public class MemoryBox : MonoBehaviour, IInteractable
     [SerializeField] int xp;
     [SerializeField] string interactionName;
     [SerializeField] MemoryBoxSO boxSO;
-    [SerializeField] VideoClip completionClip;
+    [SerializeField] VideoClip maleDogCompletionClip;
+    [SerializeField] VideoClip maleCatCompletionClip;
+    [SerializeField] VideoClip femaleDogCompletionClip;
+    [SerializeField] VideoClip femaleCatCompletionClip;
+    [SerializeField] VideoPlayer videoPlayer;
+
     [SerializeField] MemoryBoxUI boxUI;
     
     [SerializeField]
@@ -21,7 +26,6 @@ public class MemoryBox : MonoBehaviour, IInteractable
     private bool boxCompleted = false;
     private bool boxClosed = false;
     private Outline outline;
-
 
     void Awake()
     {
@@ -169,7 +173,20 @@ public class MemoryBox : MonoBehaviour, IInteractable
         LevelsManager.Instance.LevelUp();
         
         // pausar o jogo
-        MemoryCutsceneManager.Instance.PlayCustcene(completionClip);        
+        if (GameChoices.Instance.PetSpecies == "Dog")
+        {
+            videoPlayer.clip = 
+                GameChoices.Instance.PetGenre == "Male"
+                ? maleDogCompletionClip
+                : femaleDogCompletionClip;
+        }
+        else if (GameChoices.Instance.PetSpecies == "Cat")
+        {
+            videoPlayer.clip =
+                GameChoices.Instance.PetGenre == "Male"
+                ? maleCatCompletionClip
+                : femaleCatCompletionClip;
+        }      
         Debug.Log("Caixa fechada");
     }
 

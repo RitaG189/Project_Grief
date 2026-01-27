@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef069ac4d3744346a97dc97ff23db1e, type: 3}
   m_Name: Bed
   m_EditorClassIdentifier: Assembly-CSharp::MemoryItemSO
-  itemID: 2C
-  level: 2
+  itemID: 4A
+  level: 4
   description: Pick up bed

@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MemoryBoxSO
   level: 1
   objectsNeeded:
-  - {fileID: 11400000, guid: 4d8a93bc0f24f924fabcf9854ad71ab1, type: 2}
-  - {fileID: 11400000, guid: b8d5116b651f3074e9c80e72e0a76490, type: 2}
-  - {fileID: 11400000, guid: 00078a56df76a00478b3f80b0a93b842, type: 2}
-  - {fileID: 11400000, guid: 8a2b95f6d5b39da4abf882a019b483f9, type: 2}
+  - {fileID: 11400000, guid: c0b936714ec8c4248ad03e64620b4d34, type: 2}
+  - {fileID: 11400000, guid: 4d60e31e1d157e74e89851ae9467ccd4, type: 2}

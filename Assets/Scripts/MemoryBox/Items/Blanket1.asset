@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef069ac4d3744346a97dc97ff23db1e, type: 3}
   m_Name: Blanket1
   m_EditorClassIdentifier: Assembly-CSharp::MemoryItemSO
-  itemID: 2A
-  level: 2
+  itemID: 1A
+  level: 1
   description: Pick up blanket
