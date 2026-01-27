@@ -9,7 +9,6 @@ public class TVRemote : MonoBehaviour, IInteractable
     protected TMP_Text interactionText;
     protected bool canInteract = false;
     [SerializeField] VideoPlayer videoPlayer;
-    [SerializeField] string taskName;
     public bool Tv {get; private set;}= false;
 
     void Awake()

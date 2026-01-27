@@ -23,6 +23,8 @@ public class MemoryCutsceneManager : MonoBehaviour
 
     public void PlayCustcene(VideoClip clip)
     {
+        videoPlayer.gameObject.SetActive(true);
+        
         if (clip == null) return;
 
         GameStateManager.Instance.SetState(GameState.Cutscene);
@@ -35,5 +37,6 @@ public class MemoryCutsceneManager : MonoBehaviour
     void OnVideoFinished(VideoPlayer vp)
     {
         GameStateManager.Instance.SetState(GameState.Gameplay);
+        videoPlayer.gameObject.SetActive(false);
     }
 }

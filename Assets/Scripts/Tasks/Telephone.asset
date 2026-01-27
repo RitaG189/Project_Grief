@@ -17,10 +17,60 @@ MonoBehaviour:
   repeatable: 0
   taskDone: 0
   category: 3
+  denialCaptions:
+  - You dial your mom's number with shaking hands. When she answers, the words won't
+    come. You open your mouth but nothing makes sense.
+  - Your mom answers and you try to explain about {animal}. The words come out flat,
+    disconnected. She offers to visit but you say it's fine. You hang up still feeling
+    like this is temporary.
+  - You text your friend first, then call when they respond. You explain about {animal}
+    in short sentences. They say they're sorry. You say it's okay. Neither feels
+    true.
+  - Your friend answers cheerfully, then goes quiet when you tell them. {animal}
+    died. The silence on the line mirrors the silence in your house. They offer to
+    come over. You say maybe later.
+  - Your mom calls you. You answer automatically. She's worried. You tell her you're
+    fine, even though you're not sure what fine means anymore.
+  angerCaptions:
+  - Your mom calls. "How are you holding up?" You snap. "How do you think?" You hang
+    up. You shouldn't have, but you did.
+  - You call a friend, voice shaking with rage. "It's not fair," you say. "Why did
+    this happen?" They listen. It doesn't help. Nothing helps.
+  - Your mom tries to help. "At least {animal} isn't suffering," she offers. You
+    clench the phone. "That doesn't help," you say through gritted teeth.
+  - You call someone and barely control your voice. "Everyone keeps saying it gets
+    easier. They're wrong. It doesn't." You hang up before they can argue.
+  bargainingCaptions:
+  - You call your mom. "If I'd just noticed sooner," you say. "If I'd done more..."
+    She tells you it's not your fault. You want to believe her.
+  - You phone a friend. "Maybe if I'd tried harder," you confess. "Maybe if I'd been
+    better..." They tell you to be kind to yourself. You promise to try.
+  - Your mom calls to check in. You tell her you're taking it day by day. "If I can
+    just get through today," you say, "maybe tomorrow will be easier."
+  - You call someone, bargaining out loud. "I just need a sign," you say. "Something
+    to show me it'll be okay." They listen patiently.
+  - A friend asks how you're doing. "I'm trying," you say. "If I do everything right,
+    keep busy, maybe the pain will fade faster."
+  depressionCaptions:
+  - Your mom calls. You answer, voice flat. "I can't do this," you say. "Everything
+    is too hard." She tells you she loves you. You cry quietly.
+  - You call a friend. They ask what's wrong. "Everything," you whisper. "I miss
+    {animal} so much I can't breathe." They stay on the line while you sob.
+  - You dial your mom, barely holding it together. "I don't know how to keep going,"
+    you admit. She says you don't have to be strong. You break down.
+  - A friend calls. You don't answer. They leave a voicemail. You listen to it three
+    times but can't call back. You're too tired, too sad.
+  acceptanceCaptions:
+  - You call your mom. "I'm doing better," you say, and mean it. She's relieved.
+    You talk about normal things. It feels good.
+  - You phone your mom and share a happy memory of {animal}. You both laugh. The
+    grief is still there, but so is the love.
+  - You call a friend. "I'm okay," you say. "Some days are hard, but I'm okay." They
+    tell you they're proud of you.
   energyReward: 0
   hungerReward: 0
   hygieneReward: 0
-  socialReward: 0
+  socialReward: 6
   entertainmentReward: 0
   energyCost: 0
   hungerCost: 0

@@ -47,7 +47,7 @@ public class TypewriterCaption : MonoBehaviour
         }
         else
         {
-            animalName = "placeholder";
+            animalName = "[Animal]";
         }
     }
 
