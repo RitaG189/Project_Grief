@@ -40248,6 +40248,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780146880}
     m_Modifications:
+    - target: {fileID: 680981071266580166, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
+      propertyPath: taskSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 841e40b51d3b54d4b84c9a6e9f99a228, type: 2}
     - target: {fileID: 1315224381024138522, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -65530,6 +65534,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1755645473164395305, guid: e0b9ad559b526487aa92db3161688e03, type: 3}
+      propertyPath: taskSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 841e40b51d3b54d4b84c9a6e9f99a228, type: 2}
     - target: {fileID: 3381942376275706365, guid: e0b9ad559b526487aa92db3161688e03, type: 3}
       propertyPath: m_Name
       value: Rato (1)
@@ -79186,6 +79194,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780146880}
     m_Modifications:
+    - target: {fileID: 680981071266580166, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
+      propertyPath: taskSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 779bb23e00fd38347a32209d556cfa38, type: 2}
+    - target: {fileID: 823286090459158848, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1315224381024138522, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -79193,6 +79209,14 @@ PrefabInstance:
     - target: {fileID: 1315224381024138522, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2376233035517928181, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025952178996622290, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6669565960889532146, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
       propertyPath: taskSO
@@ -79242,12 +79266,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bola
       objectReference: {fileID: 0}
+    - target: {fileID: 8472376188068048484, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9149514336048385365, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
       propertyPath: taskSO
       value: 
       objectReference: {fileID: 11400000, guid: 841e40b51d3b54d4b84c9a6e9f99a228, type: 2}
     m_RemovedComponents:
     - {fileID: 473498826595155153, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
+    - {fileID: 9149514336048385365, guid: 76a0f4396bc1946e8a58c2e7698bac4d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -86911,6 +86940,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1755645473164395305, guid: e0b9ad559b526487aa92db3161688e03, type: 3}
+      propertyPath: taskSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 779bb23e00fd38347a32209d556cfa38, type: 2}
     - target: {fileID: 3381942376275706365, guid: e0b9ad559b526487aa92db3161688e03, type: 3}
       propertyPath: m_Name
       value: Rato

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8314209680428098164}
   - component: {fileID: 1327880885163363546}
   - component: {fileID: 473498826595155153}
-  - component: {fileID: 9149514336048385365}
   - component: {fileID: 4025952178996622290}
   - component: {fileID: 8472376188068048484}
   m_Layer: 0
@@ -101,7 +100,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315224381024138522}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -112,20 +111,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &9149514336048385365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315224381024138522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52cc5f9991b2de44790df55c28311ee5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimalTask
-  taskSO: {fileID: 0}
-  cooldown: 4
 --- !u!135 &4025952178996622290
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -143,7 +128,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.15
   m_Center: {x: 0, y: 0, z: 0}
@@ -164,7 +149,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.86
   m_Center: {x: 0, y: 0, z: 0}
@@ -269,6 +254,7 @@ GameObject:
   - component: {fileID: 7140603360492489265}
   - component: {fileID: 2376233035517928181}
   - component: {fileID: 823286090459158848}
+  - component: {fileID: 680981071266580166}
   m_Layer: 3
   m_Name: Bola
   m_TagString: Untagged
@@ -310,7 +296,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.15
   m_Center: {x: 0, y: 0, z: 0}
@@ -331,7 +317,21 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.86
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &680981071266580166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416313328387329727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52cc5f9991b2de44790df55c28311ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalTask
+  taskSO: {fileID: 0}
+  cooldown: 4
