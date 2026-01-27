@@ -1,10 +1,12 @@
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LightSwitch : MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject light;
+    [SerializeField] List<GameObject> lights;
     [SerializeField] string interactionName;
+
     private TMP_Text interactionText;
     private bool lightValue = false;
     private Outline outline;
@@ -13,14 +15,25 @@ public class LightSwitch : MonoBehaviour, IInteractable
     {
         if (!Application.isPlaying) return;
 
-        interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMP_Text>();
-        
-        outline = GetComponent<Outline>();
+        interactionText = GameObject.FindGameObjectWithTag("InteractionText")
+                                   .GetComponent<TMP_Text>();
 
+        outline = GetComponent<Outline>();
         outline.enabled = true;
         outline.OutlineWidth = 0f;
 
-        light?.SetActive(lightValue);
+        SetLights(lightValue);
+    }
+
+    void SetLights(bool value)
+    {
+        if (lights == null) return;
+
+        foreach (GameObject light in lights)
+        {
+            if (light != null)
+                light.SetActive(value);
+        }
     }
 
     public void ToggleVisibility(bool value)
@@ -39,14 +52,10 @@ public class LightSwitch : MonoBehaviour, IInteractable
     public void Interact()
     {
         ToggleVisibility(false);
+
         lightValue = !lightValue;
+        SetLights(lightValue);
 
-        light.SetActive(lightValue);
-
-        if(lightValue == false)
-            interactionText.text = "Turn On";
-        else
-            interactionText.text = "Turn Off";
-          
+        interactionText.text = lightValue ? "Turn Off" : "Turn On";
     }
 }

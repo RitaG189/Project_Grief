@@ -36,7 +36,7 @@ public class SetupGame : MonoBehaviour
         gc.PetSpecies = petSpecies.options[petSpecies.value].text;
         gc.PetGenre = petGenre.options[petGenre.value].text;
 
-        SceneManager.LoadScene("Sims");
+        SceneManager.LoadScene("Intro_Scene");
     }
 
     bool ValidateForm()

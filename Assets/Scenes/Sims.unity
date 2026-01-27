@@ -34015,6 +34015,22 @@ PrefabInstance:
       propertyPath: m_Spacing
       value: -42.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6855711835494465874, guid: d8ec596ff34428147844ab8bcf71749d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1360003655}
+    - target: {fileID: 6855711835494465874, guid: d8ec596ff34428147844ab8bcf71749d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909327913644256329, guid: d8ec596ff34428147844ab8bcf71749d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1360003655}
+    - target: {fileID: 6909327913644256329, guid: d8ec596ff34428147844ab8bcf71749d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
     - target: {fileID: 6963613333292894930, guid: d8ec596ff34428147844ab8bcf71749d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -34059,6 +34075,18 @@ PrefabInstance:
       propertyPath: timeSystem
       value: 
       objectReference: {fileID: 386931698}
+    - target: {fileID: 8197849301379910874, guid: d8ec596ff34428147844ab8bcf71749d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1360003655}
+    - target: {fileID: 8197849301379910874, guid: d8ec596ff34428147844ab8bcf71749d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683323065334830853, guid: d8ec596ff34428147844ab8bcf71749d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8767390944223447428, guid: d8ec596ff34428147844ab8bcf71749d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -49002,6 +49030,17 @@ MonoBehaviour:
   dofBlurAtZero: 0.3
   maxCriticalDOF: 1
   lerpSpeed: 2
+--- !u!114 &1360003655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2353336159595093546, guid: b87c3af222194164690096832f23663f, type: 3}
+  m_PrefabInstance: {fileID: 1235325991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360003641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299f3c112dad047cf82571dea4d72a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseController
 --- !u!1 &1361328108
 GameObject:
   m_ObjectHideFlags: 0

@@ -197,7 +197,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 2cfb34fb6e3474b46b8c778d0d2d7629, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
@@ -215,7 +215,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
@@ -275,7 +275,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &833664019
 MonoBehaviour:
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: c78b849a8c9d7448786c33cb5aa456fa, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -473,6 +473,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IntroController
   videoPlayer: {fileID: 45663060}
   nextSceneName: Sims
+  clipDogFemale: {fileID: 32900000, guid: c0768c7dfbda04db18965baf51e6c5a3, type: 3}
+  clipCatFemale: {fileID: 32900000, guid: ce1721fab2bcc417b9526b053d14b841, type: 3}
+  clipDogMale: {fileID: 32900000, guid: 07715c155c4964ec7a65d21b73439226, type: 3}
+  clipCatMale: {fileID: 32900000, guid: 05cc3d45ff77041a2b6cf423dff40f9f, type: 3}
 --- !u!114 &1697293257
 MonoBehaviour:
   m_ObjectHideFlags: 0
