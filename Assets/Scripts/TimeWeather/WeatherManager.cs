@@ -44,14 +44,17 @@ public class WeatherManager : MonoBehaviour
             AudioManager.Instance.PlayRain(preset.rainSound);
         }
         else
+        {
             AudioManager.Instance.StopRain();
+        }
 
         currentWeather = preset;
 
-        if(preset.lensFlare)
-            lensFlare.enabled = true;
-        else
-            lensFlare.enabled = false;
+        lensFlare.enabled = preset.lensFlare;
+
+        // 👇 ISTO É O QUE FAZ A THUNDER FUNCIONAR
+        FindObjectOfType<SunAndSkyController>()
+            .ApplyAtmospherePreset(preset);
 
         OnWeatherChanged?.Invoke(preset);
     }

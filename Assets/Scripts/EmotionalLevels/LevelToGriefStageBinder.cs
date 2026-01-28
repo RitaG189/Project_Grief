@@ -28,8 +28,8 @@ public class LevelToGriefStageBinder : MonoBehaviour
         GriefStage stage = level switch
         {
             1 => GriefStage.Denial,
-            2 => GriefStage.Bargaining,
-            3 => GriefStage.Anger,
+            2 => GriefStage.Anger,
+            3 => GriefStage.Bargaining,
             4 => GriefStage.Depression,
             _ => GriefStage.Acceptance
         };

@@ -11,8 +11,8 @@ public class GriefStageManager : MonoBehaviour
 
     [Header("Presets")]
     [SerializeField] private WeatherSO denial;
-    [SerializeField] private WeatherSO bargaining;
     [SerializeField] private WeatherSO anger;
+    [SerializeField] private WeatherSO bargaining;
     [SerializeField] private WeatherSO depression;
     [SerializeField] private WeatherSO acceptance;
     private ColorAdjustments colorAdjustments;
@@ -29,18 +29,20 @@ public class GriefStageManager : MonoBehaviour
         WeatherSO preset = stage switch
         {
             GriefStage.Denial => denial,
-            GriefStage.Bargaining => bargaining,
             GriefStage.Anger => anger,
+            GriefStage.Bargaining => bargaining,
             GriefStage.Depression => depression,
             GriefStage.Acceptance => acceptance,
             _ => acceptance
         };
 
-        print(preset.name);
+        Debug.Log("Weather preset: " + preset.name);
 
-        sky.ApplyAtmospherePreset(preset);
-        ambientController.ApplyPresetAmbientColor(preset);
         weather.ApplyWeather(preset);
-        colorAdjustments.saturation.value = preset.saturation;
+
+        ambientController.ApplyPresetAmbientColor(preset);
+
+        if (colorAdjustments != null)
+            colorAdjustments.saturation.value = preset.saturation;
     }
 }
