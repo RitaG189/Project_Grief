@@ -50,11 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3143164593861655451, guid: 9af49dee01d08f34d8f8e9fae69006b4, type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 30
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3143164593861655451, guid: 9af49dee01d08f34d8f8e9fae69006b4, type: 3}
       propertyPath: ShapeModule.m_Scale.z
-      value: 30
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3143164593861655451, guid: 9af49dee01d08f34d8f8e9fae69006b4, type: 3}
       propertyPath: VelocityModule.y.minScalar

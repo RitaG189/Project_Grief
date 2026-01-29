@@ -8,67 +8,73 @@ public class NeedsEffects : MonoBehaviour
     [Header("References")]
     [SerializeField] private Volume globalVolume;
 
-    [Header("Hygiene → Bloom Dirt")]
+    [Header("Hygiene → Lens Dirt Overlay")]
+    [SerializeField] private Renderer[] lensDirtRenderers;
     [SerializeField] private float hygieneThreshold = 10f;
-    [SerializeField] private float dirtyAtZero = 1f;
-    [SerializeField] private float maxCriticalDirt = 1000f;
+    [SerializeField] private float maxOverlayAlpha = 0.25f;
+    [SerializeField] private float maxCriticalOverlayAlpha = 0.6f;
 
     [Header("Energy → Vignette Pulse")]
-    [SerializeField] private float pulseSpeed = 1.2f;
     [SerializeField] private float pulseAtZero = 0.3f;
     [SerializeField] private float maxPulseIntensity = 1f;
-
-    [Header("Energy → Vignette Pulse Speed")]
-    [SerializeField] private float pulsePeriodAtZero = 5f;   // segundos por pulso
+    [SerializeField] private float pulsePeriodAtZero = 5f;
     [SerializeField] private float pulsePeriodAtCritical = 0.4f;
-
 
     [Header("Hunger → Chromatic Aberration")]
     [SerializeField] private float hungerThreshold = 10f;
     [SerializeField] private float chromaticAtZero = 0.45f;
     [SerializeField] private float maxCriticalChromatic = 1f;
 
-    [Header("Hunger → Depth Of Field")]
-    [SerializeField] private float dofBlurAtZero = 0.3f;
-    [SerializeField] private float maxCriticalDOF = 1f;
-
-
     [Header("Common")]
     [SerializeField] private float lerpSpeed = 1.5f;
 
-    private Bloom bloom;
+    // ───────── Volume Effects ─────────
     private Vignette vignette;
     private ChromaticAberration chromaticAberration;
 
-    private float targetDirtIntensity;
-    private float targetVignetteIntensity;
-    private float targetChromaticIntensity;
+    // ───────── Lens Dirt Overlay ─────────
+    private Material[] lensDirtMats;
+    private float targetOverlayAlpha;
 
-    private float targetVignettePulse;
+    // ───────── Vignette Pulse ─────────
     private bool vignettePulsing;
+    private float targetVignettePulse;
     private float currentPulseSpeed;
     private float vignettePulseTimer;
 
+    // ───────── Hunger ─────────
+    private float targetChromaticIntensity;
 
+    // ─────────────────────────────────────────────
 
     void Awake()
     {
         if (!Application.isPlaying) return;
-        
-        globalVolume.profile = Instantiate(globalVolume.profile);
 
-        if (!globalVolume.profile.TryGet(out bloom))
-            Debug.LogError("Bloom não encontrado no Volume");
+        // Instanciar profile para runtime
+        globalVolume.profile = Instantiate(globalVolume.profile);
 
         if (!globalVolume.profile.TryGet(out vignette))
             Debug.LogError("Vignette não encontrado no Volume");
 
         if (!globalVolume.profile.TryGet(out chromaticAberration))
-            Debug.LogError("Vignette não encontrado no Volume");
+            Debug.LogError("Chromatic Aberration não encontrado no Volume");
 
-        // reset garantido
-        bloom.dirtIntensity.value = 0f;
         chromaticAberration.intensity.value = 0f;
+
+        // Criar instâncias dos materiais dos quads
+        if (lensDirtRenderers != null && lensDirtRenderers.Length > 0)
+        {
+            lensDirtMats = new Material[lensDirtRenderers.Length];
+
+            for (int i = 0; i < lensDirtRenderers.Length; i++)
+            {
+                if (lensDirtRenderers[i] == null) continue;
+
+                lensDirtMats[i] = lensDirtRenderers[i].material;
+                SetOverlayAlpha(lensDirtMats[i], 0f);
+            }
+        }
     }
 
     void OnEnable()
@@ -86,7 +92,7 @@ public class NeedsEffects : MonoBehaviour
         manager.OnEnergyChanged += OnEnergyChanged;
         manager.OnHungerChanged += OnHungerChanged;
 
-        // força estado inicial
+        // estado inicial
         OnHygieneChanged(manager.Needs.Hygiene, manager.Needs.MaxHygiene);
         OnEnergyChanged(manager.Needs.Energy, manager.Needs.MaxEnergy);
         OnHungerChanged(manager.Needs.Hunger, manager.Needs.MaxHunger);
@@ -103,112 +109,146 @@ public class NeedsEffects : MonoBehaviour
 
     void Update()
     {
-        if (bloom != null)
+        UpdateLensDirt();
+        UpdateVignette();
+        UpdateChromatic();
+    }
+
+    // ───────── Lens Dirt Overlay ─────────
+
+    void UpdateLensDirt()
+    {
+        if (lensDirtMats == null) return;
+
+        foreach (var mat in lensDirtMats)
         {
-            bloom.dirtIntensity.value = Mathf.Lerp(
-                bloom.dirtIntensity.value,
-                targetDirtIntensity,
+            if (mat == null) continue;
+
+            float current = mat.color.a;
+            float next = Mathf.Lerp(
+                current,
+                targetOverlayAlpha,
                 Time.deltaTime * lerpSpeed
             );
+
+            SetOverlayAlpha(mat, next);
         }
+    }
 
-        if (vignette != null)
+    void SetOverlayAlpha(Material mat, float a)
+    {
+        Color c = mat.color;
+        c.a = a;
+        mat.color = c;
+    }
+
+    void ResetOverlay()
+    {
+        if (lensDirtMats == null) return;
+
+        foreach (var mat in lensDirtMats)
+            SetOverlayAlpha(mat, 0f);
+    }
+
+    // ───────── Vignette ─────────
+
+    void UpdateVignette()
+    {
+        if (vignette == null) return;
+
+        if (vignettePulsing)
         {
-            if (vignettePulsing)
-            {
-                vignettePulseTimer += Time.deltaTime * currentPulseSpeed;
+            vignettePulseTimer += Time.deltaTime * currentPulseSpeed;
 
-                float wave = Mathf.PingPong(vignettePulseTimer, 1f); // ciclo fixo
-                float pulse = wave * targetVignettePulse;
-
-                vignette.intensity.value = pulse;
-            }
-            else
-            {
-                vignettePulseTimer = 0f;
-
-                vignette.intensity.value = Mathf.Lerp(
-                    vignette.intensity.value,
-                    0f,
-                    Time.deltaTime * lerpSpeed
-                );
-            }
+            float wave = Mathf.PingPong(vignettePulseTimer, 1f);
+            vignette.intensity.value = wave * targetVignettePulse;
         }
-
-
-
-
-        if (chromaticAberration != null)
+        else
         {
-            chromaticAberration.intensity.value = Mathf.Lerp(
-                chromaticAberration.intensity.value,
-                targetChromaticIntensity,
+            vignettePulseTimer = 0f;
+
+            vignette.intensity.value = Mathf.Lerp(
+                vignette.intensity.value,
+                0f,
                 Time.deltaTime * lerpSpeed
             );
         }
     }
 
-    // ───────────── Hygiene ─────────────
+    // ───────── Chromatic ─────────
+
+    void UpdateChromatic()
+    {
+        if (chromaticAberration == null) return;
+
+        chromaticAberration.intensity.value = Mathf.Lerp(
+            chromaticAberration.intensity.value,
+            targetChromaticIntensity,
+            Time.deltaTime * lerpSpeed
+        );
+    }
+
+    // ───────── Hygiene ─────────
+
     void OnHygieneChanged(float current, float max)
     {
         var manager = NeedsManager.Instance;
 
+        // Acima do threshold → sem overlay
         if (current > hygieneThreshold)
         {
-            targetDirtIntensity = 0f;
-            bloom.dirtIntensity.value = 0f; // hard reset
+            targetOverlayAlpha = 0f;
             return;
         }
 
+        // Entre threshold e 0 → começa a aparecer
         if (current > 0f)
         {
             float t = Mathf.InverseLerp(hygieneThreshold, 0f, current);
-            targetDirtIntensity = Mathf.Lerp(0f, dirtyAtZero, t);
+            targetOverlayAlpha = Mathf.Lerp(0f, maxOverlayAlpha, t);
             return;
         }
 
+        // A 0 → cresce com o tempo (IGUAL à fome)
         float zero01 = Mathf.Clamp01(
             manager.HygieneZeroHours / manager.HoursUntilGameOver
         );
 
-        targetDirtIntensity = Mathf.Lerp(
-            dirtyAtZero,
-            maxCriticalDirt,
+        targetOverlayAlpha = Mathf.Lerp(
+            maxOverlayAlpha,
+            maxCriticalOverlayAlpha,
             zero01
         );
     }
 
-    // ───────────── Energy ─────────────
+
+
+    // ───────── Energy ─────────
+
     void OnEnergyChanged(float current, float max)
     {
         var manager = NeedsManager.Instance;
 
-        // ───── Energia normal ─────
         if (current > 0f)
         {
             vignettePulsing = false;
-
-            targetVignetteIntensity = 0f;
             targetVignettePulse = 0f;
             currentPulseSpeed = 0f;
             return;
         }
 
-        // ───── Energia a 0 ─────
         vignettePulsing = true;
 
         float zero01 = Mathf.Clamp01(
             manager.EnergyZeroHours / manager.HoursUntilGameOver
         );
 
-        // amplitude do pulso
         targetVignettePulse = Mathf.Lerp(
             pulseAtZero,
             maxPulseIntensity,
             zero01
         );
 
-        // speed cresce com o tempo (período → velocidade)
         float pulsePeriod = Mathf.Lerp(
             pulsePeriodAtZero,
             pulsePeriodAtCritical,
@@ -218,9 +258,7 @@ public class NeedsEffects : MonoBehaviour
         currentPulseSpeed = 1f / pulsePeriod;
     }
 
-
-
-    // ───────────── Hunger ─────────────
+    // ───────── Hunger ─────────
 
     void OnHungerChanged(float current, float max)
     {
@@ -229,7 +267,7 @@ public class NeedsEffects : MonoBehaviour
         if (current > hungerThreshold)
         {
             targetChromaticIntensity = 0f;
-            chromaticAberration.intensity.value = 0f; // hard reset
+            chromaticAberration.intensity.value = 0f;
             return;
         }
 

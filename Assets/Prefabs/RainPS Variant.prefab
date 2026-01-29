@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 254402107669243711, guid: 1920a291eecb96a4abd4335743287c12, type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 40
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 254402107669243711, guid: 1920a291eecb96a4abd4335743287c12, type: 3}
       propertyPath: ShapeModule.m_Scale.z
-      value: 40
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 254402107669243711, guid: 1920a291eecb96a4abd4335743287c12, type: 3}
       propertyPath: CollisionModule.enabled

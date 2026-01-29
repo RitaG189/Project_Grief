@@ -266,7 +266,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7139353866972176401, guid: d5730e56c7b373048a30716bf34470e2, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 666578661}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7139353867064952759, guid: d5730e56c7b373048a30716bf34470e2, type: 3}
       insertIndex: -1
@@ -288,6 +291,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a7ee2cbd64a9143bd7e97e58fb421f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &370361080 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7139353866972176401, guid: d5730e56c7b373048a30716bf34470e2, type: 3}
+  m_PrefabInstance: {fileID: 370361077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &666578660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 666578661}
+  - component: {fileID: 666578663}
+  - component: {fileID: 666578662}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &666578661
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666578660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 370361080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 119.0269, y: 78.3862}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &666578662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666578660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &666578663
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666578660}
+  m_CullTransparentMesh: 1
 --- !u!114 &1579921242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IntroController
   videoPlayer: {fileID: 2104422883}
   videoManager: {fileID: 370361079}
-  nextSceneName: Sims
+  nextSceneName: Game_Scene
   clipDogFemale: {fileID: 32900000, guid: c0768c7dfbda04db18965baf51e6c5a3, type: 3}
   clipCatFemale: {fileID: 32900000, guid: ce1721fab2bcc417b9526b053d14b841, type: 3}
   clipDogMale: {fileID: 32900000, guid: 07715c155c4964ec7a65d21b73439226, type: 3}
